@@ -1,0 +1,13 @@
+language: groovy
+
+sudo: required
+
+services:
+    - docker
+
+before_install:
+    - make build
+    - make run
+
+script:
+    make healthcheck
