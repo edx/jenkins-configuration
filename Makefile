@@ -20,5 +20,5 @@ build:
 run:
 	docker run --name jenkins-1.6 -p 8080:8080 -d jenkins-1.6
 
-healthchecks:
+healthcheck:
 	./healthcheck.sh
