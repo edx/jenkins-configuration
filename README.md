@@ -7,7 +7,7 @@ third party plugins
 Tools like the Jenkins Job DSL allow you to programmatically create jobs and other
 resources. However, the configuration of Jenkins itself is still a manual process and is error prone.
 These scripts can be used to create a reproducible and testable Jenkins instance, complete with
-plugins installed and ready to use.
+plugins installed and is ready to use.
 
 ## Setup
 
