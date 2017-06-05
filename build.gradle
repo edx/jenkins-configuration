@@ -1,0 +1,19 @@
+apply plugin: 'groovy'
+apply plugin: 'codenarc'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.1.3'
+}
+
+codenarc {
+    toolVersion = '0.25.2'
+    configFile = file('codenarc/rules.groovy')
+    ignoreFailures = false
+    maxPriority1Violations = 0
+    maxPriority2Violations = 0
+    maxPriority3Violations = 0
+}
