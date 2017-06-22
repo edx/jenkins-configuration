@@ -1,6 +1,8 @@
 SHELL := /usr/bin/env bash
 .DEFAULT_GOAL := help
-.PHONY: clean build
+.PHONY: clean build logs
+
+jenkins_version="jenkins-1.6"
 
 help:
 	@echo ''
@@ -9,20 +11,29 @@ help:
 	@echo '     make clean          shutdown running container and delete image'
 	@echo '     make build          build a dockerfile for testing the jenkins configuration'
 	@echo '     make run            run the dockerfile in the background'
+	@echo '     make logs           tail the logs for the Jenkins container'
+	@echo '     make shell          shell into the runnning Jenkkins container for debugging'
 	@echo '     make healthcheck    run healthcheck script to test if Jenkins has successfully booted'
 	@echo '     make quality        run codenarc on groovy source and tests'
 
 clean:
 # run the following docker commands with '|| true' because they do not have a 'quiet' flag
-	docker kill jenkins-1.6 || true
-	docker rm jenkins-1.6 || true
-	docker rmi jenkins-1.6 || true
+	docker kill $(jenkins_version) || true
+	docker rm $(jenkins_version) || true
+	docker rmi $(jenkins_version) || true
+	./gradlew clean
 
 build:
-	docker build -t jenkins-1.6 .
+	docker build -t $(jenkins_version) .
 
 run:
-	docker run --name jenkins-1.6 -p 8080:8080 -d jenkins-1.6
+	docker run --name $(jenkins_version) -p 8080:8080 -d $(jenkins_version)
+
+logs:
+	docker logs -f $(jenkins_version)
+
+shell:
+	docker exec -it $(jenkins_version) /bin/bash
 
 healthcheck:
 	./healthcheck.sh
