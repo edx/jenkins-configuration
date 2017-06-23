@@ -6,3 +6,6 @@ build/*
 # ignore compiled artifacts
 *.pyc
 *.class
+
+# ignore pytest artifacts
+.cache/*
