@@ -21,7 +21,7 @@ Setup
 ~~~~~
 
 Install python dependencies for acceptance testing (on a Jenkins instance
-running within a Docker container.
+running within a Docker container).
 
 .. code:: bash
 

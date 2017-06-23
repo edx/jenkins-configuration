@@ -6,12 +6,12 @@ class PluginTestCase(TestCase):
 
     def setUp(self):
         self.jenkins = Jenkins("http://localhost:8080")
+        self.plugins = self.jenkins.get_plugins()
 
     def test_sample_plugins_installed(self):
-        plugins = self.jenkins.get_plugins()
         installed_plugin_versions = {
                 value.shortName: value.version 
-                for _, value in plugins.iteritems()
+                for _, value in self.plugins.iteritems()
                 }
         expected_plugin_versions = {
             # The following plugins are installed as part of an initial

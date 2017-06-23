@@ -1,6 +1,6 @@
 SHELL := /usr/bin/env bash
 .DEFAULT_GOAL := help
-.PHONY: clean build logs e2e
+.PHONY: clean requirements build logs e2e
 
 jenkins_version="jenkins-1.6"
 
@@ -47,4 +47,4 @@ requirements:
 	pip install -r test-requirements.txt
 
 e2e:
-	nosetests
+	pytest
