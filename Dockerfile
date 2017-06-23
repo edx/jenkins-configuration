@@ -19,6 +19,7 @@ RUN groupadd -g ${gid} ${group} \
     && useradd -d "$JENKINS_HOME" -u ${uid} -g ${gid} -m -s /bin/bash ${user}
 
 RUN mkdir -p $JENKINS_HOME/init.groovy.d
+COPY src/main/groovy/*.groovy $JENKINS_HOME/init.groovy.d/
 RUN chown -R ${user}:${group} $JENKINS_HOME
 
 CMD /usr/bin/java -jar /usr/share/jenkins/jenkins.war --httpPort=8080
