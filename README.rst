@@ -12,10 +12,20 @@ plugins installed and is ready to use.
 Setup
 -----
 
-Requirements
-~~~~~~~~~~~~
+System Requirements
+~~~~~~~~~~~~~~~~~~~
 
 Working on this repository requires that both Docker and Gradle are installed.
+
+Setup
+~~~~~
+
+Install python dependencies for acceptance testing (on a Jenkins instance
+running within a Docker container).
+
+.. code:: bash
+
+make requirements
 
 Testing
 -------
@@ -53,3 +63,8 @@ Test that Jenkins has initialized correctly
 .. code:: bash
     
     make healthcheck
+
+Test the configuration of a running Jenkins instance
+.. code:: bash
+
+    make e2e
