@@ -1,6 +1,6 @@
 SHELL := /usr/bin/env bash
 .DEFAULT_GOAL := help
-.PHONY: clean build logs
+.PHONY: clean build logs e2e
 
 jenkins_version="jenkins-1.6"
 
@@ -15,6 +15,8 @@ help:
 	@echo '     make shell          shell into the runnning Jenkkins container for debugging'
 	@echo '     make healthcheck    run healthcheck script to test if Jenkins has successfully booted'
 	@echo '     make quality        run codenarc on groovy source and tests'
+	@echo '     make requirements   install requirements for acceptance tests'
+	@echo '     make e2e            run python acceptance tests against a provisioned docker container'
 
 clean:
 # run the following docker commands with '|| true' because they do not have a 'quiet' flag
@@ -40,3 +42,9 @@ healthcheck:
 
 quality:
 	./gradlew codenarcMain codenarcTest
+
+requirements:
+	pip install -r test-requirements.txt
+
+e2e:
+	nosetests
