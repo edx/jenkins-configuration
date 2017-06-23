@@ -64,7 +64,7 @@ Test that Jenkins has initialized correctly
     
     make healthcheck
 
-Test the configuration of a running Jenkins instance, via
+Test the configuration of a running Jenkins instance
 .. code:: bash
 
     make e2e
