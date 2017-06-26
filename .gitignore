@@ -1,7 +1,9 @@
 # ignore gradle artifacts
 .gradle/*
+plugin-resolver/.gradle/*
 lib/*
 build/*
+utils/*
 
 # ignore compiled artifacts
 *.pyc
