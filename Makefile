@@ -44,6 +44,7 @@ quality:
 	./gradlew codenarcMain codenarcTest
 
 requirements:
+	./gradlew libs
 	pip install -r test-requirements.txt
 
 e2e:
