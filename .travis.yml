@@ -2,6 +2,8 @@ language: groovy
 
 sudo: required
 
+group: deprecated-2017Q2
+
 branches:
   only:
     - master
