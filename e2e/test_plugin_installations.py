@@ -43,7 +43,12 @@ class PluginTestCase(TestCase):
             "matrix-project": "1.6",
             "ssh-agent": "1.3",
             "github-api": "1.82",
-            "git": "2.4.0"
+            "git": "2.4.0",
+            "git-client": "1.18.0",
+            "junit": "1.2",
+            "scm-api": "0.2",
+            "script-security": "1.13",
+            "ssh-credentials": "1.11"
         }
         for plugin, version in expected_plugin_versions.iteritems():
             assert expected_plugin_versions[plugin] == version
