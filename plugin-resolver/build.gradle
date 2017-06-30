@@ -1,0 +1,75 @@
+buildscript {
+  repositories {
+        mavenCentral()
+        maven {
+          url 'http://repo.jenkins-ci.org/releases/'
+        }
+  }
+  dependencies {
+        classpath 'org.jenkins-ci.tools:gradle-jpi-plugin:0.18.1'
+  }
+}
+apply plugin: 'java'
+apply plugin: 'org.jenkins-ci.jpi'
+repositories {
+  maven {
+        url 'http://repo.jenkins-ci.org/releases/'
+  }
+}
+
+configurations {
+    jenkinsPlugins {}
+}
+
+dependencies {
+          jenkinsPlugins([
+                [group: 'org.jenkins-ci.plugins',
+                name: 'ghprb',
+                version: '1.34.0'],
+                [group: 'org.jenkins-ci.plugins',
+                name: 'ec2',
+                version: '1.29'],
+                [group: 'org.jenkins-ci.plugins',
+                name: 'job-dsl',
+                version: '1.45']
+          ])
+}
+
+task clean(type: Delete){
+    delete '/var/lib/jenkins/plugins/*'
+}
+
+// resolve all of the dependencies for the plugin files sepcified in
+// jenkinsPlugins, and then copy the renamed jpi files into 
+// $JENKINS_HOME/plugins
+task install(type: Copy, dependsOn: [clean]){
+    from configurations.jenkinsPlugins
+    include '**/*.hpi'
+    include '**/*.jpi'
+    into '/var/lib/jenkins/plugins'
+
+    // Strip the version from the plugin name
+    def mapping = [:]
+    doFirst {
+        configurations.jenkinsPlugins.resolvedConfiguration.resolvedArtifacts.each {
+            mapping[it.file.name] = "${it.name}.jpi"
+        }
+    }
+    rename { mapping[it] }
+
+    // Jenkins 1.x comes with 'bundled' plugins, that will be resintalled and
+    // override manually installed plugin versions, unless there is an empty
+    // 'pinned' jpi file.
+    // NOTE: this is no longer the case with Jenkins 2.x
+    doLast {
+        File pluginPath = new File("/var/lib/jenkins/plugins")
+        pluginPath.eachFile { plugin ->
+            if ( plugin.isFile() ) {
+                new File("${plugin}.pinned").createNewFile()
+            }
+        }
+    }
+}
+
+// should be run with `gradle update --refresh-dependencies`
+task update(dependsOn: [clean, install])
