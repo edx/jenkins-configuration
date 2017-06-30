@@ -1,0 +1,65 @@
+buildscript {
+  repositories {
+        mavenCentral()
+        maven {
+          url 'http://repo.jenkins-ci.org/releases/'
+        }
+  }
+  dependencies {
+        classpath 'org.jenkins-ci.tools:gradle-jpi-plugin:0.18.1'
+        classpath 'org.yaml:snakeyaml:1.17'
+  }
+}
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'org.jenkins-ci.jpi'
+
+def pluginsPath = 'plugins'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    jenkinsPlugins(parsePluginList())
+}
+
+// resolve all of the dependencies for the plugin files sepcified in
+// jenkinsPlugins
+task plugins(type: Copy, dependsOn: [clean]){
+    from configurations.jenkinsPlugins
+    include '**/*.hpi'
+    include '**/*.jpi'
+    into "${pluginsPath}"
+
+    // Strip the version from the plugin name
+    def mapping = [:]
+    doFirst {
+        configurations.jenkinsPlugins.resolvedConfiguration.resolvedArtifacts.each {
+            mapping[it.file.name] = "${it.name}.jpi"
+        }
+    }
+    rename { mapping[it] }
+
+    // Jenkins 1.x comes with 'bundled' plugins, that will be resintalled and
+    // override manually installed plugin versions, unless there is an empty
+    // 'pinned' jpi file. Create a pinned file for each plugin to avoid any override
+    // issues.
+    // NOTE: this is no longer the case with Jenkins 2.x
+    doLast {
+        File pluginPath = new File("${pluginsPath}")
+        pluginPath.eachFile { plugin ->
+            if ( plugin.isFile() ) {
+                new File("${plugin}.pinned").createNewFile()
+            }
+        }
+    }
+}
+
+def parsePluginList() {
+    String pluginConfig = System.getenv('PLUGIN_CONFIG') ?: 'test_data/plugins.yml'
+    org.yaml.snakeyaml.Yaml yaml = new org.yaml.snakeyaml.Yaml()
+    List<String> list = yaml.load(new File(pluginConfig).text)
+    return list
+}
+
