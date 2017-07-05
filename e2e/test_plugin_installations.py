@@ -30,11 +30,25 @@ class PluginTestCase(TestCase):
             "subversion": "1.54",
             "external-monitor-job": "1.4",
             "cvs": "2.11",
-
-            # TODO: enumerate plugins installed via test_data/plugins.json
-
-            # TODO: enumerate dependency plugins and versions for the plugins
-            # installed via test_data/plugins.json
+            # The following plugins installed via test_data/plugins.yml
+            "ec2": "1.29",
+            "ghprb": "1.34.0",
+            "job-dsl": "1.45",
+            # The following plugins should be installed as dependencies for
+            # the plugins installed via test_data/plugins.yml
+            "node-iterator-api": "1.1",
+            "github": "1.9.1",
+            "plain-credentials": "1.1",
+            "credentials": "1.21",
+            "matrix-project": "1.6",
+            "ssh-agent": "1.3",
+            "github-api": "1.82",
+            "git": "2.4.0",
+            "git-client": "1.18.0",
+            "junit": "1.2",
+            "scm-api": "0.2",
+            "script-security": "1.13",
+            "ssh-credentials": "1.11"
         }
         for plugin, version in expected_plugin_versions.iteritems():
             print "Checking if {} at version {} is installed".format(

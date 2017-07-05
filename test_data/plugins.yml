@@ -1,0 +1,10 @@
+---
+- name: 'ghprb'
+  version: '1.34.0'
+  group: 'org.jenkins-ci.plugins'
+- name: 'ec2'
+  version: '1.29'
+  group: 'org.jenkins-ci.plugins'
+- name: 'job-dsl'
+  version: '1.45'
+  group: 'org.jenkins-ci.plugins'
