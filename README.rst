@@ -25,7 +25,16 @@ running within a Docker container).
 
 .. code:: bash
 
-make requirements
+    make requirements
+
+Before building the docker container, you should download Jenkins plugins (with
+dependencies). By default, the plugins specified in test_data/plugins.yml will
+be installed. However, if you wish to use another file, set the environment
+variable $PLUGIN_CONFIG to point to the YAML file you wish to use.
+
+.. code:: bash
+
+    make plugins
 
 Testing
 -------

@@ -1,6 +1,6 @@
 SHELL := /usr/bin/env bash
 .DEFAULT_GOAL := help
-.PHONY: clean requirements build logs e2e
+.PHONY: clean requirements plugins build logs e2e
 
 jenkins_version="jenkins-1.6"
 
@@ -16,6 +16,7 @@ help:
 	@echo '     make healthcheck    run healthcheck script to test if Jenkins has successfully booted'
 	@echo '     make quality        run codenarc on groovy source and tests'
 	@echo '     make requirements   install requirements for acceptance tests'
+	@echo '     make plugins        install specified Jenkins plugins and their dependencies'
 	@echo '     make e2e            run python acceptance tests against a provisioned docker container'
 
 clean:
@@ -45,6 +46,9 @@ quality:
 
 requirements:
 	pip install -r test-requirements.txt
+
+plugins:
+	./gradlew plugins
 
 e2e:
 	pytest
