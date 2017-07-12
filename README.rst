@@ -21,7 +21,7 @@ Setup
 ~~~~~
 
 Install python dependencies for acceptance testing (on a Jenkins instance
-running within a Docker container).
+running within a Docker container), as well as various Groovy helper utilities.
 
 .. code:: bash
 
@@ -35,6 +35,43 @@ variable $PLUGIN_CONFIG to point to the YAML file you wish to use.
 .. code:: bash
 
     make plugins
+
+Configuring Jenkins
+-------------------
+
+Jenkins will run Groovy code placed in $JENKINS_HOME/init.groovy.d on each boot.
+
+
+Tips/Tricks
+~~~~~~~~~~~
+
+Unlike the Jenkins Script Console, Jenkins-related libraries are not auto-imported,
+so make sure you import the following into your scripts:
+
+.. code:: groovy
+
+    import jenkins.*
+    import jenkins.model.*
+    import hudson.*
+    import hudson.model.*
+
+Scripts are run in lexicographical order. Use a numerical prefix for scripts that
+must be run in a particular order.
+
+Groovy Dependencies:
+~~~~~~~~~~~~~~~~~~~~
+
+In order to use libraries outside of the Groovy standard library, you must first run
+src/main/groovy/1_add_jars_to_classpath.groovy. This will allow you to make use of
+the Groovy Grape_ system in subsequent scripts for importing external libraries. For
+example, if you wanted to make use of the Snake Yaml library:
+
+.. code:: groovy
+
+    @Grab(group='org.yaml', module='snakeyaml', version='1.17')
+    import org.yaml.snakeyaml.Yaml
+
+.. _Grape: http://docs.groovy-lang.org/latest/html/documentation/grape.html
 
 Testing
 -------
@@ -74,6 +111,8 @@ Test that Jenkins has initialized correctly
     make healthcheck
 
 Test the configuration of a running Jenkins instance
+
 .. code:: bash
 
     make e2e
+

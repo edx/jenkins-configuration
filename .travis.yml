@@ -21,8 +21,8 @@ cache:
         - $HOME/.gradle/wrapper/
 
 before_install:
-    - make requirements
     - make plugins
+    - make requirements
     - make build
     - make run
 
