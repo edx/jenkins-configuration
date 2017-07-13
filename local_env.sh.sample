@@ -1,0 +1,8 @@
+# Local environnment setup example
+# Copy to a new file (local_env.sh) and fill in the values you wish
+# By default, these variables all default to using the config files found in
+# jenkins-configuration/test_data
+# Run `source local_env.sh` to set up your environment
+
+export CONFIG_PATH='test_data'
+export PLUGIN_CONFIG='test_data/plugins.yml'
