@@ -9,3 +9,6 @@ build/*
 
 # ignore pytest artifacts
 .cache/*
+
+# ignore testing variable script
+local_env.sh
