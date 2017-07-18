@@ -1,2 +1,3 @@
 jenkinsapi==0.3.4
 pytest==3.1.2
+requests==2.9.1

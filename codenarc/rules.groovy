@@ -8,6 +8,8 @@ ruleset {
 
     ruleset('rulesets/generic.xml')
 
-    ruleset('rulesets/imports.xml') 
+    ruleset('rulesets/imports.xml') {
+        exclude 'NoWildcardImports'
+    }
 
 }

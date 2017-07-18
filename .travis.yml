@@ -23,6 +23,7 @@ cache:
 before_install:
     - make plugins
     - make requirements
+    - cp local_env.sh.sample local_env.sh && source local_env.sh
     - make build
     - make run
 

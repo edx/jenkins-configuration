@@ -9,6 +9,7 @@
 import org.codehaus.groovy.runtime.DefaultGroovyMethods
 import java.util.regex.Matcher
 import java.util.logging.Logger
+import jenkins.model.*
 
 Logger logger = Logger.getLogger("")
 
@@ -45,7 +46,11 @@ jarPath.eachFile() { file ->
             logger.info("Successfully added ${fileName}")
         }
         catch (Exception e) {
-            logger.info("Unable to load ${fileName}")
+            logger.severe("Unable to load ${fileName}")
+            logger.severe("Cancelling Jenkins start up.")
+            Jenkins jenkins = Jenkins.getInstance()
+            jenkins.doSafeExit(null)
+            System.exit(1)
         }
     }
 }

@@ -33,7 +33,7 @@ clean.ws:
 	./gradlew clean
 
 build:
-	docker build -t $(jenkins_version) .
+	docker build -t $(jenkins_version) --build-arg=CONFIG_PATH=$(CONFIG_PATH) .
 
 run:
 	docker run --name $(jenkins_version) -p 8080:8080 -d $(jenkins_version)
