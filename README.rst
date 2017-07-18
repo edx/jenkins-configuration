@@ -56,7 +56,14 @@ so make sure you import the following into your scripts:
     import hudson.model.*
 
 Scripts are run in lexicographical order. Use a numerical prefix for scripts that
-must be run in a particular order.
+must be run in a particular order. The following order is suggested for scripts:
+
+    - 1<scriptName> : bootstrapping scripts, such as making helper jars available
+    - 2<scriptName> : verification scripts, used to check the system before configuration
+    - 3<scriptName> : main (Jenkins core) configuration scripts
+    - 4<scriptName> : plugin configuration scripts
+    - ...
+    - 9<scriptName> : scripts to run at the end of the configuration process (i.e. putting into quiet mode or testing a configuration
 
 Groovy Dependencies:
 ~~~~~~~~~~~~~~~~~~~~
