@@ -12,3 +12,7 @@ build/*
 
 # ignore testing variable script
 local_env.sh
+
+# ignore the files downloaded to build out Jenkins
+plugins/*
+utils/*

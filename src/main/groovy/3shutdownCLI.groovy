@@ -31,9 +31,33 @@ THE SOFTWARE.
 *
 **/
 
+import java.util.logging.Logger
 import jenkins.*;
 import jenkins.model.*;
 import hudson.model.*;
+@Grapes([
+    @Grab(group='org.yaml', module='snakeyaml', version='1.17')
+])
+import org.yaml.snakeyaml.Yaml
+
+Logger logger = Logger.getLogger("")
+
+Yaml yaml = new Yaml()
+String configPath = System.getenv("JENKINS_CONFIG_PATH")
+String configText = ''
+try {
+    configText = new File("${configPath}/main_config.yml").text
+} catch (FileNotFoundException e) {
+    logger.severe("Cannot find config file path @ ${configPath}/main_config.yml")
+    jenkins.doSafeExit(null)
+    System.exit(1)
+}
+Boolean cliEnabled = (Boolean) yaml.load(configText).CLI.CLI_ENABLED
+
+if (cliEnabled) {
+    logger.info("Leaving the Jenkins CLI subsystem intact")
+    System.exit(0)
+}
 
 // disabled CLI access over TCP listener (separate port)
 def p = AgentProtocol.all()
@@ -51,6 +75,8 @@ def removal = { lst ->
         }
     }
 }
+
+logger.info("Removing the Jenkins CLI subsystem")
 Jenkins jenkins = Jenkins.getInstance()
 removal(jenkins.getExtensionList(RootAction.class))
 removal(jenkins.actions)

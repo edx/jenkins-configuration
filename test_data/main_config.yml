@@ -1,0 +1,27 @@
+---
+MAIN:
+    WORKSPACE_ROOT_DIR: '${JENKINS_HOME}/workspace/${ITEM_FULLNAME}-sample'
+    BUILD_RECORD_ROOT_DIR: '${ITEM_ROOTDIR}/builds-sample'
+    SYSTEM_MESSAGE: 'This is a brand new system'
+    NUMBER_OF_EXECUTORS: 3
+    LABELS:
+        - "master-node"
+        - "the-master-node"
+    USAGE: 'EXCLUSIVE'
+    QUIET_PERIOD: 10
+    SCM_RETRY_COUNT: 15
+    DISABLE_REMEMBER_ME: true
+GLOBAL_PROPERTIES:
+    ENVIRONMENT_VARIABLES:
+        - NAME: 'VAR1'
+          VALUE: 'HELLO'
+        - NAME: 'VAR2'
+          VALUE: 'WORLD'
+    TOOL_LOCATIONS:
+LOCATION:
+    URL: 'http://localhost:8080/sample'
+    ADMIN_EMAIL: 'admin@localhost'
+SHELL:
+    EXECUTABLE: '/bin/bash'
+CLI:
+    CLI_ENABLED: false
