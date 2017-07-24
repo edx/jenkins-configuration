@@ -21,11 +21,22 @@ cache:
         - $HOME/.gradle/wrapper/
 
 before_install:
+    # browser set up for e2e tests
+    - export DISPLAY=:99.0
+    - sh -e /etc/init.d/xvfb start
+    - wget https://s3.amazonaws.com/vagrant.testeng.edx.org/geckodriver-v0.15.0-linux64.tar.gz
+    - mkdir geckodriver
+    - tar -xzf geckodriver-v0.15.0-linux64.tar.gz -C geckodriver
+    - export PATH=$PATH:$PWD/geckodriver
+    # install requirements and build the container
     - make plugins
     - make requirements
     - cp local_env.sh.sample local_env.sh && source local_env.sh
     - make build
     - make run
+
+addons:
+    firefox: '52.0.1'
 
 script:
     - make quality
