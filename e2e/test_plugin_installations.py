@@ -19,38 +19,39 @@ class PluginTestCase(TestCase):
             "windows-slaves": "1.0",
             "ldap": "1.11",
             "ant": "1.2",
-            "matrix-auth": "1.1",
-            "translation": "1.10",
-            "mailer": "1.11",
-            "pam-auth": "1.1",
-            "antisamy-markup-formatter": "1.1",
-            "maven-plugin": "2.7.1",
+            "matrix-auth": "1.2",
+            "translation": "1.12",
+            "mailer": "1.16",
+            "pam-auth": "1.2",
+            "antisamy-markup-formatter": "1.3",
+            "maven-plugin": "2.8",
             "ssh-slaves": "1.9",
-            "javadoc": "1.1",
-            "subversion": "1.54",
+            "javadoc": "1.3",
+            "subversion": "2.4.5",
             "external-monitor-job": "1.4",
-            "cvs": "2.11",
+            "cvs": "2.12",
             # The following plugins installed via test_data/plugins.yml
-            "ec2": "1.29",
-            "ghprb": "1.34.0",
+            "ec2": "1.28",
+            "ghprb": "1.22.4",
             "job-dsl": "1.45",
             # The following plugins should be installed as dependencies for
             # the plugins installed via test_data/plugins.yml
             "node-iterator-api": "1.1",
             "github": "1.9.1",
             "plain-credentials": "1.1",
-            "credentials": "1.21",
-            "matrix-project": "1.6",
+            "credentials": "1.24",
+            "matrix-project": "1.4.1",
             "ssh-agent": "1.3",
-            "github-api": "1.82",
-            "git": "2.4.0",
-            "git-client": "1.18.0",
-            "junit": "1.2",
+            "github-api": "1.66",
+            "git": "2.2.4",
+            "git-client": "1.10.1",
+            "junit": "1.3",
             "scm-api": "0.2",
-            "script-security": "1.13",
-            "ssh-credentials": "1.11"
+            "script-security": "1.27",
+            "ssh-credentials": "1.11",
+            "mapdb-api": "1.0.1.0"
         }
-        for plugin, version in expected_plugin_versions.iteritems():
+        for plugin, version in installed_plugin_versions.iteritems():
             print "Checking if {} at version {} is installed".format(
                     plugin, installed_plugin_versions[plugin])
             assert expected_plugin_versions[plugin] == version

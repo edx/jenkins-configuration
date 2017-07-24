@@ -1,0 +1,33 @@
+---
+SERVER_API_URL: 'https://api.github.com'
+ACCESS_TOKEN: 'accessTokenString'
+ADMIN_LIST:
+    - 'admin1'
+    - 'admin2'
+REQUEST_TESTING_PHRASE: 'retest this PR please'
+WHITE_LIST_PHRASE: 'add this github user'
+OK_PHRASE: 'this is OK to test'
+RETEST_PHRASE: 'please retest'
+SKIP_PHRASE: 'skip tests'
+CRON_SCHEDULE: 'H/5 * * * *'
+USE_COMMENTS: true
+USE_DETAILED_COMMENTS: false
+MANAGE_WEBHOOKS: false
+UNSTABLE_AS: 'pending'
+AUTO_CLOSE_FAILED_PRS: false
+DISPLAY_ERRORS_DOWNSTREAM: true
+BLACK_LIST_LABELS:
+    - 'blacklist-label-1'
+    - 'blacklist-label-2'
+WHITE_LIST_LABELS:
+    - 'whitelist-label-1'
+    - 'whitelist-label-2'
+GITHUB_AUTH: 'test'
+SIMPLE_STATUS: 'simple status'
+PUBLISH_JENKINS_URL: 'myjenkinsinstance.com'
+BUILD_LOG_LINES_TO_DISPLAY: 25
+RESULT_MESSAGES:
+    - STATUS: 'pending'
+      MESSAGE: 'this is pending'
+    - STATUS: 'failure'
+      MESSAGE: 'this was a failure'
