@@ -1,0 +1,17 @@
+---
+- LOG_RECORDER: 'Ghprb'
+  LOGGERS:
+    - name: 'org.jenkinsci.plugins.ghprb.GhprbPullRequest'
+      log_level: 'ALL'
+    - name: 'org.jenkinsci.plugins.ghprb.GhprbRootAction'
+      log_level: 'ALL'
+    - name: 'org.jenkinsci.plugins.ghprb.GhprbRepository'
+      log_level: 'ALL'
+    - name: 'org.jenkinsci.plugins.ghprb.GhprbGitHub'
+      log_level: 'ALL'
+    - name: 'org.jenkinsci.plugins.ghprb.Ghprb'
+      log_level: 'ALL'
+    - name: 'org.jenkinsci.plugins.ghprb.GhprbTrigger'
+      log_level: 'ALL'
+    - name: 'org.jenkinsci.plugins.ghprb.GhprbBuilds'
+      log_level: 'ALL'
