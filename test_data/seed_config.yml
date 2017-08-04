@@ -1,0 +1,3 @@
+---
+NAME: 'manually_seed_one_job'
+XML_PATH: 'init-configs/xml/seed_job.xml'
