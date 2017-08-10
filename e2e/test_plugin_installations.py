@@ -34,6 +34,7 @@ class PluginTestCase(TestCase):
             "ec2": "1.28",
             "ghprb": "1.22.4",
             "job-dsl": "1.45",
+            "github-oauth": "0.24",
             # The following plugins should be installed as dependencies for
             # the plugins installed via test_data/plugins.yml
             "node-iterator-api": "1.1",
@@ -42,7 +43,7 @@ class PluginTestCase(TestCase):
             "credentials": "1.24",
             "matrix-project": "1.4.1",
             "ssh-agent": "1.3",
-            "github-api": "1.66",
+            "github-api": "1.69",
             "git": "2.2.4",
             "git-client": "1.10.1",
             "junit": "1.3",
