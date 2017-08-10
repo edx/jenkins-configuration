@@ -35,6 +35,7 @@ class PluginTestCase(TestCase):
             "ghprb": "1.22.4",
             "job-dsl": "1.45",
             "github-oauth": "0.24",
+            "gradle": "1.24",
             # The following plugins should be installed as dependencies for
             # the plugins installed via test_data/plugins.yml
             "node-iterator-api": "1.1",
