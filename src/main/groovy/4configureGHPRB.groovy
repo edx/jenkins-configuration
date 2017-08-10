@@ -1,4 +1,3 @@
-
 import java.util.logging.Logger
 import net.sf.json.JSONObject;
 
