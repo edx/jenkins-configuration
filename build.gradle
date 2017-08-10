@@ -25,6 +25,9 @@ dependencies {
     compile 'org.jenkins-ci.plugins:ghprb:1.22.4@jar'
     compile 'org.jenkins-ci.plugins:matrix-auth:1.2@jar'
     compile 'org.jenkins-ci.plugins:github-oauth:0.24@jar'
+    compile 'org.jenkins-ci.plugins:credentials:1.24@jar'
+    compile 'org.jenkins-ci.plugins:plain-credentials:1.1@jar'
+    compile 'org.jenkins-ci.plugins:ssh-credentials:1.11@jar'
     testCompile 'org.codehaus.groovy:groovy-all:2.1.3'
     testCompile 'javax.servlet:servlet-api:2.4'
     testCompile "org.jenkins-ci.main:jenkins-war:${jenkinsVersion}"
