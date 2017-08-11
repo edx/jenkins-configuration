@@ -1,6 +1,5 @@
 import java.util.logging.Logger
 import jenkins.model.Jenkins
-import hudson.plugins.git.GitSCM
 
 @Grapes([
     @Grab(group='org.yaml', module='snakeyaml', version='1.17')
