@@ -10,7 +10,7 @@ class PluginTestCase(TestCase):
 
     def test_sample_plugins_installed(self):
         installed_plugin_versions = {
-                value.shortName: value.version 
+                value.shortName: value.version
                 for _, value in self.plugins.iteritems()
                 }
         expected_plugin_versions = {
@@ -36,6 +36,7 @@ class PluginTestCase(TestCase):
             "job-dsl": "1.45",
             "github-oauth": "0.24",
             "gradle": "1.24",
+            "hipchat": "0.1.9",
             # The following plugins should be installed as dependencies for
             # the plugins installed via test_data/plugins.yml
             "node-iterator-api": "1.1",
