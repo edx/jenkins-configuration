@@ -24,7 +24,9 @@ RUN groupadd -g ${gid} ${group} \
 
 RUN mkdir -p $JENKINS_HOME/init.groovy.d \
     && mkdir $JENKINS_HOME/plugins \
-    && mkdir $JENKINS_HOME/utils
+    && mkdir $JENKINS_HOME/utils \
+    && mkdir $JENKINS_HOME/.ssh
+RUN ssh-keygen -t rsa -f $JENKINS_HOME/.ssh/id_rsa -P ''
 COPY src/main/groovy/*.groovy $JENKINS_HOME/init.groovy.d/
 COPY plugins $JENKINS_HOME/plugins/
 COPY utils/ $JENKINS_HOME/utils/
