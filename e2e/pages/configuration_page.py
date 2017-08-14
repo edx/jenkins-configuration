@@ -1,8 +1,9 @@
+from . import JENKINS_HOST
 from bok_choy.page_object import PageObject
 
 class JenkinsConfigurationPage(PageObject):
 
-    url = 'http://localhost:8080/configure'
+    url = "http://{}:8080/configure".format(JENKINS_HOST)
 
     def expand_advanced(self):
         self.q(css='#yui-gen13-button').click()   

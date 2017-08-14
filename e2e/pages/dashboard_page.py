@@ -1,8 +1,9 @@
+from . import JENKINS_HOST
 from bok_choy.page_object import PageObject
 
 class JenkinsDashboardPage(PageObject):
 
-    url = 'http://localhost:8080' 
+    url = "http://{}:8080".format(JENKINS_HOST)
 
     def is_browser_on_page(self):
         return 'dashboard [jenkins]' in self.browser.title.lower()

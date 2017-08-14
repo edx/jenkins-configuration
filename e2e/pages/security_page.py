@@ -1,10 +1,11 @@
 import os
 import re
+from . import JENKINS_HOST
 from bok_choy.page_object import PageObject
 
 class SecurityConfigurationPage(PageObject):
 
-    url = 'http://localhost:8080/configureSecurity'
+    url = "http://{}:8080/configureSecurity".format(JENKINS_HOST)
 
     def is_browser_on_page(self):
         return "configure global security" in self.browser.title.lower()
