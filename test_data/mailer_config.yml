@@ -1,0 +1,9 @@
+---
+SMTP_SERVER: 'localhost'
+REPLY_TO_ADDRESS: 'user@localhost'
+DEFAULT_SUFFIX: 'com'
+SMTP_AUTH_USERNAME: 'userId'
+SMTP_AUTH_PASSWORD: 'password'
+SMTP_PORT: 9999
+USE_SSL: true
+CHAR_SET: 'UTF-8'
