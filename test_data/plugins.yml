@@ -84,3 +84,6 @@
 - name: 'hipchat'
   version: '0.1.9'
   group: 'org.jvnet.hudson.plugins'
+- name: 'jobConfigHistory'
+  version: '2.10'
+  group: 'org.jenkins-ci.plugins'

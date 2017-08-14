@@ -37,6 +37,7 @@ class PluginTestCase(TestCase):
             "github-oauth": "0.24",
             "gradle": "1.24",
             "hipchat": "0.1.9",
+            "jobConfigHistory": "2.10",
             # The following plugins should be installed as dependencies for
             # the plugins installed via test_data/plugins.yml
             "node-iterator-api": "1.1",
