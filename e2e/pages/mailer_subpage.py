@@ -1,8 +1,9 @@
+from . import JENKINS_HOST
 from bok_choy.page_object import PageObject
 
 class MailerConfigurationSubPage(PageObject):
 
-    url = 'http://localhost:8080/configure'
+    url = "http://{}:8080/configure".format(JENKINS_HOST)
 
     def is_browser_on_page(self):
         self.scroll_to_element('[name="_.smtpServer"]', timeout=10)

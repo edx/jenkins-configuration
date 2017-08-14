@@ -1,8 +1,9 @@
+from . import JENKINS_HOST
 from bok_choy.page_object import PageObject
 
 class GhprbLogConfigurePage(PageObject):
 
-    url = 'http://localhost:8080/log/Ghprb/configure'
+    url = "http://{}:8080/log/Ghprb/configure".format(JENKINS_HOST)
 
     def is_browser_on_page(self):
         return self.q(css='[class="setting-input  auto-complete  yui-ac-input"]').is_present()
