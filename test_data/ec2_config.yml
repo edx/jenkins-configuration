@@ -1,0 +1,74 @@
+---
+CLOUDS:
+    - NAME: 'aws-cloud'
+      ACCESS_KEY_ID: 'accessKey'
+      SECRET_ACCESS_KEY: 'secretKey'
+      USE_INSTANCE_PROFILE_FOR_CREDS: false
+      REGION: 'us-east-1'
+      EC2_PRIVATE_KEY_PATH: 'init-configs/ec2/id_rsa'
+      INSTANCE_CAP: '250'
+      AMIS:
+          - AMI_ID: 'ami1'
+            AVAILABILITY_ZONE: 'zone1'
+            SPOT_CONFIG:
+                SPOT_MAX_BID_PRICE: '100'
+                SPOT_INSTANCE_BID_TYPE: 'persistent'
+            SECURITY_GROUPS: 'security1'
+            REMOTE_FS_ROOT: '/root/stuff1'
+            SSH_PORT: '22'
+            INSTANCE_TYPE: 'm3.large'
+            LABEL_STRING: 'label1'
+            MODE: 'normal'
+            DESCRIPTION: 'description1'
+            INIT_SCRIPT_PATH: 'init-configs/ec2/init_script.sh'
+            TEMP_DIR: 'tmp1'
+            USER_DATA: 'user-data1'
+            NUM_EXECUTORS: '10'
+            REMOTE_ADMIN: 'root-admin'
+            ROOT_COMMAND_PREFIX: 'root-command'
+            JVM_OPTIONS: 'jvm-option-1'
+            STOP_ON_TERMINATE: false
+            SUBNET_ID: 'subnet-123'
+            TAGS:
+                - NAME: 'name1'
+                  VALUE: 'value1'
+                - NAME: 'name2'
+                  VALUE: 'value2'
+            IDLE_TERMINATION_MINUTES: '8'
+            USE_PRIVATE_DNS_NAME: true
+            INSTANCE_CAP: '4'
+            IAM_INSTANCE_PROFILE: 'arn:aws:iam::123:dummy_worker1'
+            USE_EPHEMERAL_DEVICES: false
+            LAUNCH_TIMEOUT: '60'
+          - AMI_ID: 'ami2'
+            AVAILABILITY_ZONE: 'zone2'
+            SPOT_CONFIG:
+                SPOT_MAX_BID_PRICE: '200'
+                SPOT_INSTANCE_BID_TYPE: 'one-time'
+            SECURITY_GROUPS: 'security2'
+            REMOTE_FS_ROOT: '/root/stuff2'
+            SSH_PORT: '22'
+            INSTANCE_TYPE: 't1.micro'
+            LABEL_STRING: 'label2'
+            MODE: 'normal'
+            DESCRIPTION: 'description2'
+            INIT_SCRIPT_PATH: 'init-configs/ec2/init_script.sh'
+            TEMP_DIR: 'tmp2'
+            USER_DATA: 'user-data2'
+            NUM_EXECUTORS: '10'
+            REMOTE_ADMIN: 'root-admin'
+            ROOT_COMMAND_PREFIX: 'root-command'
+            JVM_OPTIONS: 'jvm-option-1'
+            STOP_ON_TERMINATE: false
+            SUBNET_ID: 'subnet-123'
+            TAGS:
+                - NAME: 'name1'
+                  VALUE: 'value1'
+                - NAME: 'name2'
+                  VALUE: 'value2'
+            IDLE_TERMINATION_MINUTES: '8'
+            USE_PRIVATE_DNS_NAME: true
+            INSTANCE_CAP: '4'
+            IAM_INSTANCE_PROFILE: 'arn:aws:iam::123:dummy_worker2'
+            USE_EPHEMERAL_DEVICES: false
+            LAUNCH_TIMEOUT: '60'
