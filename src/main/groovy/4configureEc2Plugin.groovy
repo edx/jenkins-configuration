@@ -1,10 +1,47 @@
+/**
+*
+* Configure the EC2 plugin
+*
+**/
+import java.util.logging.Logger
 import jenkins.model.Jenkins
 import hudson.plugins.ec2.*
 import com.amazonaws.services.ec2.model.InstanceType
 import hudson.model.Node
 
-Jenkins jenkins = Jenkins.getInstance()
+@Grapes([
+    @Grab(group='org.yaml', module='snakeyaml', version='1.17')
+])
+import org.yaml.snakeyaml.Yaml
 
+Logger logger = Logger.getLogger("")
+Jenkins jenkins = Jenkins.getInstance()
+Yaml yaml = new Yaml()
+
+String configPath = System.getenv("JENKINS_CONFIG_PATH")
+try {
+    configText = new File("${configPath}/ec2_config.yml").text
+} catch (FileNotFoundException e) {
+    logger.severe("Cannot find config file path @ ${configPath}/ec2_config.yml")
+    jenkins.doSafeExit(null)
+    System.exit(1)
+}
+ec2Config = yaml.load(configText)
+ec2CloudConfig = ec2Config.MAIN
+
+
+AmazonEC2Cloud cloud = new AmazonEC2Cloud(
+    ec2CloudConfig.NAME,
+    ec2CloudConfig.USE_INSTANCE_PROFILE_FOR_EC2_CREDS,
+    ec2CloudConfig.ACCESS_KEY_ID,
+    ec2CloudConfig.SECRET_ACCESS_KEY,
+    ec2CloudConfig.REGION,
+    ec2CloudConfig.EC2_KEY_PAIR_PRIVATE,
+    ec2CloudConfig.INSTANCE_CAP,
+    null
+)
+
+jenkins.clouds.add(cloud)
 
 String ami = "ami-123"
 String description = "foo ami";
@@ -21,9 +58,5 @@ List<SlaveTemplate> templates = new ArrayList<SlaveTemplate>();
 templates.add(template);
 
 String sshKey = "ssh"
-
-AmazonEC2Cloud cloud = new AmazonEC2Cloud("AZ", true, "awskey", "aws secret key", "AZ", sshKey, "3", templates);
-
-jenkins.clouds.add(cloud)
 
 jenkins.save()

@@ -1,0 +1,36 @@
+---
+MAIN:
+    NAME: 'aws-cloud'
+    ACCESS_KEY_ID: ''
+    SECRET_ACCESS_KEY: ''
+    USE_INSTANCE_PROFILE_FOR_CREDS: false
+    REGION: 'us-east-1'
+    EC2_KEY_PAIR_PRIVATE: 'test'
+    INSTANCE_CAP: '250'
+AMIS:
+    - AMI_ID: ''
+      AVAILABILITY_ZONE: ''
+      SPOT_CONFIG:
+      SECURITY_GROUPS:
+      REMOTE_FS_ROOT: ''
+      SSH_PORT: ''
+      INSTANCE_TYPE: ''
+      LABEL_STRING: ''
+      MODE: ''
+      DESCRIPTION: ''
+      INIT_SCRIPT: ''
+      TEMP_DIR: ''
+      USER_DATA: ''
+      NUM_EXECUTORS: ''
+      REMOTE_ADMIN: ''
+      ROOT_COMMAND_PREFIX: ''
+      JVM_OPTIONS: ''
+      STOP_ON_TERMINATE: false
+      SUBNET_ID: ''
+      TAGS:
+      IDLE_TERMINATION_MINUTES: ''
+      USER_PRIVATE_DNS_NAME: ''
+      INSTANCE_CAP: ''
+      IAM_INSTANCE_PROFILE: ''
+      USE_EPHEMERAL_DEVICES: false
+      LAUNCH_TIMEOUT: ''
