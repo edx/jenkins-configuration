@@ -41,8 +41,9 @@ import hudson.model.*;
 import org.yaml.snakeyaml.Yaml
 
 Logger logger = Logger.getLogger("")
-
+Jenkins jenkins = Jenkins.getInstance()
 Yaml yaml = new Yaml()
+
 String configPath = System.getenv("JENKINS_CONFIG_PATH")
 String configText = ''
 try {
@@ -77,6 +78,5 @@ def removal = { lst ->
 }
 
 logger.info("Removing the Jenkins CLI subsystem")
-Jenkins jenkins = Jenkins.getInstance()
 removal(jenkins.getExtensionList(RootAction.class))
 removal(jenkins.actions)
