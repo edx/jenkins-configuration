@@ -18,8 +18,9 @@ import org.jenkinsci.plugins.GithubSecurityRealm
 import org.yaml.snakeyaml.Yaml
 
 Logger logger = Logger.getLogger("")
-
+Jenkins jenkins = Jenkins.getInstance()
 Yaml yaml = new Yaml()
+
 String configPath = System.getenv("JENKINS_CONFIG_PATH")
 try {
     configText = new File("${configPath}/security.yml").text
@@ -31,7 +32,6 @@ try {
 securityGroups = yaml.load(configText).SECURITY_GROUPS
 oauthSettings = yaml.load(configText).OAUTH_SETTINGS
 
-Jenkins jenkins = Jenkins.getInstance()
 SecurityRealm github_realm = new GithubSecurityRealm(oauthSettings.GITHUB_WEB_URI,
                                                      oauthSettings.GITHUB_API_URI,
                                                      oauthSettings.CLIENT_ID,

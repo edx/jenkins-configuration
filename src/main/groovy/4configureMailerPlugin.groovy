@@ -16,7 +16,9 @@ import org.kohsuke.stapler.StaplerRequest;
 import org.yaml.snakeyaml.Yaml
 
 Logger logger = Logger.getLogger("")
+Jenkins jenkins = Jenkins.getInstance()
 Yaml yaml = new Yaml()
+
 String configPath = System.getenv("JENKINS_CONFIG_PATH")
 try {
     configText = new File("${configPath}/mailer_config.yml").text
@@ -26,8 +28,6 @@ try {
     System.exit(1)
 }
 Map mailerConfig = yaml.load(configText)
-
-Jenkins jenkins = Jenkins.getInstance()
 
 def descriptor = jenkins.getDescriptorByType(
                     hudson.tasks.Mailer.DescriptorImpl.class

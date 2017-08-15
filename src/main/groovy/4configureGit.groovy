@@ -7,6 +7,7 @@ import jenkins.model.Jenkins
 import org.yaml.snakeyaml.Yaml
 
 Logger logger = Logger.getLogger("")
+Jenkins jenkins = Jenkins.getInstance()
 Yaml yaml = new Yaml()
 
 String configPath = System.getenv("JENKINS_CONFIG_PATH")
@@ -19,8 +20,6 @@ try {
 }
 
 Map gitConfig = yaml.load(configText)
-
-Jenkins jenkins = Jenkins.getInstance()
 
 def gitScm = jenkins.getDescriptorByType(
                 hudson.plugins.git.GitSCM.DescriptorImpl.class
