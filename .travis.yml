@@ -39,6 +39,7 @@ addons:
     firefox: '52.0.1'
 
 script:
+    - export CI_SYSTEM='travis'
     - make quality
     - make healthcheck
     - make e2e
