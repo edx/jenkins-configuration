@@ -33,7 +33,7 @@ dependencies {
     compile 'org.jenkins-ci.plugins:jobConfigHistory:2.10@jar'
     compile 'org.jvnet.hudson.plugins:hipchat:0.1.9@jar'
     compile 'org.jenkins-ci.plugins:mailer:1.16@jar'
-    compile 'com.amazonaws:aws-java-sdk:1.11.178@jar'
+    compile 'com.amazonaws:aws-java-sdk:1.11.178'
     testCompile 'org.codehaus.groovy:groovy-all:2.1.3'
     testCompile 'javax.servlet:servlet-api:2.4'
     testCompile "org.jenkins-ci.main:jenkins-war:${jenkinsVersion}"
