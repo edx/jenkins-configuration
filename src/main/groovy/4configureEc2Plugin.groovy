@@ -35,7 +35,6 @@ pluginVersion = Float.parseFloat(jenkins.pluginManager.getPlugin('ec2').getVersi
 
 List<SlaveTemplate> templates = new ArrayList<SlaveTemplate>();
 for (amiConfig in ec2AmiConfig) {
-
     // Create Spot Config from yaml values is applicable
     maxBid = amiConfig.SPOT_CONFIG.SPOT_MAX_BID_PRICE
     // The constructor changes based on the plugin so add support for both
@@ -127,6 +126,8 @@ for (amiConfig in ec2AmiConfig) {
     templates.add(template);
 }
 
+String fileContents = new File(ec2CloudConfig.EC2_PRIVATE_KEY_PATH).text
+
 // Create the EC2 Cloud and populate it with the AMIs
 AmazonEC2Cloud cloud = new AmazonEC2Cloud(
     ec2CloudConfig.NAME,
@@ -134,13 +135,13 @@ AmazonEC2Cloud cloud = new AmazonEC2Cloud(
     ec2CloudConfig.ACCESS_KEY_ID,
     ec2CloudConfig.SECRET_ACCESS_KEY,
     ec2CloudConfig.REGION,
-    ec2CloudConfig.EC2_KEY_PAIR_PRIVATE,
+    fileContents,
     ec2CloudConfig.INSTANCE_CAP,
     templates
 )
 
 // Clear any existing ec2 configurations and apply the new
-jenkins.clear()
+jenkins.clouds.clear()
 jenkins.clouds.add(cloud)
 jenkins.save()
 logger.info("Successfully configured the EC2 plugin")

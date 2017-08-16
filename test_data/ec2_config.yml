@@ -5,7 +5,7 @@ MAIN:
     SECRET_ACCESS_KEY: 'secretKey'
     USE_INSTANCE_PROFILE_FOR_CREDS: false
     REGION: 'us-east-1'
-    EC2_KEY_PAIR_PRIVATE: 'test'
+    EC2_PRIVATE_KEY_PATH: 'init-configs/ec2/id_rsa'
     INSTANCE_CAP: '250'
 AMIS:
     - AMI_ID: 'ami-123'
