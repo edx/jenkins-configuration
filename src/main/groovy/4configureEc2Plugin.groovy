@@ -74,9 +74,9 @@ for (amiConfig in ec2AmiConfig) {
 
     // Get desired Mode object from yaml value
     modeString = amiConfig.MODE.toLowerCase()
-    if (modeString == 'normal'){
+    if (modeString == 'normal') {
         mode = Node.Mode.NORMAL
-    } else if (modeString == 'exclusive'){
+    } else if (modeString == 'exclusive') {
         mode = Node.Mode.EXCLUSIVE
     } else {
         logger.severe("Invalid value for MODE. Must be NORMAL or EXCLUSIVE " +
@@ -93,7 +93,7 @@ for (amiConfig in ec2AmiConfig) {
             currentTag.VALUE
         )
         tags.add(tag);
-    } 
+    }
 
     // Create the AMI
     SlaveTemplate template = new SlaveTemplate(
