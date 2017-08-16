@@ -44,6 +44,12 @@ codenarc {
     maxPriority1Violations = 0
     maxPriority2Violations = 0
     maxPriority3Violations = 0
+
+    // Display codenarc violations in the console for travis builds
+    // otherwise, default to creating an html report
+    if (System.getenv('CI_SYSTEM') == 'travis') {
+        reportFormat = 'console'
+    }
 }
 
 task libs(type: Copy) {
