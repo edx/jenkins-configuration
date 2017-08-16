@@ -20,7 +20,7 @@ AMIS:
       LABEL_STRING: 'label1'
       MODE: 'normal'
       DESCRIPTION: 'description1'
-      INIT_SCRIPT: 'hello world'
+      INIT_SCRIPT_PATH: 'init-configs/ec2/init_script.sh'
       TEMP_DIR: 'tmp'
       USER_DATA: 'user-data1'
       NUM_EXECUTORS: '10'

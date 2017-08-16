@@ -35,7 +35,7 @@ pluginVersion = Float.parseFloat(jenkins.pluginManager.getPlugin('ec2').getVersi
 
 List<SlaveTemplate> templates = new ArrayList<SlaveTemplate>();
 for (amiConfig in ec2AmiConfig) {
-    // Create Spot Config from yaml values is applicable
+    // Create Spot Config if applicable
     maxBid = amiConfig.SPOT_CONFIG.SPOT_MAX_BID_PRICE
     // The constructor changes based on the plugin so add support for both
     if (pluginVersion < 1.32) {
@@ -62,7 +62,7 @@ for (amiConfig in ec2AmiConfig) {
         }
     }
 
-    // Create instanceType object from yaml value
+    // Create instanceType object
     try {
         instanceType = InstanceType.fromValue(amiConfig.INSTANCE_TYPE)
     } catch (IllegalArgumentException e) {
@@ -71,7 +71,7 @@ for (amiConfig in ec2AmiConfig) {
         System.exit(1)
     }
 
-    // Get desired Mode object from yaml value
+    // Get desired Mode object
     modeString = amiConfig.MODE.toLowerCase()
     if (modeString == 'normal') {
         mode = Node.Mode.NORMAL
@@ -84,7 +84,20 @@ for (amiConfig in ec2AmiConfig) {
         System.exit(1)
     }
 
-    // Create list of ec2 tags from yaml values
+    // Get the init script from path if applicable
+    initScriptPath = amiConfig.INIT_SCRIPT_PATH
+    initScript = null
+    if (initScriptPath) {
+        try {
+            initScript = new File(initScriptPath).text
+        } catch (FileNotFoundException e) {
+            logger.severe("No init script file found at path: ${initScriptPath}")
+            jenkins.doSafeExit(null)
+            System.exit(1)
+        }
+    }
+
+    // Create list of ec2 tags
     List<EC2Tag> tags = new ArrayList<EC2Tag>();
     for (currentTag in amiConfig.TAGS) {
         EC2Tag tag = new EC2Tag(
@@ -106,7 +119,7 @@ for (amiConfig in ec2AmiConfig) {
         amiConfig.LABEL_STRING,
         mode,
         amiConfig.DESCRIPTION,
-        amiConfig.INIT_SCRIPT,
+        initScript,
         amiConfig.TEMP_DIR,
         amiConfig.USER_DATA,
         amiConfig.NUM_EXECUTORS,
@@ -126,7 +139,17 @@ for (amiConfig in ec2AmiConfig) {
     templates.add(template);
 }
 
-String fileContents = new File(ec2CloudConfig.EC2_PRIVATE_KEY_PATH).text
+privateKeyPath = ec2CloudConfig.EC2_PRIVATE_KEY_PATH
+ec2PrivateKey = ''
+if (privateKeyPath) {
+    try {
+        ec2PrivateKey = new File(privateKeyPath).text
+    } catch (FileNotFoundException e) {
+        logger.severe("No ec2 private key file found at path: ${privateKeyPath}")
+        jenkins.doSafeExit(null)
+        System.exit(1)
+    }
+}
 
 // Create the EC2 Cloud and populate it with the AMIs
 AmazonEC2Cloud cloud = new AmazonEC2Cloud(
@@ -135,7 +158,7 @@ AmazonEC2Cloud cloud = new AmazonEC2Cloud(
     ec2CloudConfig.ACCESS_KEY_ID,
     ec2CloudConfig.SECRET_ACCESS_KEY,
     ec2CloudConfig.REGION,
-    fileContents,
+    ec2PrivateKey,
     ec2CloudConfig.INSTANCE_CAP,
     templates
 )
