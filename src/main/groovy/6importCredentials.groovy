@@ -132,25 +132,28 @@ credentialConfig.each { newCredential ->
             credentialsStore.addCredentials(globalDomain, secretText)
             break
         case 'secretFile':
-            path = newCredential.path
+            filePath = newCredential.path
             fileName = newCredential.name
 
             // Make sure the path and name is not empty
-            if (!path || !fileName) {
+            if (!filePath || !fileName) {
                 logger.severe("Missing data for credential. Please ensure secretFile " +
                               "entries in the credentials.yml file have a path and name")
                 jenkins.doSafeExit(null)
                 System.exit(1)
             }
 
+            // Create the full path to the secret file
+            fullFilePath = "${configPath}/${filePath}"
+
             factory = new DiskFileItemFactory()
             fileItem = factory.createItem("", "application/octet-stream", false, fileName)
             out = fileItem.getOutputStream()
-            file = new File(path)
+            file = new File(fullFilePath)
             try {
                 Files.copy(file.toPath(), out)
             } catch (NoSuchFileException e) {
-                logger.severe("No file found at: ${path}. Please ensure the file exists " +
+                logger.severe("No file found at: ${fullPath}. Please ensure the file exists " +
                               "and try again.")
                 jenkins.doSafeExit(null)
                 System.exit(1)
@@ -194,16 +197,19 @@ credentialConfig.each { newCredential ->
                     System.exit(1)
                 }
 
+                // Create the full path to the secret file
+                fullSshPath = "${configPath}/${sshPath}"
+
                 // Make sure the ssh file exists
-                sshFileExists = Files.exists(Paths.get(sshPath), LinkOption.NOFOLLOW_LINKS)
+                sshFileExists = Files.exists(Paths.get(fullSshPath), LinkOption.NOFOLLOW_LINKS)
                 if (!sshFileExists) {
-                    logger.severe("No ssh file found at: ${sshPath}. Please ensure the file " +
+                    logger.severe("No ssh file found at: ${fullSshPath}. Please ensure the file " +
                                   "exists and try again.")
                     jenkins.doSafeExit(null)
                     System.exit(1)
                 }
 
-                sshKey = new BasicSSHUserPrivateKey.FileOnMasterPrivateKeySource(sshPath)
+                sshKey = new BasicSSHUserPrivateKey.FileOnMasterPrivateKeySource(fullSshPath)
             }
             ssh = new BasicSSHUserPrivateKey(
                 scope,
@@ -227,16 +233,19 @@ credentialConfig.each { newCredential ->
                 System.exit(1)
             }
 
+            // Create the full path to the secret file
+            fullCertPath = "${configPath}/${certPath}"
+
             // Make sure the certificate file exists
-            certFileExists = Files.exists(Paths.get(certPath), LinkOption.NOFOLLOW_LINKS)
+            certFileExists = Files.exists(Paths.get(fullCertPath), LinkOption.NOFOLLOW_LINKS)
             if (!certFileExists) {
-                logger.severe("No certificate file found at: ${certPath}. Please ensure the file " +
+                logger.severe("No certificate file found at: ${fullCertPath}. Please ensure the file " +
                               "exists and try again.")
                 jenkins.doSafeExit(null)
                 System.exit(1)
             }
 
-            cert = new CertificateCredentialsImpl.FileOnMasterKeyStoreSource(certPath)
+            cert = new CertificateCredentialsImpl.FileOnMasterKeyStoreSource(fullCertPath)
             certificate = new CertificateCredentialsImpl(
                 scope,
                 id,
