@@ -6,3 +6,11 @@
 
 export CONFIG_PATH='test_data'
 export PLUGIN_CONFIG='test_data/plugins.yml'
+
+# If you choose to pull a Jenkins war file from somewhere else,
+# change this variable
+export JENKINS_WAR_SOURCE='https://s3.amazonaws.com/edx-testeng-tools/jenkins'
+
+# This should remain commented out, as the travis builds run against mutliple
+# Jenkins versions
+#export JENKINS_VERSION='jenkins_1.651.3'

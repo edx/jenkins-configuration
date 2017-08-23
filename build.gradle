@@ -4,7 +4,8 @@ apply plugin: 'codenarc'
 
 def utilsPath = System.getenv('UTILS_PATH') ?: 'utils'
 def pluginsPath = System.getenv('PLUGIN_OUTPUT_DIR') ?: 'plugins'
-def jenkinsVersion = '1.651'
+// jenkins war GAVs are only available in the following version format: x.x
+def jenkinsVersion = System.getenv('JENKINS_VERSION').split('_|\\.')[1,2].join('.')
 
 repositories {
     mavenCentral()

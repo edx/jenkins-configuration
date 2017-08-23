@@ -23,8 +23,7 @@ class GHPRBConfigurationSubPage(PageObject):
         self.q(css=css_query).click()
 
     def get_request_testing_phrase(self):
-        return self.q(css='[name="_.requestForTestingPhrase"]').text[0]
+        return self.q(css='[name="_.requestForTestingPhrase"]').attrs('value')[0]
 
     def get_build_log_portion(self):
         return self.q(css='[name="_.logExcerptLines"').attrs('value')[0]
-

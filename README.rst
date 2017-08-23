@@ -20,6 +20,22 @@ Working on this repository requires that both Docker and Gradle are installed.
 Setup
 ~~~~~
 
+Before running anything the following environment variables must be set:
+
+    - JENKINS_VERSION -> version of the Jenkins war file to install in the Docker container
+    - JENKINS_WAR_SOURCE -> location hosting the war file you want to download
+    - CONFIG_PATH -> path to the yml config files that will be copied to the
+        docker container and consumed by the groovy init scripts
+    - PLUGIN_CONFIG -> path the yml config file containing the desired plugin
+        version names and versions to be installed prior to Jenkins initialization
+
+This can be done by copying local_env.sample.sh, making the modifications you
+need, and running:
+
+.. code:: source
+
+    source local_env.sh
+
 Install python dependencies for acceptance testing (on a Jenkins instance
 running within a Docker container), as well as various Groovy helper utilities.
 
