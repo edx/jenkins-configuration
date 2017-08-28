@@ -2,8 +2,8 @@ apply plugin: 'groovy'
 apply plugin: 'java'
 apply plugin: 'codenarc'
 
-def utilsPath = 'utils'
-def pluginsPath = 'plugins'
+def utilsPath = System.getenv('UTILS_PATH') ?: 'utils'
+def pluginsPath = System.getenv('PLUGIN_OUTPUT_DIR') ?: 'plugins'
 def jenkinsVersion = '1.651'
 
 repositories {
