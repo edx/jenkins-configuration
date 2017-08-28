@@ -14,7 +14,7 @@ apply plugin: 'groovy'
 apply plugin: 'java'
 apply plugin: 'org.jenkins-ci.jpi'
 
-def pluginsPath = 'plugins'
+def pluginsPath = System.getenv('PLUGIN_OUTPUT_DIR') ?: 'plugins'
 
 repositories {
     mavenCentral()
