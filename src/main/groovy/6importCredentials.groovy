@@ -153,7 +153,7 @@ credentialConfig.each { newCredential ->
             try {
                 Files.copy(file.toPath(), out)
             } catch (NoSuchFileException e) {
-                logger.severe("No file found at: ${fullPath}. Please ensure the file exists " +
+                logger.severe("No file found at: ${fullFilePath}. Please ensure the file exists " +
                               "and try again.")
                 jenkins.doSafeExit(null)
                 System.exit(1)
