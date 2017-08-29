@@ -29,5 +29,6 @@ def hipChat = Jenkins.instance.getDescriptorByType(
 
 hipChat.setToken(hipchatConfig.API_TOKEN)
 hipChat.setRoom(hipchatConfig.ROOM)
+hipChat.setV2Enabled(hipchatConfig.API_V2_ENABLED)
 
 logger.info('Successfully configured the HipChat plugin')

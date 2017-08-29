@@ -1,3 +1,4 @@
 ---
 API_TOKEN: '0123456789'
+API_V2_ENABLED: true
 ROOM: 'foo_room'
