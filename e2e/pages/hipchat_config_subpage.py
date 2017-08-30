@@ -1,16 +1,15 @@
 from . import JENKINS_HOST
 from bok_choy.page_object import PageObject
+from configuration_page import ConfigurationSubPageMixIn
 
-class HipChatConfigSubPage(PageObject):
+class HipChatConfigSubPage(ConfigurationSubPageMixIn, PageObject):
 
-    url = "http://{}:8080/configure".format(JENKINS_HOST)
-
-    def is_browser_on_page(self):
-        self.scroll_to_element('[name="hipchat.server"]', timeout=10)
-        return self.q(css='.setting-input[name="hipchat.server"]').visible
+    def __init__(self, *args, **kwargs):
+        super(HipChatConfigSubPage, self).__init__(*args, **kwargs)
+        self.name = "jenkins-plugins-hipchat-HipChatNotifier"
 
     def get_api_token(self):
-        return self.q(css='[name="hipchat.token"]')[0].get_attribute('value')
+        return self.value_of_first_element_named('hipchat.token')
 
     def get_room(self):
-        return self.q(css='[name="hipchat.room"]')[0].get_attribute('value')
+        return self.value_of_first_element_named('hipchat.room')

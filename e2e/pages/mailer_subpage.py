@@ -9,7 +9,7 @@ class MailerConfigurationSubPage(ConfigurationSubPageMixIn, PageObject):
         self.name = "hudson-tasks-Mailer"
 
     def get_smtp_server(self):
-        return self.q(css='[name="_.smtpServer"]').attrs('value')[0]
+        return self.value_of_first_element_named('_.smtpServer')
 
     def get_smtp_port(self):
-        return self.q(css='[name="_.smtpPort"]').attrs('value')[0]
+        return self.value_of_first_element_named('_.smtpPort')

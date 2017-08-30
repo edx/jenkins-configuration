@@ -51,3 +51,9 @@ class ConfigurationSubPageMixIn(object):
         nameref_id = self.q(css='[name="{}"]'.format(self.name)).attrs('id')[0]
         css_query='[nameref="{}"] > td > div.advancedLink > span.yui-button'.format(nameref_id)
         self.q(css=css_query).click()
+
+    def values_of_elements_named(self, el_name):
+        return self.q(css='[name="{}"]'.format(el_name)).attrs('value')
+
+    def value_of_first_element_named(self, el_name):
+        return self.q(css='[name="{}"]'.format(el_name)).attrs('value')[0]

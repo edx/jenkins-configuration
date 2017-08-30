@@ -12,7 +12,7 @@ class GHPRBConfigurationSubPage(ConfigurationSubPageMixIn, PageObject):
         return self.q(css='[name="_.adminlist"]').text[0]
 
     def get_request_testing_phrase(self):
-        return self.q(css='[name="_.requestForTestingPhrase"]').attrs('value')[0]
+        return self.value_of_first_element_named('_.requestForTestingPhrase')
 
     def get_build_log_portion(self):
-        return self.q(css='[name="_.logExcerptLines"').attrs('value')[0]
+        return self.value_of_first_element_named('_.logExcerptLines')

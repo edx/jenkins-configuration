@@ -9,10 +9,10 @@ class JobConfigHistorySubPage(ConfigurationSubPageMixIn, PageObject):
         self.name = "plugin"
 
     def get_history_root_dir(self):
-        return self.q(css='[name="historyRootDir"]').attrs('value')[0]
+        return self.value_of_first_element_named('historyRootDir')
 
     def get_max_history_entries(self):
-        return self.q(css='[name="maxHistoryEntries"]').attrs('value')[0]
+        return self.value_of_first_element_named('maxHistoryEntries')
 
     def get_skip_duplicate_history(self):
         return self.q(css='[name="skipDuplicateHistory"]').attrs('checked')[0]
