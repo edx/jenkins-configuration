@@ -5,8 +5,10 @@ RUN apt-get update -y \
     && apt-get install -y openjdk-8-jdk \
     && apt-get install -y curl \
     && apt-get install -y git
+ARG JENKINS_VERSION
+ARG JENKINS_WAR_SOURCE
 RUN mkdir /usr/share/jenkins \
-    && curl  https://s3.amazonaws.com/edx-testeng-tools/jenkins/jenkins_1.651.3.war \
+    && curl "${JENKINS_WAR_SOURCE}/${JENKINS_VERSION}.war" \
          -L -o /usr/share/jenkins/jenkins.war
 EXPOSE 8080
 ENV JENKINS_HOME /var/lib/jenkins
