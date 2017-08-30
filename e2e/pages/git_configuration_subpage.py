@@ -1,13 +1,13 @@
 from . import JENKINS_HOST
 from bok_choy.page_object import PageObject
+from configuration_page import ConfigurationSubPageMixIn
 
-class GitConfigurationSubPage(PageObject):
+class GitConfigurationSubPage(ConfigurationSubPageMixIn, PageObject):
 
-    url = "http://{}:8080/configure".format(JENKINS_HOST)
-
-    def is_browser_on_page(self):
-        self.scroll_to_element('[name="_.globalConfigName"]', timeout=10)
-        return self.q(css='[name="_.globalConfigName"]').visible
+    def __init__(self, *args, **kwargs):
+        super(GitConfigurationSubPage, self).__init__(*args, **kwargs)
+        self.name = "hudson-plugins-git-GitSCM"
 
     def get_global_git_user_name(self):
-        return self.q(css='[name="_.globalConfigName"]').attrs('value')[0]
+        return self.value_of_first_element_named('_.globalConfigName')
+
