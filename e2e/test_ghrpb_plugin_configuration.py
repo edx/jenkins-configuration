@@ -5,7 +5,7 @@ from bok_choy.web_app_test import WebAppTest
 from pages.ghprb_configuration_subpage import GHPRBConfigurationSubPage
 
 class TestGHPRBConfiguration(WebAppTest):
-    
+
     def setUp(self):
         super(TestGHPRBConfiguration, self).setUp()
         config_path = os.getenv('CONFIG_PATH')

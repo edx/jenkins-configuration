@@ -2,8 +2,6 @@ SHELL := /usr/bin/env bash
 .DEFAULT_GOAL := help
 .PHONY: clean requirements plugins build logs e2e
 
-jenkins_version="jenkins-1.6"
-
 help:
 	@echo ''
 	@echo 'Makefile for '
@@ -25,24 +23,26 @@ clean: clean.container clean.ws
 
 clean.container:
 # run the following docker commands with '|| true' because they do not have a 'quiet' flag
-	docker kill $(jenkins_version) || true
-	docker rm $(jenkins_version) || true
-	docker rmi $(jenkins_version) || true
+	docker kill $(JENKINS_VERSION) || true
+	docker rm $(JENKINS_VERSION) || true
+	docker rmi $(JENKINS_VERSION) || true
 
 clean.ws:
 	./gradlew clean
 
 build:
-	docker build -t $(jenkins_version) --build-arg=CONFIG_PATH=$(CONFIG_PATH) .
+	docker build -t $(JENKINS_VERSION) --build-arg=CONFIG_PATH=$(CONFIG_PATH) \
+		--build-arg=JENKINS_VERSION=$(JENKINS_VERSION) \
+		--build-arg=JENKINS_WAR_SOURCE=$(JENKINS_WAR_SOURCE) .
 
 run:
-	docker run --name $(jenkins_version) -p 8080:8080 -d $(jenkins_version)
+	docker run --name $(JENKINS_VERSION) -p 8080:8080 -d $(JENKINS_VERSION)
 
 logs:
-	docker logs -f $(jenkins_version)
+	docker logs -f $(JENKINS_VERSION)
 
 shell:
-	docker exec -it $(jenkins_version) /bin/bash
+	docker exec -it $(JENKINS_VERSION) /bin/bash
 
 healthcheck:
 	./healthcheck.sh
