@@ -137,7 +137,17 @@ for (cloudConfig in ec2Config.CLOUDS) {
         templates.add(template);
     }
 
-    String ec2PrivateKey = cloudConfig.EC2_PRIVATE_KEY
+    String privateKeyPath = cloudConfig.EC2_PRIVATE_KEY_PATH
+    String ec2PrivateKey = ''
+    if (privateKeyPath) {
+        try {
+            ec2PrivateKey = new File(privateKeyPath).text
+        } catch (FileNotFoundException e) {
+            logger.severe("No ec2 private key file found at path: ${privateKeyPath}")
+            jenkins.doSafeExit(null)
+            System.exit(1)
+        }
+    }
 
     // Create the EC2 Cloud and populate it with the AMIs
     AmazonEC2Cloud cloud = new AmazonEC2Cloud(
