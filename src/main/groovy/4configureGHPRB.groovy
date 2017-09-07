@@ -59,8 +59,16 @@ try {
 }
 json.put('autoCloseFailedPullRequests', ghprbConfig.AUTO_CLOSE_FAILED_PRS);
 json.put('displayBuildErrorsOnDownstreamBuilds', ghprbConfig.DISPLAY_ERRORS_DOWNSTREAM);
-json.put('blackListLabels', ghprbConfig.BLACK_LIST_LABELS.join(' '));
-json.put('whiteListLabels', ghprbConfig.WHITE_LIST_LABELS.join(' '));
+String blackList = ghprbConfig.BACK_LIST_LABELS;
+if (blackList) {
+    blackList = backList.join(' ');
+}
+json.put('blackListLabels', blackList)
+String whiteList = ghprbConfig.WHITE_LIST_LABELS;
+if (whiteList) {
+    whiteList = whiteList.join(' ');
+}
+json.put('whiteListLabels', whiteList);
 // Leave the following fields blank, and only use them if you need to generate
 // a new token via the GUI
 json.put('username', '')
