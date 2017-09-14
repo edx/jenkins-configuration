@@ -78,13 +78,13 @@ try {
     plugin.configure(null, json)
 } catch (JSONException e) {
     logger.severe("Missing parameter in the Job Config History JSON object")
-    logger.severe(e)
+    logger.severe(e.toString())
     jenkins.doSafeExit(null)
     System.exit(1)
 } catch (MissingMethodException e) {
     logger.severe("One of the values in ${configPath}/job_config_history.yml " +
                   "is typed incorrectly")
-    logger.severe(e)
+    logger.severe(e.toString())
     jenkins.doSafeExit(null)
     System.exit(1)
 }
