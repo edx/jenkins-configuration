@@ -174,7 +174,7 @@ credentialConfig.each { newCredential ->
             isJenkinsMasterSsh = newCredential.isJenkinsMasterSsh
 
             // Make sure username, passphrase and isJenkinsMasterSsh are not empty
-            if (!username || !passphrase || isJenkinsMasterSsh == null) {
+            if (!username || isJenkinsMasterSsh == null) {
                 logger.severe("Missing data for credential. Please ensure ssh " +
                               "entries in the credentials.yml file have a username, " +
                               "passphrase, and isJenkinsMasterSsh")
