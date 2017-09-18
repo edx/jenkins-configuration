@@ -48,12 +48,12 @@ try {
     descriptor.configure(stapler, json)
 } catch (JSONException e) {
     logger.severe("Missing parameter in the mailer JSON object")
-    logger.severe(e)
+    logger.severe(e.toString())
     jenkins.doSafeExit(null)
     System.exit(1)
 } catch (MissingMethodException e) {
     logger.severe("One of the values in ${configPath}/mailer_config.yml is typed incorrectly")
-    logger.severe(e)
+    logger.severe(e.toString())
     jenkins.doSafeExit(null)
     System.exit(1)
 }
