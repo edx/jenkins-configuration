@@ -152,7 +152,7 @@ for (cloudConfig in ec2Config.CLOUDS) {
     // Create the EC2 Cloud and populate it with the AMIs
     AmazonEC2Cloud cloud = new AmazonEC2Cloud(
         cloudConfig.NAME,
-        cloudConfig.USE_INSTANCE_PROFILE_FOR_CREDS,
+        cloudConfig.USE_INSTANCE_PROFILE_FOR_CREDS.toBoolean(),
         cloudConfig.ACCESS_KEY_ID,
         cloudConfig.SECRET_ACCESS_KEY,
         cloudConfig.REGION,
