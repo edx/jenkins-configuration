@@ -1,0 +1,3 @@
+---
+- KEY: "hudson.footerURL"
+  VALUE: "http://www.example.com"
