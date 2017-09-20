@@ -17,6 +17,7 @@ help:
 	@echo '     make quality         run codenarc on groovy source and tests'
 	@echo '     make requirements    install requirements for acceptance tests'
 	@echo '     make plugins         install specified Jenkins plugins and their dependencies'
+	@echo '     make show            show the versions of downloaded plugins"
 	@echo '     make e2e             run python acceptance tests against a provisioned docker container'
 
 clean: clean.container clean.ws
@@ -29,6 +30,7 @@ clean.container:
 
 clean.ws:
 	./gradlew clean
+	./gradlew -b plugins.gradle clean
 
 build:
 	docker build -t $(JENKINS_VERSION) --build-arg=CONFIG_PATH=$(CONFIG_PATH) \
@@ -59,3 +61,6 @@ plugins:
 
 e2e:
 	pytest
+
+show:
+	./gradlew -b plugins.gradle show
