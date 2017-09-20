@@ -5,7 +5,7 @@ import jenkins.*
 import jenkins.model.*
 import hudson.model.*
 import org.kohsuke.github.GHCommitState;
-import org.kohsuke.stapler.StaplerRequest;
+import org.kohsuke.stapler.*;
 import org.jenkinsci.plugins.ghprb.*;
 import org.jenkinsci.plugins.ghprb.extensions.*;
 import org.jenkinsci.plugins.ghprb.extensions.comments.*;
@@ -62,11 +62,15 @@ json.put('displayBuildErrorsOnDownstreamBuilds', ghprbConfig.DISPLAY_ERRORS_DOWN
 String blackList = ghprbConfig.BACK_LIST_LABELS;
 if (blackList) {
     blackList = backList.join(' ');
+} else {
+    blackList = ''
 }
 json.put('blackListLabels', blackList)
 String whiteList = ghprbConfig.WHITE_LIST_LABELS;
 if (whiteList) {
     whiteList = whiteList.join(' ');
+} else {
+    whiteList = ''
 }
 json.put('whiteListLabels', whiteList);
 // Leave the following fields blank, and only use them if you need to generate
@@ -74,7 +78,7 @@ json.put('whiteListLabels', whiteList);
 json.put('username', '')
 json.put('password', '')
 
-StaplerRequest stapler = null
+StaplerRequest stapler = Stapler.getCurrentRequest();
 // Submit the configuration
 descriptor.configure(stapler, json);
 
