@@ -1,3 +1,6 @@
+import java.util.zip.ZipFile
+import java.util.zip.ZipEntry
+import java.util.regex.Matcher
 buildscript {
   repositories {
         mavenCentral()
@@ -53,6 +56,7 @@ task plugins(type: Copy, dependsOn: [clean]){
                 new File("${plugin}.pinned").createNewFile()
             }
         }
+        showDownloadedPlugins()
     }
 }
 
@@ -63,3 +67,27 @@ def parsePluginList() {
     return list
 }
 
+task show {
+    doLast {
+        showDownloadedPlugins()
+    }
+}
+
+// Display the final versions of all plugins after dependency resolution
+void showDownloadedPlugins() {
+    String pluginsPath = System.getenv('PLUGIN_OUTPUT_DIR') ?: 'plugins'
+    println("The following plugins were downloaded to ${pluginsPath}")
+    File pluginPath = new File("${pluginsPath}")
+    pluginPath.listFiles().findAll { it.name =~ '.*jpi$' }.sort { it.name }.each() { plugin ->
+        ZipFile jpiContents = new ZipFile(plugin)
+        ZipEntry manifestFile = jpiContents.entries().find { it.getName() == "META-INF/MANIFEST.MF" }
+        Matcher matcher = jpiContents.getInputStream(manifestFile).text =~ 'Plugin-Version: ([\\.\\d]+)'
+        String pluginName = plugin.name.split('\\.')[0]
+        String version = matcher[0][1]
+        println("${pluginName}: ${version}")
+    }
+}
+
+clean {
+    delete "${pluginsPath}"
+}
