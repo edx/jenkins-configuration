@@ -29,6 +29,12 @@ try {
     System.exit(1)
 }
 
+// Get the ghprb plugin version.
+ghprbVersion = Jenkins.instance.pluginManager.getPlugin('ghprb').getVersion()
+def isEarlierVersion = {
+    String v1, String v2 -> [v1.split('\\.'), v2.split('\\.')].transpose().find { it[0] < it[1] }.asBoolean()
+}
+
 Map ghprbConfig = yaml.load(configText)
 def descriptor = Jenkins.instance.getDescriptorByType(
                     org.jenkinsci.plugins.ghprb.GhprbTrigger.DescriptorImpl.class
@@ -36,9 +42,6 @@ def descriptor = Jenkins.instance.getDescriptorByType(
 
 JSONObject json = new JSONObject();
 
-json.put('serverAPIUrl', ghprbConfig.SERVER_API_URL)
-json.put('accessToken', ghprbConfig.ACCESS_TOKEN)
-json.put('adminlist', ghprbConfig.ADMIN_LIST.join(' '));
 json.put('requestForTestingPhrase', ghprbConfig.REQUEST_TESTING_PHRASE);
 json.put('whitelistPhrase', ghprbConfig.WHITE_LIST_PHRASE);
 json.put('okToTestPhrase', ghprbConfig.OK_PHRASE);
@@ -48,6 +51,7 @@ json.put('cron', ghprbConfig.CRON_SCHEDULE);
 json.put('useComments', ghprbConfig.USE_COMMENTS);
 json.put('useDetailedComments', ghprbConfig.USE_DETAILED_COMMENTS);
 json.put('manageWebhooks', ghprbConfig.MANAGE_WEBHOOKS);
+json.put('adminlist', ghprbConfig.ADMIN_LIST.join(' '));
 try {
     def commitState = ghprbConfig.UNSTABLE_AS.toUpperCase() as GHCommitState
     json.put('unstableAs', commitState)
@@ -59,24 +63,40 @@ try {
 }
 json.put('autoCloseFailedPullRequests', ghprbConfig.AUTO_CLOSE_FAILED_PRS);
 json.put('displayBuildErrorsOnDownstreamBuilds', ghprbConfig.DISPLAY_ERRORS_DOWNSTREAM);
-String blackList = ghprbConfig.BACK_LIST_LABELS;
-if (blackList) {
-    blackList = backList.join(' ');
-} else {
-    blackList = ''
+
+if (!isEarlierVersion(ghprbVersion, '1.34.0')) {
+    String blackList = ghprbConfig.BACK_LIST_LABELS;
+    if (blackList) {
+        blackList = backList.join(' ');
+    } else {
+        blackList = ''
+    }
+    json.put('blackListLabels', blackList)
+    String whiteList = ghprbConfig.WHITE_LIST_LABELS;
+    if (whiteList) {
+        whiteList = whiteList.join(' ');
+    } else {
+        whiteList = ''
+    }
+    json.put('whiteListLabels', whiteList);
 }
-json.put('blackListLabels', blackList)
-String whiteList = ghprbConfig.WHITE_LIST_LABELS;
-if (whiteList) {
-    whiteList = whiteList.join(' ');
+
+if (isEarlierVersion(ghprbVersion, '1.23')) {
+    json.put('serverAPIUrl', ghprbConfig.SERVER_API_URL);
+    json.put('accessToken', ghprbConfig.ACCESS_TOKEN)
+    // Leave the following fields blank, and only use them if you need to generate
+    // a new token via the GUI
+    json.put('username', '')
+    json.put('password', '')
 } else {
-    whiteList = ''
+    // Create githubAuth object
+    JSONObject githubAuth = new JSONObject();
+    githubAuth.put('credentialsId', ghprbConfig.CREDENTIALS_ID);
+    githubAuth.put('serverAPIUrl', ghprbConfig.SERVER_API_URL);
+    githubAuth.put('secret', ghprbConfig.SHARED_SECRET);
+
+    json.put("githubAuth", githubAuth);
 }
-json.put('whiteListLabels', whiteList);
-// Leave the following fields blank, and only use them if you need to generate
-// a new token via the GUI
-json.put('username', '')
-json.put('password', '')
 
 StaplerRequest stapler = Stapler.getCurrentRequest();
 // Submit the configuration
@@ -93,10 +113,11 @@ extensions.remove(GhprbBuildResultMessage.class)
 extensions.push(new GhprbSimpleStatus(ghprbConfig.SIMPLE_STATUS))
 extensions.push(new GhprbPublishJenkinsUrl(ghprbConfig.PUBLISH_JENKINS_URL))
 extensions.push(new GhprbBuildLog(ghprbConfig.BUILD_LOG_LINES_TO_DISPLAY))
+ArrayList<GhprbBuildResultMessage> buildResultMessages = new ArrayList<GhprbBuildResultMessage>()
 ghprbConfig.RESULT_MESSAGES.each { resultMessage ->
     try {
         def resultCommitState = resultMessage.STATUS.toUpperCase() as GHCommitState
-        extensions.push(new GhprbBuildResultMessage(resultCommitState, resultMessage.MESSAGE))
+        buildResultMessages << new GhprbBuildResultMessage(resultCommitState, resultMessage.MESSAGE)
     } catch (IllegalArgumentException e) {
         logger.severe('Unable to cast RESULT_MESSAGE.STATUS into GHCommitState')
         logger.severe('Make sure it is one the following values: PENDING, FAILURE, ERROR')
@@ -104,5 +125,6 @@ ghprbConfig.RESULT_MESSAGES.each { resultMessage ->
         System.exit(1)
     }
 }
+extensions.push(new GhprbBuildStatus(buildResultMessages))
 
 logger.info('Successfully configured the GHPRB plugin')
