@@ -1,5 +1,6 @@
 import java.util.logging.Logger
 import net.sf.json.JSONObject;
+import javax.servlet.http.HttpServletRequestWrapper
 
 import jenkins.*
 import jenkins.model.*
@@ -12,9 +13,11 @@ import org.jenkinsci.plugins.ghprb.extensions.comments.*;
 import org.jenkinsci.plugins.ghprb.extensions.status.*;
 
 @Grapes([
-    @Grab(group='org.yaml', module='snakeyaml', version='1.17')
+    @Grab(group='org.yaml', module='snakeyaml', version='1.17'),
+    @Grab(group='org.mockito', module='mockito-all', version='1.10.19')
 ])
 import org.yaml.snakeyaml.Yaml
+import org.mockito.Mockito
 
 Logger logger = Logger.getLogger("")
 Jenkins jenkins = Jenkins.getInstance()
@@ -78,8 +81,12 @@ json.put('whiteListLabels', whiteList);
 json.put('username', '')
 json.put('password', '')
 
-StaplerRequest stapler = Stapler.getCurrentRequest();
-// Submit the configuration
+StaplerRequest stapler =  new RequestImpl(
+    new Stapler(),
+    Mockito.mock(HttpServletRequestWrapper.class),
+    new ArrayList<AncestorImpl>(),
+    new TokenList("")
+)
 descriptor.configure(stapler, json);
 
 // Configure plugin extensions after the main configuration has been set up
