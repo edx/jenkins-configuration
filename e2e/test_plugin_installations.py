@@ -48,7 +48,7 @@ class PluginTestCase(TestCase):
             "ssh-agent": "1.3",
             "github-api": "1.69",
             "git": "2.2.4",
-            "git-client": "1.10.1",
+            "git-client": "1.18.0",
             "junit": "1.3",
             "scm-api": "0.2",
             "script-security": "1.27",
