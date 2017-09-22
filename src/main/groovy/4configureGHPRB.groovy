@@ -100,10 +100,11 @@ extensions.remove(GhprbBuildResultMessage.class)
 extensions.push(new GhprbSimpleStatus(ghprbConfig.SIMPLE_STATUS))
 extensions.push(new GhprbPublishJenkinsUrl(ghprbConfig.PUBLISH_JENKINS_URL))
 extensions.push(new GhprbBuildLog(ghprbConfig.BUILD_LOG_LINES_TO_DISPLAY))
+ArrayList<GhprbBuildResultMessage> buildResultMessages = new ArrayList<GhprbBuildResultMessage>()
 ghprbConfig.RESULT_MESSAGES.each { resultMessage ->
     try {
         def resultCommitState = resultMessage.STATUS.toUpperCase() as GHCommitState
-        extensions.push(new GhprbBuildResultMessage(resultCommitState, resultMessage.MESSAGE))
+        buildResultMessages << new GhprbBuildResultMessage(resultCommitState, resultMessage.MESSAGE)
     } catch (IllegalArgumentException e) {
         logger.severe('Unable to cast RESULT_MESSAGE.STATUS into GHCommitState')
         logger.severe('Make sure it is one the following values: PENDING, FAILURE, ERROR')
@@ -111,5 +112,6 @@ ghprbConfig.RESULT_MESSAGES.each { resultMessage ->
         System.exit(1)
     }
 }
+extensions.push(new GhprbBuildStatus(buildResultMessages))
 
 logger.info('Successfully configured the GHPRB plugin')
