@@ -41,19 +41,21 @@ class PluginTestCase(TestCase):
             # The following plugins should be installed as dependencies for
             # the plugins installed via test_data/plugins.yml
             "node-iterator-api": "1.1",
-            "github": "1.9.1",
+            "github": "1.26.0",
             "plain-credentials": "1.1",
             "credentials": "2.1.8",
             "matrix-project": "1.6",
             "ssh-agent": "1.3",
-            "github-api": "1.69",
-            "git": "2.2.4",
+            "github-api": "1.82",
+            "git": "2.4.0",
             "git-client": "1.18.0",
             "junit": "1.3",
-            "scm-api": "0.2",
+            "scm-api": "2.0.3",
             "script-security": "1.27",
             "ssh-credentials": "1.11",
-            "mapdb-api": "1.0.1.0"
+            "mapdb-api": "1.0.1.0",
+            "structs": "1.6",
+            "token-macro": "1.11"
         }
         for plugin, version in installed_plugin_versions.iteritems():
             print "Checking if {} at version {} is installed".format(
