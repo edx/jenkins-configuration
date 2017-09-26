@@ -1,6 +1,7 @@
 import java.util.logging.Logger
 import net.sf.json.JSONObject;
 import javax.servlet.http.HttpServletRequestWrapper
+import java.lang.reflect.Field
 
 import jenkins.*
 import jenkins.model.*
@@ -32,12 +33,6 @@ try {
     System.exit(1)
 }
 
-// Get the ghprb plugin version.
-ghprbVersion = Jenkins.instance.pluginManager.getPlugin('ghprb').getVersion()
-def isEarlierVersion = {
-    String v1, String v2 -> [v1.split('\\.'), v2.split('\\.')].transpose().find { it[0] < it[1] }.asBoolean()
-}
-
 Map ghprbConfig = yaml.load(configText)
 def descriptor = Jenkins.instance.getDescriptorByType(
                     org.jenkinsci.plugins.ghprb.GhprbTrigger.DescriptorImpl.class
@@ -66,40 +61,7 @@ try {
 }
 json.put('autoCloseFailedPullRequests', ghprbConfig.AUTO_CLOSE_FAILED_PRS);
 json.put('displayBuildErrorsOnDownstreamBuilds', ghprbConfig.DISPLAY_ERRORS_DOWNSTREAM);
-
-if (!isEarlierVersion(ghprbVersion, '1.34.0')) {
-    String blackList = ghprbConfig.BACK_LIST_LABELS;
-    if (blackList) {
-        blackList = backList.join(' ');
-    } else {
-        blackList = ''
-    }
-    json.put('blackListLabels', blackList)
-    String whiteList = ghprbConfig.WHITE_LIST_LABELS;
-    if (whiteList) {
-        whiteList = whiteList.join(' ');
-    } else {
-        whiteList = ''
-    }
-    json.put('whiteListLabels', whiteList);
-}
-
-if (isEarlierVersion(ghprbVersion, '1.23')) {
-    json.put('serverAPIUrl', ghprbConfig.SERVER_API_URL);
-    json.put('accessToken', ghprbConfig.ACCESS_TOKEN)
-    // Leave the following fields blank, and only use them if you need to generate
-    // a new token via the GUI
-    json.put('username', '')
-    json.put('password', '')
-} else {
-    // Create githubAuth object
-    JSONObject githubAuth = new JSONObject();
-    githubAuth.put('credentialsId', ghprbConfig.CREDENTIALS_ID);
-    githubAuth.put('serverAPIUrl', ghprbConfig.SERVER_API_URL);
-    githubAuth.put('secret', ghprbConfig.SHARED_SECRET);
-
-    json.put("githubAuth", githubAuth);
-}
+json.put("githubAuth", null);
 
 StaplerRequest stapler =  new RequestImpl(
     new Stapler(),
@@ -108,6 +70,20 @@ StaplerRequest stapler =  new RequestImpl(
     new TokenList("")
 )
 descriptor.configure(stapler, json);
+
+Field githubAuth = descriptor.class.getDeclaredField("githubAuth")
+githubAuth.setAccessible(true)
+githubAuthArray = new ArrayList<GhprbGitHubAuth>()
+githubAuthArray.add(new GhprbGitHubAuth(
+    ghprbConfig.SERVER_API_URL,
+    null,
+    ghprbConfig.CREDENTIALS_ID,
+    null,
+    null,
+    ghprbConfig.SHARED_SECRET)
+)
+githubAuth.set(descriptor, githubAuthArray)
+descriptor.save()
 
 // Configure plugin extensions after the main configuration has been set up
 List<GhprbExtension, GhprbExtensionDescriptor> extensions = descriptor.getExtensions()
