@@ -25,20 +25,5 @@ RESULT_MESSAGES:
       MESSAGE: 'this is pending'
     - STATUS: 'failure'
       MESSAGE: 'this was a failure'
-
-# The following fields will only be used by certain versions.
-
-# >= 1.34.0
-BLACK_LIST_LABELS:
-    - 'blacklist-label-1'
-    - 'blacklist-label-2'
-WHITE_LIST_LABELS:
-    - 'whitelist-label-1'
-    - 'whitelist-label-2'
-
-# < 1.23
-ACCESS_TOKEN: '123456'
-
-# >= 1.23
-CREDENTIALS_ID: 'GHPRB_CREDENTIAL_ID'
+CREDENTIALS_ID: 'secretFile1'
 SHARED_SECRET: ''
