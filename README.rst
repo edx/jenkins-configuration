@@ -142,4 +142,4 @@ Test the configuration of a running Jenkins instance
 Plugin Versions
 ~~~~~~~~~~~~~~~~~~
 
-The groovy scripts in this repository were developed with the current plugin versions we use here at edx in mind. Jenkins plugins are always changing, and sometimes constructors or other functions that the scripts rely on change as well. Therefore, tweaks may be necessary for this to function properly with your jenkins instance.
+The groovy scripts in this repository are maintained to match the current configuration of our Jenkins instance here at edx (which is running version 2.60.3 of Jenkins). Plugins are always changing, and sometimes constructors or other methods that these scripts rely on change as well. Therefore, tweaks may be necessary for this to function properly with your jenkins instance.

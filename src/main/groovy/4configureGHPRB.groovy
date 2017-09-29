@@ -6,6 +6,7 @@ import java.lang.reflect.Field
 import jenkins.*
 import jenkins.model.*
 import hudson.model.*
+import hudson.util.Secret
 import org.kohsuke.github.GHCommitState;
 import org.kohsuke.stapler.*;
 import org.jenkinsci.plugins.ghprb.*;
@@ -63,6 +64,22 @@ json.put('autoCloseFailedPullRequests', ghprbConfig.AUTO_CLOSE_FAILED_PRS);
 json.put('displayBuildErrorsOnDownstreamBuilds', ghprbConfig.DISPLAY_ERRORS_DOWNSTREAM);
 json.put("githubAuth", null);
 
+String blackList = ghprbConfig.BACK_LIST_LABELS;
+if (blackList) {
+    blackList = backList.join(' ');
+} else {
+    blackList = ''
+}
+json.put('blackListLabels', blackList)
+
+String whiteList = ghprbConfig.WHITE_LIST_LABELS;
+if (whiteList) {
+    whiteList = whiteList.join(' ');
+} else {
+    whiteList = ''
+}
+json.put('whiteListLabels', whiteList);
+
 StaplerRequest stapler =  new RequestImpl(
     new Stapler(),
     Mockito.mock(HttpServletRequestWrapper.class),
@@ -74,13 +91,14 @@ descriptor.configure(stapler, json);
 Field githubAuth = descriptor.class.getDeclaredField("githubAuth")
 githubAuth.setAccessible(true)
 githubAuthArray = new ArrayList<GhprbGitHubAuth>()
+Secret sharedSecret = new Secret(ghprbConfig.SHARED_SECRET)
 githubAuthArray.add(new GhprbGitHubAuth(
     ghprbConfig.SERVER_API_URL,
     null,
     ghprbConfig.CREDENTIALS_ID,
     null,
     null,
-    ghprbConfig.SHARED_SECRET)
+    sharedSecret)
 )
 githubAuth.set(descriptor, githubAuthArray)
 descriptor.save()
