@@ -1,6 +1,5 @@
 language: groovy
 env:
-    - JENKINS_VERSION='jenkins_1.651.3'
     - JENKINS_VERSION='jenkins_2.60.3'
 
 sudo: required

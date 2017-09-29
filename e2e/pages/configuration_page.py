@@ -6,7 +6,7 @@ class JenkinsConfigurationPage(PageObject):
     url = "http://{}:8080/configure".format(JENKINS_HOST)
 
     def expand_advanced(self):
-        self.q(css='#yui-gen13-button').click()
+        self.q(css='[class="advancedLink"] > span > span > button').first.click()
 
     def is_browser_on_page(self):
         return 'configure system [jenkins]' in self.browser.title.lower()
