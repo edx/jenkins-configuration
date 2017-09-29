@@ -87,3 +87,6 @@
 - name: 'jobConfigHistory'
   version: '2.10'
   group: 'org.jenkins-ci.plugins'
+- name: 'mask-passwords'
+  version: '2.8'
+  group: 'org.jenkins-ci.plugins'

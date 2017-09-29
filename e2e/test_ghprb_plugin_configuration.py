@@ -31,4 +31,3 @@ class TestGHPRBConfiguration(WebAppTest):
         assert self.ghprb_config['REQUEST_TESTING_PHRASE'] == self.config_page.get_request_testing_phrase()
         # test one of the extension configurations of the GHPRB
         assert str(self.ghprb_config['BUILD_LOG_LINES_TO_DISPLAY']) == self.config_page.get_build_log_portion() == '25'
-
