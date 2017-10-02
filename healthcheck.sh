@@ -6,8 +6,8 @@
 set -e
 set -x
 
-echo "Wait 30 seconds for Jenkins to boot"
-sleep 30
+echo "Wait 120 seconds for Jenkins to boot"
+sleep 120
 
 echo "Curling against the Jenkins server"
 echo "Should expect a 200 within 15 seconds"
