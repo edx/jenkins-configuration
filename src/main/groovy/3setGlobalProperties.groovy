@@ -26,6 +26,8 @@ try {
     System.exit(1)
 }
 
-for (property in yaml.load(configText)) {
+List properties = yaml.load(configText)
+
+properties.each { property ->
     System.setProperty(property.KEY, property.VALUE)
 }
