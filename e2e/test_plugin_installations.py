@@ -42,14 +42,14 @@ class PluginTestCase(TestCase):
             # The following plugins should be installed as dependencies for
             # the plugins installed via test_data/plugins.yml
             "node-iterator-api": "1.1",
-            "github": "1.9.1",
+            "github": "1.14.0",
             "plain-credentials": "1.1",
             "credentials": "2.1.8",
             "matrix-project": "1.6",
             "ssh-agent": "1.3",
             "github-api": "1.71",
-            "git": "2.2.4",
-            "git-client": "1.10.1",
+            "git": "2.4.0",
+            "git-client": "1.18.0",
             "junit": "1.3",
             "scm-api": "0.2",
             "script-security": "1.27",

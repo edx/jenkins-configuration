@@ -1,6 +1,6 @@
 SHELL := /usr/bin/env bash
 .DEFAULT_GOAL := help
-.PHONY: clean requirements plugins build logs e2e
+.PHONY: clean requirements plugins build logs e2e show
 
 help:
 	@echo ''
