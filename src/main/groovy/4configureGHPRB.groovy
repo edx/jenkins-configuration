@@ -93,21 +93,31 @@ extensions.remove(GhprbPublishJenkinsUrl.class)
 extensions.remove(GhprbBuildLog.class)
 extensions.remove(GhprbBuildResultMessage.class)
 
-extensions.push(new GhprbSimpleStatus(ghprbConfig.SIMPLE_STATUS))
-extensions.push(new GhprbPublishJenkinsUrl(ghprbConfig.PUBLISH_JENKINS_URL))
-extensions.push(new GhprbBuildLog(ghprbConfig.BUILD_LOG_LINES_TO_DISPLAY))
-ArrayList<GhprbBuildResultMessage> buildResultMessages = new ArrayList<GhprbBuildResultMessage>()
-ghprbConfig.RESULT_MESSAGES.each { resultMessage ->
-    try {
-        def resultCommitState = resultMessage.STATUS.toUpperCase() as GHCommitState
-        buildResultMessages << new GhprbBuildResultMessage(resultCommitState, resultMessage.MESSAGE)
-    } catch (IllegalArgumentException e) {
-        logger.severe('Unable to cast RESULT_MESSAGE.STATUS into GHCommitState')
-        logger.severe('Make sure it is one the following values: PENDING, FAILURE, ERROR')
-        jenkins.doSafeExit(null)
-        System.exit(1)
-    }
+// Only add GHPRB extensions if they have non empty/zero values in
+// github_config.yml.
+if (!ghprbConfig.SIMPLE_STATUS.isEmpty()) {
+    extensions.push(new GhprbSimpleStatus(ghprbConfig.SIMPLE_STATUS))
 }
-extensions.push(new GhprbBuildStatus(buildResultMessages))
+if (!ghprbConfig.PUBLISH_JENKINS_URL.isEmpty()) {
+    extensions.push(new GhprbPublishJenkinsUrl(ghprbConfig.PUBLISH_JENKINS_URL))
+}
+if (ghprbConfig.BUILD_LOG_LINES_TO_DISPLAY > 0) {
+    extensions.push(new GhprbBuildLog(ghprbConfig.BUILD_LOG_LINES_TO_DISPLAY))
+}
+if (ghprbConfig.RESULT_MESSAGES.isEmpty()) {
+    ArrayList<GhprbBuildResultMessage> buildResultMessages = new ArrayList<GhprbBuildResultMessage>()
+    ghprbConfig.RESULT_MESSAGES.each { resultMessage ->
+        try {
+            def resultCommitState = resultMessage.STATUS.toUpperCase() as GHCommitState
+            buildResultMessages << new GhprbBuildResultMessage(resultCommitState, resultMessage.MESSAGE)
+        } catch (IllegalArgumentException e) {
+            logger.severe('Unable to cast RESULT_MESSAGE.STATUS into GHCommitState')
+            logger.severe('Make sure it is one the following values: PENDING, FAILURE, ERROR')
+            jenkins.doSafeExit(null)
+            System.exit(1)
+        }
+    }
+    extensions.push(new GhprbBuildStatus(buildResultMessages))
+}
 
 logger.info('Successfully configured the GHPRB plugin')
