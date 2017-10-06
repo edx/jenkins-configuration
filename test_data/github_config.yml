@@ -1,0 +1,6 @@
+---
+- CREDENTIAL_ID: 'secretText1'
+  MANAGE_HOOKS: true
+  USE_CUSTOM_API_URL: 'true'
+  API_URL: 'www.example.com/api'
+  CACHE_SIZE: 30
