@@ -23,5 +23,9 @@ LOCATION:
     ADMIN_EMAIL: 'admin@localhost'
 SHELL:
     EXECUTABLE: '/bin/bash'
+FORMATTER:
+    FORMATTER_TYPE: 'rawhtml'
+    # Note: this option is only available for 'rawhtml' formatters
+    DISABLE_SYNTAX_HIGHLIGHTING: true
 CLI:
     CLI_ENABLED: false
