@@ -18,6 +18,8 @@ import hudson.tasks.Shell
 import hudson.slaves.EnvironmentVariablesNodeProperty
 import hudson.slaves.EnvironmentVariablesNodeProperty.Entry
 import hudson.model.Node.Mode
+import hudson.markup.RawHtmlMarkupFormatter
+import hudson.markup.EscapedMarkupFormatter
 @Grapes([
     @Grab(group='org.yaml', module='snakeyaml', version='1.17')
 ])
@@ -41,6 +43,7 @@ Map mainConfig = yaml.load(configText).MAIN
 Map propertiesConfig = yaml.load(configText).GLOBAL_PROPERTIES
 Map locationConfig = yaml.load(configText).LOCATION
 Map shellConfig = yaml.load(configText).SHELL
+Map formatterConfig = yaml.load(configText).FORMATTER
 
 logger.info("Configuring basic Jenkins options")
 try {
@@ -107,6 +110,21 @@ if (p.exitcode != 0) {
 Shell.DescriptorImpl shell = jenkins.getExtensionList(Shell.DescriptorImpl.class).get(0)
 shell.setShell(shellConfig.EXECUTABLE)
 shell.save()
+
+// Configure the markup formatter for build and job descriptions
+if (formatterConfig.FORMATTER_TYPE.toLowerCase() == 'rawhtml') {
+    RawHtmlMarkupFormatter markupFormatter = new RawHtmlMarkupFormatter(
+        formatterConfig.DISABLE_SYNTAX_HIGHLIGHTING
+    )
+    jenkins.setMarkupFormatter(markupFormatter)
+} else if (formatterConfig.FORMATTER_TYPE.toLowerCase() == 'plain') {
+    EscapedMarkupFormatter markupFormatter = new EscapedMarkupFormatter()
+    jenkins.setMarkupFormatter(markupFormatter)
+} else {
+    logger.severe("Invalid value in the FORMATTER configuration of ${configPath}/main_config.yml")
+    jenkins.doSafeExit(null)
+    System.exit(1)
+}
 
 jenkins.save()
 logger.info("Finished configuring the main Jenkins options.")
