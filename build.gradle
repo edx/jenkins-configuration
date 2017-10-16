@@ -33,6 +33,8 @@ dependencies {
     compile 'org.jenkins-ci.plugins:ssh-credentials:1.11@jar'
     compile 'org.jenkins-ci.plugins:gradle:1.24@jar'
     compile 'org.jenkins-ci.plugins:jobConfigHistory:2.10@jar'
+    compile 'org.jenkins-ci.plugins:antisamy-markup-formatter:1.3@jar'
+    compile 'org.kohsuke:owasp-html-sanitizer:r88@jar'
     compile 'org.jvnet.hudson.plugins:hipchat:0.1.9@jar'
     compile 'org.jenkins-ci.plugins:mailer:1.16@jar'
     compile 'org.jenkins-ci.plugins:mask-passwords:2.8@jar'
