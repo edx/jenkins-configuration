@@ -10,7 +10,8 @@
 import java.util.logging.Logger
 import jenkins.model.Jenkins
 import hudson.security.SecurityRealm
-import hudson.security.GlobalMatrixAuthorizationStrategy
+import hudson.security.ProjectMatrixAuthorizationStrategy
+import hudson.security.Permission
 import org.jenkinsci.plugins.GithubSecurityRealm
 @Grapes([
     @Grab(group='org.yaml', module='snakeyaml', version='1.17')
@@ -71,15 +72,16 @@ List validPermissions = [   'hudson.model.Computer.Build',
                             'hudson.model.View.Read'
                             ]
 
-def strategy = new GlobalMatrixAuthorizationStrategy()
+def strategy = new ProjectMatrixAuthorizationStrategy()
 securityGroups.each { group ->
     logger.info("Adding security group: ${group.NAME}")
     group.USERS.each { user ->
-        group.PERMISSIONS.each { permission ->
-            if (validPermissions.any { it == permission }) {
-                strategy.add("${permission}:${user}")
+        group.PERMISSIONS.each { permissionString ->
+            if (validPermissions.any { it == permissionString }) {
+                Permission permission = Permission.fromId(permissionString)
+                strategy.add(permission, user)
             } else {
-                logger.severe("Permission ${permission} is not supported in Jenkins")
+                logger.severe("Permission ${permissionString} is not supported in Jenkins")
                 jenkins.doSafeExit(null)
                 System.exit(1)
             }
