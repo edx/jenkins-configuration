@@ -6,6 +6,7 @@
 **/
 
 import java.util.logging.Logger
+import java.nio.file.NoSuchFileException
 import com.michelin.cio.hudson.plugins.maskpasswords.MaskPasswordsConfig
 import com.michelin.cio.hudson.plugins.maskpasswords.MaskPasswordsBuildWrapper.VarPasswordPair
 
@@ -33,10 +34,15 @@ try {
 
 Map maskPasswordsConfig = yaml.load(configText)
 
-MaskPasswordsConfig plugin = MaskPasswordsConfig.getInstance()
-
-// Clear any existing settings
-plugin.clear()
+MaskPasswordsConfig plugin = null
+try {
+    // If there is an existing configuration, get it and clear it
+    plugin = MaskPasswordsConfig.getInstance()
+    plugin.clear()
+} catch (NoSuchFileException e) {
+    // If not, create a new MaskPasswordsConfig object
+    plugin = new MaskPasswordsConfig()
+}
 
 // Add classes that should automatically be masked
 maskPasswordsConfig.MASKED_PARAMETER_CLASSES.each { maskedClass ->
