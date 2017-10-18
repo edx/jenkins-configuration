@@ -14,6 +14,14 @@ class SecurityConfigurationPage(PageObject):
         enabled = self.q(css='[name="_.useSecurity"]').attrs('checked')[0]
         return True if enabled == 'true' else False
 
+    def is_cli_remoting_enabled(self):
+        row_id = self.q(css='[name="jenkins-CLI"]').attrs('id')
+        cli_checkbox = self.q(css='[nameref="{}"] > td > [name="_.enabled"]'.format(row_id)).attrs('checked')
+        if cli_checkbox and cli_checkbox[0] == 'true':
+            return True
+        else:
+            return False
+
     def is_gh_oauth_enabled(self):
         """
         return true if 
