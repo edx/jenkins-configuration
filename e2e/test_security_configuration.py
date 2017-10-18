@@ -10,12 +10,19 @@ class TestSecurityConfiguration(WebAppTest):
         super(TestSecurityConfiguration, self).setUp()
         config_path = os.getenv('CONFIG_PATH')
         try:
-            yaml_contents = open(
+            security_yaml_contents = open(
                     "{}/security.yml".format(config_path), 'r'
                     ).read()
         except IOError:
             pass
-        self.security_config = yaml.load(yaml_contents)
+        try:
+            main_yaml_contents = open(
+                    "{}/main_config.yml".format(config_path), 'r'
+                    ).read()
+        except IOError:
+            pass
+        self.security_config = yaml.load(security_yaml_contents)
+        self.main_config = yaml.load(main_yaml_contents)
         self.security_page = SecurityConfigurationPage(self.browser)
 
     def test_security(self):
@@ -25,3 +32,4 @@ class TestSecurityConfiguration(WebAppTest):
             for user in group['USERS']:
                 permissions = self.security_page.get_user_permissions(user)
                 assert all([p in group['PERMISSIONS'] for p in permissions])
+        assert self.main_config['CLI']['CLI_ENABLED'] == self.security_page.is_cli_remoting_enabled()

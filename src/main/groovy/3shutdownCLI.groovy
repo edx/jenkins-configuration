@@ -60,12 +60,15 @@ if (cliEnabled) {
     System.exit(0)
 }
 
+// disable remoting cli
+jenkins.getDescriptor("jenkins.CLI").get().setEnabled(false)
+
 // disabled CLI access over TCP listener (separate port)
 def p = AgentProtocol.all()
 p.each { x ->
-  if (x.name.contains("CLI")) {
-    p.remove(x)
-  }
+    if (x.name && x.name.contains("CLI")) {
+        p.remove(x)
+    }
 }
 
 // disable CLI access over /cli URL
