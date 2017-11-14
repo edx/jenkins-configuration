@@ -38,7 +38,7 @@ before_install:
     - make run
 
 addons:
-    firefox: '52.0.1'
+    firefox: '53.0'
 
 script:
     - export CI_SYSTEM='travis'
