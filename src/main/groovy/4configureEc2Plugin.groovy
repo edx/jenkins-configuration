@@ -28,9 +28,6 @@ try {
 }
 Map ec2Config = yaml.load(configText)
 
-// Get the ec2 plugin version
-Float pluginVersion = Float.parseFloat(jenkins.pluginManager.getPlugin('ec2').getVersion())
-
 List<AmazonEC2Cloud> clouds = new ArrayList<AmazonEC2Cloud>();
 for (cloudConfig in ec2Config.CLOUDS) {
     List<SlaveTemplate> templates = new ArrayList<SlaveTemplate>();
@@ -39,25 +36,8 @@ for (cloudConfig in ec2Config.CLOUDS) {
         // Create Spot Config if applicable
         String maxBid = amiConfig.SPOT_CONFIG.SPOT_MAX_BID_PRICE
         SpotConfiguration spotConfig = null
-        // The constructor changes based on the plugin so add support for both
-        if (pluginVersion < 1.32) {
-            String bidType = amiConfig.SPOT_CONFIG.SPOT_INSTANCE_BID_TYPE.toLowerCase()
-            String[] validBidTypes = ['persistent', 'one-time']
-            if (maxBid && bidType) {
-                if (!(bidType in validBidTypes)) {
-                    logger.severe("Invalid value for SPOT_INSTANCE_BID_TYPE. Must be " +
-                                  "persistent, one-time, or null if no spot configuration " +
-                                  "is desired. Got: ${bidType}")
-                    jenkins.doSafeExit(null)
-                    System.exit(1)
-                }
-                //Create SpotConfiguration
-                spotConfig = new SpotConfiguration(maxBid, bidType)
-            }
-        } else {
-            if (maxBid) {
-                spotConfig = new SpotConfiguration(maxBid)
-            }
+        if (maxBid) {
+            spotConfig = new SpotConfiguration(maxBid)
         }
 
         // Create instanceType object
@@ -114,6 +94,7 @@ for (cloudConfig in ec2Config.CLOUDS) {
             amiConfig.REMOTE_FS_ROOT,
             amiConfig.SSH_PORT,
             instanceType,
+            amiConfig.EBS_OPTIMIZED,
             amiConfig.LABEL_STRING,
             mode,
             amiConfig.DESCRIPTION,
@@ -123,6 +104,7 @@ for (cloudConfig in ec2Config.CLOUDS) {
             amiConfig.NUM_EXECUTORS,
             amiConfig.REMOTE_ADMIN,
             amiConfig.ROOT_COMMAND_PREFIX,
+            amiConfig.SLAVE_COMMAND_PREFIX,
             amiConfig.JVM_OPTIONS,
             amiConfig.STOP_ON_TERMINATE,
             amiConfig.SUBNET_ID,
@@ -153,8 +135,7 @@ for (cloudConfig in ec2Config.CLOUDS) {
     AmazonEC2Cloud cloud = new AmazonEC2Cloud(
         cloudConfig.NAME,
         cloudConfig.USE_INSTANCE_PROFILE_FOR_CREDS,
-        cloudConfig.ACCESS_KEY_ID,
-        cloudConfig.SECRET_ACCESS_KEY,
+        cloudConfig.CREDENTIAL_ID,
         cloudConfig.REGION,
         ec2PrivateKey,
         cloudConfig.INSTANCE_CAP,
