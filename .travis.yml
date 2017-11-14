@@ -1,4 +1,5 @@
 language: groovy
+python: 3.5
 env:
     - JENKINS_VERSION='jenkins_2.60.3'
 
