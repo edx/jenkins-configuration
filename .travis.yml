@@ -2,9 +2,8 @@ language: groovy
 env:
     - JENKINS_VERSION='jenkins_2.60.3'
 
+dist: trusty
 sudo: required
-
-group: deprecated-2017Q2
 
 branches:
   only:
@@ -32,7 +31,7 @@ before_install:
     - export PATH=$PATH:$PWD/geckodriver
     # install requirements and build the container
     - make plugins
-    - make requirements
+    - sudo make requirements
     - cp local_env.sh.sample local_env.sh && source local_env.sh
     - make build
     - make run
