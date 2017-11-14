@@ -2,9 +2,7 @@ language: groovy
 env:
     - JENKINS_VERSION='jenkins_2.60.3'
 
-sudo: required
-
-group: deprecated-2017Q2
+dist: trusty
 
 branches:
   only:
