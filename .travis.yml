@@ -32,10 +32,12 @@ before_install:
     - export PATH=$PATH:$PWD/geckodriver
     # install requirements and build the container
     - make plugins
-    - sudo apt-get install virtualenv
+    - sudo apt-get update
+    - sudo apt-get install virtualenv -y
     - virtualenv venv
     - . venv/bin/activate
     - make requirements
+    - pip freeze
     - cp local_env.sh.sample local_env.sh && source local_env.sh
     - make build
     - make run
