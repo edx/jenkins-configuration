@@ -33,7 +33,7 @@ before_install:
     # install requirements and build the container
     - make plugins
     - sudo apt-get update
-    - sudo apt-get install virtualenv -y
+    - sudo apt-get install virtualenvwrapper -y
     - virtualenv venv
     - . venv/bin/activate
     - make requirements
