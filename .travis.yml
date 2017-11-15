@@ -2,9 +2,9 @@ language: groovy
 env:
     - JENKINS_VERSION='jenkins_2.60.3'
 
-sudo: required
+group: deprecated-2017Q3
 
-group: deprecated-2017Q2
+sudo: required
 
 branches:
   only:
@@ -38,10 +38,11 @@ before_install:
     - make run
 
 addons:
-    firefox: '52.0.1'
+    firefox: '53.0'
 
 script:
     - export CI_SYSTEM='travis'
     - make quality
     - make healthcheck
+    - pip freeze
     - make e2e
