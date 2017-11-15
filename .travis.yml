@@ -44,4 +44,5 @@ script:
     - export CI_SYSTEM='travis'
     - make quality
     - make healthcheck
+    - pip freeze
     - make e2e
