@@ -35,14 +35,19 @@ clean.ws:
 	./gradlew -b plugins.gradle clean
 
 build:
-	docker build -t $(CONTAINER_NAME) --build-arg=CONFIG_PATH=$(CONFIG_PATH) \
+	docker build -t $(CONTAINER_NAME) \
+		--build-arg=CONFIG_PATH=$(CONFIG_PATH) \
 		--build-arg=JENKINS_VERSION=$(JENKINS_VERSION) \
 		--build-arg=JENKINS_WAR_SOURCE=$(JENKINS_WAR_SOURCE) .
 
 run: run.container run.jenkins
 
 run.container:
-	docker run --name $(CONTAINER_NAME) -p 8080:8080 -p 2222:22 -d $(CONTAINER_NAME)
+	docker run --name $(CONTAINER_NAME) -p 8080:8080 -p 2222:22 -d \
+		--env JENKINS_SLAVE_AGENT_PORT=50000 \
+		--env JENKINS_HOME=/var/lib/jenkins \
+		--env JENKINS_CONFIG_PATH=/var/lib/jenkins/init-configs \
+		$(CONTAINER_NAME)
 
 run.jenkins:
 	docker exec -d -u jenkins ${CONTAINER_NAME} /usr/bin/java -jar /usr/share/jenkins/jenkins.war --httpPort=8080 --logfile=/var/log/jenkins/jenkins.log

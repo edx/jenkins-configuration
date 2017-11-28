@@ -34,6 +34,12 @@ ARG gid=1000
 RUN groupadd -g ${gid} ${group} \
     && useradd -d "$JENKINS_HOME" -u ${uid} -g ${gid} -m -s /bin/bash ${user}
 
+USER jenkins
+ENV JENKINS_HOME /var/lib/jenkins
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+ENV JENKINS_CONFIG_PATH $JENKINS_HOME/init-configs
+USER root
+
 RUN mkdir -p $JENKINS_HOME/init.groovy.d \
     && mkdir $JENKINS_HOME/plugins \
     && mkdir $JENKINS_HOME/utils \
