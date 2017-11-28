@@ -31,7 +31,7 @@ class PluginTestCase(TestCase):
             "external-monitor-job": "1.4",
             "cvs": "2.12",
             # The following plugins installed via test_data/plugins.yml
-            "ec2": "1.37",
+            "ec2": "1.36",
             "ghprb": "1.36.0",
             "job-dsl": "1.45",
             "github-oauth": "0.24",
@@ -43,7 +43,7 @@ class PluginTestCase(TestCase):
             # the plugins installed via test_data/plugins.yml
             "ace-editor": "1.0.1",
             "aws-credentials": "1.23",
-            "aws-java-sdk": "1.11.119",
+            "aws-java-sdk": "1.11.37",
             "durable-task": "1.12",
             "bouncycastle-api": "2.16.0",
             "node-iterator-api": "1.5",

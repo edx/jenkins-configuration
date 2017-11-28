@@ -104,7 +104,6 @@ for (cloudConfig in ec2Config.CLOUDS) {
             amiConfig.NUM_EXECUTORS,
             amiConfig.REMOTE_ADMIN,
             amiConfig.ROOT_COMMAND_PREFIX,
-            amiConfig.SLAVE_COMMAND_PREFIX,
             amiConfig.JVM_OPTIONS,
             amiConfig.STOP_ON_TERMINATE,
             amiConfig.SUBNET_ID,

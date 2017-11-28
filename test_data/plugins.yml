@@ -76,7 +76,7 @@
   version: '1.36.0'
   group: 'org.jenkins-ci.plugins'
 - name: 'ec2'
-  version: '1.37'
+  version: '1.36'
   group: 'org.jenkins-ci.plugins'
 - name: 'job-dsl'
   version: '1.45'
