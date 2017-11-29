@@ -1,7 +1,8 @@
 ---
 CLOUDS:
     - NAME: 'aws-cloud'
-      CREDENTIAL_ID: 'ec2CloudConfig'
+      ACCESS_KEY_ID: 'accessKey'
+      SECRET_ACCESS_KEY: 'secretKey'
       USE_INSTANCE_PROFILE_FOR_CREDS: false
       REGION: 'us-east-1'
       EC2_PRIVATE_KEY_PATH: '/var/lib/jenkins/init-configs/ec2/id_rsa'
@@ -16,7 +17,6 @@ CLOUDS:
             REMOTE_FS_ROOT: '/root/stuff1'
             SSH_PORT: '22'
             INSTANCE_TYPE: 'm3.large'
-            EBS_OPTIMIZED: false
             LABEL_STRING: 'label1'
             MODE: 'normal'
             DESCRIPTION: 'description1'
@@ -49,7 +49,6 @@ CLOUDS:
             REMOTE_FS_ROOT: '/root/stuff2'
             SSH_PORT: '22'
             INSTANCE_TYPE: 't1.micro'
-            EBS_OPTIMIZED: true
             LABEL_STRING: 'label2'
             MODE: 'normal'
             DESCRIPTION: 'description2'
