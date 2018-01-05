@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 USER root
 RUN apt-get update -y \
-    && apt-get install -y openjdk-8-jdk \
+    && apt-get install -y openjdk-8-jdk-headless \
     && apt-get install -y curl \
     && apt-get install -y git \
     && apt-get install -y sudo \

@@ -16,3 +16,7 @@ local_env.sh
 # ignore the files downloaded to build out Jenkins
 plugins/*
 utils/*
+
+# ignore intellij idea files
+/.idea*
+*.iml
