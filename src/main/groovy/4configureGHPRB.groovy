@@ -66,7 +66,7 @@ json.put("githubAuth", null);
 
 String blackList = ghprbConfig.BACK_LIST_LABELS;
 if (blackList) {
-    blackList = backList.join(' ');
+    blackList = blackList.join(' ');
 } else {
     blackList = ''
 }
