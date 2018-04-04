@@ -31,7 +31,7 @@ class TestEc2ConfigurationSubPage(WebAppTest):
         # the yaml file exists in them.
         cloud_names = self.config_page.get_cloud_names()
         cloud_regions = self.config_page.get_cloud_regions()
-        cloud_access_keys = self.config_page.get_cloud_access_keys()
+        cloud_credential_id = self.config_page.get_cloud_credential_id()
         ami_descriptions = self.config_page.get_ami_descriptions()
         ami_ids = self.config_page.get_ami_ids()
         ami_zones = self.config_page.get_ami_zones()
@@ -42,11 +42,11 @@ class TestEc2ConfigurationSubPage(WebAppTest):
         for cloud in self.ec2_cloud_config:
             assert cloud["NAME"] in cloud_names
             assert cloud["REGION"] in cloud_regions
-            assert cloud["ACCESS_KEY_ID"] in cloud_access_keys
+            assert cloud["CREDENTIAL_ID"] in cloud_credential_id
             for ami in cloud["AMIS"]:
                 assert ami["AMI_ID"] in ami_ids
                 assert ami["DESCRIPTION"] in ami_descriptions
                 assert ami["AVAILABILITY_ZONE"] in ami_zones
-                assert ami["SSH_PORT"] in ssh_ports
+                assert ami["AMI_TYPE"]["REMOTE_SSH_PORT"] in ssh_ports
                 assert ami["REMOTE_FS_ROOT"] in fs_roots
                 assert ami["IDLE_TERMINATION_MINUTES"] in idle_termination_times
