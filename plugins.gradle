@@ -61,10 +61,12 @@ task plugins(type: Copy, dependsOn: [clean]){
 }
 
 def parsePluginList() {
+    def pluginsKey = System.getenv('PLUGIN_CONFIG_KEY') ?: 'plugins'
     String pluginConfig = System.getenv('PLUGIN_CONFIG') ?: 'test_data/plugins.yml'
     org.yaml.snakeyaml.Yaml yaml = new org.yaml.snakeyaml.Yaml()
-    List<String> list = yaml.load(new File(pluginConfig).text)
-    return list
+    Map yamlContents = yaml.load(new File(pluginConfig).text)
+    List<String> pluginValues = yamlContents[pluginsKey]
+    return pluginValues
 }
 
 task show {
