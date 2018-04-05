@@ -6,6 +6,7 @@
 
 export CONFIG_PATH='test_data'
 export PLUGIN_CONFIG='test_data/plugins.yml'
+export PLUGIN_CONFIG_KEY='plugins'
 
 # If you choose to pull a Jenkins war file from somewhere else,
 # change this variable
