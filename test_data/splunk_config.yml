@@ -1,0 +1,22 @@
+---
+SPLUNK_APP_ENABLED: true
+SPLUNK_HOSTNAME: '127.0.0.1'
+SPLUNK_HOST_PORT: 8088
+USE_SSL: true
+SPLUNK_TOKEN: '123456789'
+RAW_EVENTS_ENABLED: true
+MAX_EVENT_BATCH_SIZE: 8192
+SPLUNK_APP_URL: '127.0.0.1:8088/splunk'
+RETRIES_ON_ERROR: 10
+IGNORED_JOBS_PATTERN: 'ignore-these-jobs'
+MASTER_HOSTNAME: 'localhost'
+EVENT_SOURCE: 'sample-source'
+SCRIPT_TYPE: 'inline'
+SCRIPT_PATH: 'splunk/splunk_script.groovy'
+METADATA:
+    - DATA_SOURCE: 'Build Event'
+      CONFIG_ITEM: 'Index'
+      VALUE: 'test value 1'
+    - DATA_SOURCE: 'Build Report'
+      CONFIG_ITEM: 'Source Type'
+      VALUE: 'test value 2'
