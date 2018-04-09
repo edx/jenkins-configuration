@@ -16,6 +16,7 @@ import com.cloudbees.plugins.credentials.domains.*
 import com.cloudbees.plugins.credentials.impl.*
 import com.cloudbees.jenkins.plugins.sshcredentials.impl.*
 import org.jenkinsci.plugins.plaincredentials.impl.*
+import com.cloudbees.jenkins.plugins.awscredentials.*
 
 import org.apache.commons.fileupload.*
 import org.apache.commons.fileupload.disk.*
@@ -255,9 +256,22 @@ credentialConfig.each { newCredential ->
             )
             credentialsStore.addCredentials(globalDomain, certificate)
             break
+        case 'aws':
+            accessKeyId = newCredential.accessKeyId
+            secretAccessKey = newCredential.secretAccessKey
+
+            awsCredential = new AWSCredentialsImpl(
+                scope,
+                id,
+                accessKeyId,
+                secretAccessKey,
+                description
+            )
+            credentialsStore.addCredentials(globalDomain, awsCredential)
+            break
         default:
             logger.severe("Invalid credentialType. Must be usernamePassword, secretText, " +
-                          "secretFile, ssh, or certificate. Got: ${credentialType}")
+                          "secretFile, ssh, certificate, or aws. Got: ${credentialType}")
             jenkins.doSafeExit(null)
             System.exit(1)
     }
