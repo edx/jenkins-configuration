@@ -8,9 +8,9 @@ def pluginsPath = System.getenv('PLUGIN_OUTPUT_DIR') ?: 'plugins'
 def jenkinsVersion = System.getenv('JENKINS_VERSION').split('_|\\.')[1,2].join('.')
 
 repositories {
+    maven { url 'http://repo.jenkins-ci.org/releases/' }
     mavenCentral()
     jcenter()
-    maven { url 'http://repo.jenkins-ci.org/releases/' }
 }
 
 configurations {
