@@ -13,6 +13,10 @@ import jenkins.model.*
 
 Logger logger = Logger.getLogger("")
 
+boolean cpsLibInstalled = Jenkins.instance.getPluginManager().getPlugins().any { plugin ->
+    plugin.toString() == 'Plugin:workflow-cps-global-lib'
+}
+
 def groovyClassLoader = this.class.classLoader
 def rootClassLoader = DefaultGroovyMethods.getRootLoader(groovyClassLoader)
 
@@ -40,6 +44,16 @@ jarPath.eachFile() { file ->
     fileName = file.getName()
     Matcher matcher = file.getName() =~ /.*\.jar/
     if (matcher) {
+        // If the workflow-cps-global-lib plugin is installed, do not load
+        // the ivy jar.The plugin in question manages configuring the ivy/grape
+        // system on the classpath. Since the plugin is loaded before the groovy
+        // scripts are initialized, will cause conflicts.
+        if (cpsLibInstalled && fileName.contains('ivy')) {
+            logger.info('The workflow-cps-global-lib plugin is installed.')
+            logger.info('No need to add ivy into the classpath again')
+            logger.info('Carrying on to the next init script')
+            return
+        }
         logger.info("Adding ${fileName} to the classpath")
         try {
             rootClassLoader.addURL(file.toURL())
