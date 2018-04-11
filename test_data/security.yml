@@ -1,4 +1,8 @@
 ---
+AGENT_SETTINGS:
+    PROTOCOLS:
+      - 'JNLP4-connect'
+    JNLP_TCP_PORT: 0
 OAUTH_SETTINGS:
     GITHUB_WEB_URI: 'https://github.com'
     GITHUB_API_URI: 'https://api.github.com'
