@@ -35,7 +35,7 @@
   version: '2.1.16'
   group: 'org.jenkins-ci.plugins'
 - name: 'ssh-credentials'
-  version: '1.11'
+  version: '1.12'
   group: 'org.jenkins-ci.plugins'
 - name: 'plain-credentials'
   version: '1.3'
