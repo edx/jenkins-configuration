@@ -102,3 +102,6 @@
 - name: 'workflow-scm-step'
   version: '2.4'
   group: 'org.jenkins-ci.plugins.workflow'
+- name: 'workflow-aggregator'
+  version: '2.5'
+  group: 'org.jenkins-ci.plugins.workflow'
