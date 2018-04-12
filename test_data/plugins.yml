@@ -73,7 +73,7 @@
   version: '1.28'
   group: 'org.jenkins-ci.plugins'
 - name: 'job-dsl'
-  version: '1.45'
+  version: '1.68'
   group: 'org.jenkins-ci.plugins'
 - name: 'github'
   version: '1.26.0'
