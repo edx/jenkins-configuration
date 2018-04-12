@@ -14,8 +14,8 @@ class Ec2ConfigurationSubPage(ConfigurationSubPageMixIn, PageObject):
     def get_cloud_regions(self):
         return self.values_of_elements_named('_.region')
 
-    def get_cloud_credential_id(self):
-        return self.values_of_elements_named('_.credentialsId')
+    def get_cloud_access_keys(self):
+        return self.values_of_elements_named('_.accessId')
 
     def get_ami_descriptions(self):
         return self.values_of_elements_named('_.description')

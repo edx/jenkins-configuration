@@ -31,7 +31,7 @@ class PluginTestCase(TestCase):
             "external-monitor-job": "1.4",
             "cvs": "2.12",
             # The following plugins installed via test_data/plugins.yml
-            "ec2": "1.39",
+            "ec2": "1.28",
             "ghprb": "1.36.0",
             "job-dsl": "1.45",
             "github-oauth": "0.24",
@@ -41,36 +41,22 @@ class PluginTestCase(TestCase):
             "mask-passwords": "2.8",
             # The following plugins should be installed as dependencies for
             # the plugins installed via test_data/plugins.yml
-            "ace-editor": "1.0.1",
-            "aws-credentials": "1.23",
-            "aws-java-sdk": "1.11.119",
-            "durable-task": "1.12",
-            "bouncycastle-api": "2.16.0",
-            "node-iterator-api": "1.5",
+            "node-iterator-api": "1.1",
             "github": "1.26.0",
-            "plain-credentials": "1.3",
-            "credentials": "2.1.16",
-            "credentials-binding": "1.13",
+            "plain-credentials": "1.1",
+            "credentials": "2.1.8",
             "matrix-project": "1.6",
             "ssh-agent": "1.3",
             "github-api": "1.82",
             "git": "2.4.0",
             "git-client": "1.18.0",
-            "jackson2-api": "2.5.4",
             "junit": "1.3",
-            "jquery-detached": "1.2.1",
             "scm-api": "2.0.3",
-            "script-security": "1.34",
+            "script-security": "1.27",
             "ssh-credentials": "1.11",
             "mapdb-api": "1.0.1.0",
-            "structs": "1.7",
-            "token-macro": "1.11",
-            "workflow-api": "2.8",
-            "workflow-cps": "2.25",
-            "workflow-durable-task-step": "2.8",
-            "workflow-scm-step": "2.4",
-            "workflow-step-api": "2.10",
-            "workflow-support": "2.12"
+            "structs": "1.6",
+            "token-macro": "1.11"
         }
         for plugin, version in installed_plugin_versions.iteritems():
             print "Checking if {} at version {} is installed".format(
