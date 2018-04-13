@@ -33,7 +33,7 @@ class PluginTestCase(TestCase):
             # The following plugins installed via test_data/plugins.yml
             "ec2": "1.28",
             "ghprb": "1.36.0",
-            "job-dsl": "1.45",
+            "job-dsl": "1.47",
             "github-oauth": "0.24",
             "gradle": "1.24",
             "hipchat": "0.1.9",
