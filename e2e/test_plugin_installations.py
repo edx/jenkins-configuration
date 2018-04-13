@@ -33,7 +33,7 @@ class PluginTestCase(TestCase):
             # The following plugins installed via test_data/plugins.yml
             "ec2": "1.28",
             "ghprb": "1.36.0",
-            "job-dsl": "1.45",
+            "job-dsl": "1.68",
             "github-oauth": "0.24",
             "gradle": "1.24",
             "hipchat": "0.1.9",
@@ -57,7 +57,7 @@ class PluginTestCase(TestCase):
             "script-security": "1.27",
             "ssh-credentials": "1.12",
             "mapdb-api": "1.0.1.0",
-            "structs": "1.6",
+            "structs": "1.13",
             "token-macro": "1.11",
             "ace-editor": "1.0.1",
             "authentication-tokens": "1.1",
