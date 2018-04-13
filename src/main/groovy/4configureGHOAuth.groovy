@@ -30,8 +30,9 @@ try {
     jenkins.doSafeExit(null)
     System.exit(1)
 }
-securityGroups = yaml.load(configText).SECURITY_GROUPS
-oauthSettings = yaml.load(configText).OAUTH_SETTINGS
+securityConfig = yaml.load(configText)
+securityGroups = securityConfig.SECURITY_GROUPS
+oauthSettings = securityConfig.OAUTH_SETTINGS
 
 SecurityRealm github_realm = new GithubSecurityRealm(oauthSettings.GITHUB_WEB_URI,
                                                      oauthSettings.GITHUB_API_URI,
@@ -88,6 +89,15 @@ securityGroups.each { group ->
         }
     }
 }
-
 jenkins.setAuthorizationStrategy(strategy)
+
+// Configure Agent security settings
+agentConfig = securityConfig.AGENT_SETTINGS
+jenkins.setSlaveAgentPort(agentConfig.JNLP_TCP_PORT)
+Set<String> protocols = new HashSet<String>();
+agentConfig.PROTOCOLS.each { protocol ->
+    protocols.add(protocol)
+}
+jenkins.setAgentProtocols(protocols)
+
 jenkins.save()
