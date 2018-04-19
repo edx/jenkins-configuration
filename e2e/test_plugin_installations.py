@@ -41,6 +41,9 @@ class PluginTestCase(TestCase):
             "mask-passwords": "2.8",
             "workflow-aggregator": "2.5",
             "splunk-devops": "1.6.4",
+            "workflow-support": "2.18",
+            "workflow-cps": "2.45",
+            "pipeline-utility-steps": "2.0.2",
             # The following plugins should be installed as dependencies for
             # the plugins installed via test_data/plugins.yml
             "node-iterator-api": "1.1",
@@ -55,7 +58,7 @@ class PluginTestCase(TestCase):
             "git-client": "1.19.7",
             "junit": "1.18",
             "scm-api": "2.0.3",
-            "script-security": "1.27",
+            "script-security": "1.42",
             "ssh-credentials": "1.12",
             "mapdb-api": "1.0.1.0",
             "structs": "1.6",
@@ -83,16 +86,14 @@ class PluginTestCase(TestCase):
             "pipeline-stage-step": "2.2",
             "pipeline-stage-tags-metadata": "1.0",
             "pipeline-stage-view": "2.4",
-            "workflow-api": "2.8",
+            "workflow-api": "2.25",
             "workflow-basic-steps": "2.3",
             "workflow-cps-global-lib": "2.5",
-            "workflow-cps": "2.24",
             "workflow-durable-task-step": "2.8",
             "workflow-job": "2.9",
             "workflow-multibranch": "2.9.2",
-            "workflow-scm-step": "2.3",
-            "workflow-step-api": "2.7",
-            "workflow-support": "2.12"
+            "workflow-scm-step": "2.4",
+            "workflow-step-api": "2.14"
         }
         for plugin, version in installed_plugin_versions.iteritems():
             print "Checking if {} at version {} is installed".format(
