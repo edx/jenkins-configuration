@@ -4,6 +4,7 @@
 
 import java.util.logging.Logger
 
+import jenkins.model.Jenkins
 import com.splunk.splunkjenkins.SplunkJenkinsInstallation
 import com.splunk.splunkjenkins.model.MetaDataConfigItem
 
@@ -13,6 +14,7 @@ import com.splunk.splunkjenkins.model.MetaDataConfigItem
 import org.yaml.snakeyaml.Yaml
 
 Logger logger = Logger.getLogger("")
+Jenkins jenkins = Jenkins.getInstance()
 String configPath = System.getenv("JENKINS_CONFIG_PATH")
 try {
     configText = new File("${configPath}/splunk_config.yml").text
@@ -90,17 +92,8 @@ for (metadataConfig in splunkConfig.METADATA) {
 }
 config.setMetadataItemSet(metaDataItems)
 
-
 config.updateCache();
-
-if (config.isValid()) {
-    logger.info('Splunk config valid.')
-    config.save();
-    SplunkJenkinsInstallation.markComplete(true);
-} else {
-    logger.error('Splunk config invalid. Aborting initialization')
-    jenkins.doSafeExit(null)
-    System.exit(1)
-}
+config.save();
+SplunkJenkinsInstallation.markComplete(true);
 
 logger.info('Successfully configured the Splunk plugin')
