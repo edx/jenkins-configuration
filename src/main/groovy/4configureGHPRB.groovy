@@ -50,7 +50,12 @@ json.put('cron', ghprbConfig.CRON_SCHEDULE);
 json.put('useComments', ghprbConfig.USE_COMMENTS);
 json.put('useDetailedComments', ghprbConfig.USE_DETAILED_COMMENTS);
 json.put('manageWebhooks', ghprbConfig.MANAGE_WEBHOOKS);
-json.put('adminlist', ghprbConfig.ADMIN_LIST.join(' '));
+List adminList = ghprbConfig.ADMIN_LIST;
+if (adminList) {
+    json.put('adminlist', adminList.join(' '));
+} else {
+    json.put('adminlist', '');
+}
 try {
     def commitState = ghprbConfig.UNSTABLE_AS.toUpperCase() as GHCommitState
     json.put('unstableAs', commitState)
@@ -64,21 +69,19 @@ json.put('autoCloseFailedPullRequests', ghprbConfig.AUTO_CLOSE_FAILED_PRS);
 json.put('displayBuildErrorsOnDownstreamBuilds', ghprbConfig.DISPLAY_ERRORS_DOWNSTREAM);
 json.put("githubAuth", null);
 
-String blackList = ghprbConfig.BACK_LIST_LABELS;
+List blackList = ghprbConfig.BLACK_LIST_LABELS;
 if (blackList) {
-    blackList = blackList.join(' ');
+    json.put('blackListLabels', blackList.join(' '));
 } else {
-    blackList = ''
+    json.put('blackListLabels', '');
 }
-json.put('blackListLabels', blackList)
 
-String whiteList = ghprbConfig.WHITE_LIST_LABELS;
+List whiteList = ghprbConfig.WHITE_LIST_LABELS;
 if (whiteList) {
-    whiteList = whiteList.join(' ');
+    json.put('whiteListLabels', whiteList.join(' '));
 } else {
-    whiteList = ''
+    json.put('whiteListLabels', '');
 }
-json.put('whiteListLabels', whiteList);
 
 StaplerRequest stapler =  new RequestImpl(
     new Stapler(),
