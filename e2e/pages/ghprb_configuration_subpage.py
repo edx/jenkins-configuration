@@ -11,6 +11,9 @@ class GHPRBConfigurationSubPage(ConfigurationSubPageMixIn, PageObject):
     def get_admin_list(self):
         return self.q(css='[name="_.adminlist"]').text[0]
 
+    def get_black_list_labels(self):
+        return self.q(css='[name="_.blackListLabels"]').text[0]
+
     def get_request_testing_phrase(self):
         return self.value_of_first_element_named('_.requestForTestingPhrase')
 
