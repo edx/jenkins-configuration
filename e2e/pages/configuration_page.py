@@ -51,6 +51,7 @@ class ConfigurationSubPageMixIn(object):
         """ Press the "Advanced" button for the plugin section."""
         nameref_id = self.q(css='[name="{}"]'.format(self.name)).attrs('id')[0]
         css_query='[nameref="{}"] > td > div.advancedLink > span.yui-button'.format(nameref_id)
+        self.scroll_to_element(css_query)
         self.q(css=css_query).click()
 
     def values_of_elements_named(self, el_name):
