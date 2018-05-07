@@ -59,27 +59,27 @@ config.setMetadataHost(splunkConfig.MASTER_HOSTNAME)
 config.setMetadataSource(splunkConfig.EVENT_SOURCE)
 
 List<String> dataSources = [
-    "Build Event",
-    "Build Report",
-    "Console Log",
-    "Jenkins Config",
-    "Log File",
-    "Queue Information",
-    "Slave Information",
-    "Default"
+    "BUILD_EVENT",
+    "BUILD_REPORT",
+    "CONSOLE_LOG",
+    "JENKINS_CONFIG",
+    "FILE",
+    "QUEUE_INFO",
+    "SLAVE_INFO",
+    "default"
 ]
 
-List<String> dataConfigItems = [ 'Index', 'Source Type', 'Disabled' ]
+List<String> dataConfigItems = [ 'index', 'sourcetype', 'disabled' ]
 
 Set<MetaDataConfigItem> metaDataItems = new HashSet<MetaDataConfigItem>()
 for (metadataConfig in splunkConfig.METADATA) {
     if (!dataSources.contains(metadataConfig.DATA_SOURCE)) {
-        logger.severe("Invalid data source: ${Config.DATA_SOURCE}")
+        logger.severe("Invalid data source: ${metadataConfig.DATA_SOURCE}")
         jenkins.doSafeExit(null)
         System.exit(1)
     }
     if (!dataConfigItems.contains(metadataConfig.CONFIG_ITEM)) {
-        logger.severe("Invalid data config item: ${Config.CONFIG_ITEM}")
+        logger.severe("Invalid data config item: ${metadataConfig.CONFIG_ITEM}")
         jenkins.doSafeExit(null)
         System.exit(1)
     }
