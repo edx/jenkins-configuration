@@ -10,6 +10,7 @@ import hudson.util.Secret
 import org.kohsuke.github.GHCommitState;
 import org.kohsuke.stapler.*;
 import org.jenkinsci.plugins.ghprb.*;
+import org.jenkinsci.plugins.ghprb.GhprbGitHubAuth;
 import org.jenkinsci.plugins.ghprb.extensions.*;
 import org.jenkinsci.plugins.ghprb.extensions.comments.*;
 import org.jenkinsci.plugins.ghprb.extensions.status.*;
@@ -45,6 +46,7 @@ json.put('requestForTestingPhrase', ghprbConfig.REQUEST_TESTING_PHRASE);
 json.put('whitelistPhrase', ghprbConfig.WHITE_LIST_PHRASE);
 json.put('okToTestPhrase', ghprbConfig.OK_PHRASE);
 json.put('retestPhrase', ghprbConfig.RETEST_PHRASE);
+json.put('blackListCommitAuthor', ghprbConfig.BLACKLIST_AUTHORS);
 json.put('skipBuildPhrase', ghprbConfig.SKIP_PHRASE);
 json.put('cron', ghprbConfig.CRON_SCHEDULE);
 json.put('useComments', ghprbConfig.USE_COMMENTS);

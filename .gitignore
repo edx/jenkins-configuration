@@ -16,3 +16,6 @@ local_env.sh
 # ignore the files downloaded to build out Jenkins
 plugins/*
 utils/*
+
+# ignore artifacts from e2e tests
+geckodriver.log

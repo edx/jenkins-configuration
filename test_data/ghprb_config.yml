@@ -11,6 +11,7 @@ BLACK_LIST_LABELS:
     - 'bar'
 OK_PHRASE: 'this is OK to test'
 RETEST_PHRASE: 'please retest'
+BLACKLIST_AUTHORS: 'badPerson1 nefarious123'
 SKIP_PHRASE: 'skip tests'
 CRON_SCHEDULE: 'H/5 * * * *'
 USE_COMMENTS: true
