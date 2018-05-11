@@ -37,7 +37,7 @@
   version: '1.3'
   group: 'org.jenkins-ci.plugins'
 - name: 'job-dsl'
-  version: '1.47'
+  version: '1.67'
   group: 'org.jenkins-ci.plugins'
 - name: 'jobConfigHistory'
   version: '2.10'
