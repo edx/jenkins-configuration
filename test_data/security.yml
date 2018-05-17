@@ -3,12 +3,6 @@ AGENT_SETTINGS:
     PROTOCOLS:
       - 'JNLP4-connect'
     JNLP_TCP_PORT: 0
-OAUTH_SETTINGS:
-    GITHUB_WEB_URI: 'https://github.com'
-    GITHUB_API_URI: 'https://api.github.com'
-    CLIENT_ID: 'clientId'
-    CLIENT_SECRET: 'secret'
-    SCOPES: 'read:org'
 SECURITY_GROUPS:
     # Users with similar permission needs should be grouped
     # into security groups. This can include GH users, teams,
@@ -50,3 +44,4 @@ SECURITY_GROUPS:
       USERS:
         - 'github-user1'
         - 'github-user2'
+DSL_SCRIPT_SECURITY_ENABLED: false
