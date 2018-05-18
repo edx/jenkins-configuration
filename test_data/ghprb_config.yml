@@ -1,32 +1,34 @@
 ---
-SERVER_API_URL: 'https://api.github.com'
-ACCESS_TOKEN: 'accessTokenString'
+ACCESS_TOKEN: accessTokenString
 ADMIN_LIST:
-    - 'admin1'
-    - 'admin2'
-REQUEST_TESTING_PHRASE: 'retest this PR please'
-WHITE_LIST_PHRASE: 'add this github user'
+  - admin1
+  - admin2
+AUTO_CLOSE_FAILED_PRS: false
+BLACK_LIST_COMMIT_AUTHOR: ''
 BLACK_LIST_LABELS:
-    - 'foo'
-    - 'bar'
-OK_PHRASE: 'this is OK to test'
-RETEST_PHRASE: 'please retest'
-SKIP_PHRASE: 'skip tests'
-CRON_SCHEDULE: 'H/5 * * * *'
+  - foo
+  - bar
+BUILD_LOG_LINES_TO_DISPLAY: 25
+CANCEL_BUILD_ON_UPDATE: true
+CREDENTIALS_ID: secretFile1
+CRON_SCHEDULE: H/5 * * * *
+DISPLAY_ERRORS_DOWNSTREAM: true
+GITHUB_AUTH: test
+MANAGE_WEBHOOKS: false
+OK_PHRASE: this is OK to test
+PUBLISH_JENKINS_URL: myjenkinsinstance.com
+REQUEST_TESTING_PHRASE: retest this PR please
+RESULT_MESSAGES:
+  - MESSAGE: this is pending
+    STATUS: pending
+  - MESSAGE: this was a failure
+    STATUS: failure
+RETEST_PHRASE: please retest
+SERVER_API_URL: 'https://api.github.com'
+SHARED_SECRET: ''
+SIMPLE_STATUS: simple status
+SKIP_PHRASE: skip tests
+UNSTABLE_AS: pending
 USE_COMMENTS: true
 USE_DETAILED_COMMENTS: false
-MANAGE_WEBHOOKS: false
-UNSTABLE_AS: 'pending'
-AUTO_CLOSE_FAILED_PRS: false
-DISPLAY_ERRORS_DOWNSTREAM: true
-GITHUB_AUTH: 'test'
-SIMPLE_STATUS: 'simple status'
-PUBLISH_JENKINS_URL: 'myjenkinsinstance.com'
-BUILD_LOG_LINES_TO_DISPLAY: 25
-RESULT_MESSAGES:
-    - STATUS: 'pending'
-      MESSAGE: 'this is pending'
-    - STATUS: 'failure'
-      MESSAGE: 'this was a failure'
-CREDENTIALS_ID: 'secretFile1'
-SHARED_SECRET: ''
+WHITE_LIST_PHRASE: add this github user
