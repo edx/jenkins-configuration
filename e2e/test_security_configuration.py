@@ -33,3 +33,4 @@ class TestSecurityConfiguration(WebAppTest):
                 permissions = self.security_page.get_user_permissions(user)
                 assert all([p in group['PERMISSIONS'] for p in permissions])
         assert self.main_config['CLI']['CLI_ENABLED'] == self.security_page.is_cli_remoting_enabled()
+        assert self.security_config['DSL_SCRIPT_SECURITY_ENABLED'] == self.security_page.is_dsl_script_security_enabled()

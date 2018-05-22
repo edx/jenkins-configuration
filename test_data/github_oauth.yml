@@ -1,0 +1,5 @@
+GITHUB_WEB_URI: 'https://github.com'
+GITHUB_API_URI: 'https://api.github.com'
+CLIENT_ID: 'clientId'
+CLIENT_SECRET: 'secret'
+SCOPES: 'read:org'

@@ -27,7 +27,7 @@ class PluginTestCase(TestCase):
             "gradle": "1.24",
             "hipchat": "0.1.9",
             "javadoc": "1.3",
-            "job-dsl": "1.47",
+            "job-dsl": "1.67",
             "jobConfigHistory": "2.10",
             "junit": "1.18",
             "ldap": "1.11",

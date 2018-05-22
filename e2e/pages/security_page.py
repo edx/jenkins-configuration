@@ -10,6 +10,10 @@ class SecurityConfigurationPage(PageObject):
     def is_browser_on_page(self):
         return "configure global security" in self.browser.title.lower()
 
+    def is_dsl_script_security_enabled(self):
+        enabled = self.q(css='[name="_.useScriptSecurity"]').attrs('checked')[0]
+        return True if enabled == 'true' else False
+
     def is_security_enabled(self):
         enabled = self.q(css='[name="_.useSecurity"]').attrs('checked')[0]
         return True if enabled == 'true' else False
@@ -24,10 +28,8 @@ class SecurityConfigurationPage(PageObject):
 
     def is_gh_oauth_enabled(self):
         """
-        return true if 
-
-        use the `GitHub Web URI` field, which will only appear when
-        GH OAuth is selected, rather than the GH OAuth radio button,
+        return true if he `GitHub Web URI` field is present, which will only
+        appear when GH OAuth is selected, rather than the GH OAuth radio button,
         which has no unique CSS identifier
         """
         return self.q(css='[name="_.githubWebUri"]').present
