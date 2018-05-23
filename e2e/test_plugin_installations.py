@@ -21,20 +21,20 @@ class PluginTestCase(TestCase):
             "cvs": "2.12",
             "ec2": "1.28",
             "external-monitor-job": "1.4",
-            "ghprb": "1.36.0",
-            "github": "1.26.0",
+            "ghprb": "1.40.0",
+            "github": "1.27.0",
             "github-oauth": "0.24",
             "gradle": "1.24",
             "hipchat": "0.1.9",
             "javadoc": "1.3",
             "job-dsl": "1.67",
             "jobConfigHistory": "2.10",
-            "junit": "1.18",
+            "junit": "1.20",
             "ldap": "1.11",
             "mailer": "1.21",
             "mask-passwords": "2.8",
             "matrix-auth": "1.2",
-            "matrix-project": "1.6",
+            "matrix-project": "1.11",
             "maven-plugin": "2.8",
             "pam-auth": "1.2",
             "pipeline-model-definition": "1.2.9",
@@ -53,13 +53,13 @@ class PluginTestCase(TestCase):
             "branch-api": "2.0.7",
             "cloudbees-folder": "5.18",
             "credentials-binding": "1.13",
-            "display-url-api": "1.0",
+            "display-url-api": "2.0",
             "docker-commons": "1.5",
             "docker-workflow": "1.14",
             "durable-task": "1.14",
-            "git": "2.4.0",
+            "git": "3.3.1",
             "git-client": "2.7.0",
-            "github-api": "1.82",
+            "github-api": "1.90",
             "git-server": "1.7",
             "handlebars": "1.1",
             "icon-shim": "1.0.3",
@@ -79,11 +79,10 @@ class PluginTestCase(TestCase):
             "pipeline-stage-step": "2.3",
             "pipeline-stage-tags-metadata": "1.2.9",
             "pipeline-stage-view": "2.4",
-            "plain-credentials": "1.3",
+            "plain-credentials": "1.4",
             "scm-api": "2.2.6",
-            "ssh-agent": "1.3",
             "structs": "1.14",
-            "token-macro": "1.11",
+            "token-macro": "2.1",
             "workflow-api": "2.25",
             "workflow-basic-steps": "2.6",
             "workflow-cps": "2.46",
@@ -95,7 +94,7 @@ class PluginTestCase(TestCase):
             "workflow-step-api": "2.14",
             "workflow-support": "2.17"
         }
-        for plugin, version in installed_plugin_versions.iteritems():
+        for plugin, version in expected_plugin_versions.iteritems():
             print "Checking if {} at version {} is installed".format(
-                    plugin, installed_plugin_versions[plugin])
-            assert expected_plugin_versions[plugin] == version
+                    plugin, expected_plugin_versions[plugin])
+            assert installed_plugin_versions[plugin] == version
