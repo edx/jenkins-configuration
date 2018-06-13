@@ -12,6 +12,7 @@ import org.kohsuke.stapler.*;
 import org.jenkinsci.plugins.ghprb.*;
 import org.jenkinsci.plugins.ghprb.GhprbGitHubAuth;
 import org.jenkinsci.plugins.ghprb.extensions.*;
+import org.jenkinsci.plugins.ghprb.extensions.build.*;
 import org.jenkinsci.plugins.ghprb.extensions.comments.*;
 import org.jenkinsci.plugins.ghprb.extensions.status.*;
 
@@ -37,8 +38,8 @@ try {
 
 Map ghprbConfig = yaml.load(configText)
 def descriptor = Jenkins.instance.getDescriptorByType(
-                    org.jenkinsci.plugins.ghprb.GhprbTrigger.DescriptorImpl.class
-                 )
+    org.jenkinsci.plugins.ghprb.GhprbTrigger.DescriptorImpl.class
+)
 
 JSONObject json = new JSONObject();
 
@@ -111,6 +112,7 @@ descriptor.save()
 // Configure plugin extensions after the main configuration has been set up
 List<GhprbExtension, GhprbExtensionDescriptor> extensions = descriptor.getExtensions()
 // Remove any previously configured extensions, as they will create duplicates
+extensions.remove(GhprbCancelBuildsOnUpdate.class)
 extensions.remove(GhprbSimpleStatus.class)
 extensions.remove(GhprbPublishJenkinsUrl.class)
 extensions.remove(GhprbBuildLog.class)
@@ -118,6 +120,9 @@ extensions.remove(GhprbBuildResultMessage.class)
 
 // Only add GHPRB extensions if they have non empty/zero values in
 // github_config.yml.
+if (ghprbConfig.CANCEL_BUILD_ON_UPDATE) {
+    extensions.push(new GhprbCancelBuildsOnUpdate(true))
+}
 if (!ghprbConfig.SIMPLE_STATUS.isEmpty()) {
     extensions.push(new GhprbSimpleStatus(ghprbConfig.SIMPLE_STATUS))
 }
