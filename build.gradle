@@ -26,6 +26,7 @@ dependencies {
     compile 'org.jenkins-ci.plugins:ghprb:1.36.0@jar'
     compile 'com.coravy.hudson.plugins.github:github:1.14.0@jar'
     compile 'org.jenkins-ci.plugins:ec2:1.28@jar'
+    compile 'org.jenkins-ci.plugins:email-ext:2.62@jar'
     compile 'org.jenkins-ci.plugins:matrix-auth:1.2@jar'
     compile 'org.jenkins-ci.plugins:github-oauth:0.24@jar'
     compile 'org.jenkins-ci.plugins:credentials:2.1.8@jar'

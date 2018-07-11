@@ -15,7 +15,7 @@ class TestConfiguration(WebAppTest):
                     ).read()
         except IOError:
             pass
-        self.credentials = yaml.load(yaml_contents)
+        self.credentials = yaml.safe_load(yaml_contents)
         self.credential_store_page = CredentialStorePage(self.browser)
 
     def test_credential_store(self):

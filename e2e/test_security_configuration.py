@@ -21,8 +21,8 @@ class TestSecurityConfiguration(WebAppTest):
                     ).read()
         except IOError:
             pass
-        self.security_config = yaml.load(security_yaml_contents)
-        self.main_config = yaml.load(main_yaml_contents)
+        self.security_config = yaml.safe_load(security_yaml_contents)
+        self.main_config = yaml.safe_load(main_yaml_contents)
         self.security_page = SecurityConfigurationPage(self.browser)
 
     def test_security(self):

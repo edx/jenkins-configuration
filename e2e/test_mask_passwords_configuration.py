@@ -15,7 +15,7 @@ class TestMaskPasswordsConfiguration(WebAppTest):
                     ).read()
         except IOError:
             pass
-        self.mask_passwords_config = yaml.load(yaml_contents)
+        self.mask_passwords_config = yaml.safe_load(yaml_contents)
         self.config_page = MaskPasswordsSubPage(self.browser)
 
     def test_mask_passwords_config(self):

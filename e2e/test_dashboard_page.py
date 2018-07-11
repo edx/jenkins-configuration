@@ -15,7 +15,7 @@ class TestDashboard(WebAppTest):
                     ).read()
         except IOError:
             pass
-        self.seed_config = yaml.load(yaml_contents)
+        self.seed_config = yaml.safe_load(yaml_contents)
         self.dashboard_page = JenkinsDashboardPage(self.browser)
 
     def test_main_config(self):

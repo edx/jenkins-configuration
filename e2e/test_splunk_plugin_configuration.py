@@ -18,7 +18,7 @@ class TestSplunkConfig(WebAppTest):
                     ).read()
         except IOError:
             pass
-        splunk_config = yaml.load(yaml_contents)
+        splunk_config = yaml.safe_load(yaml_contents)
         config_page = SplunkConfigSubPage(self.browser)
         config_page.visit()
         assert str(splunk_config['MAX_EVENT_BATCH_SIZE']) == config_page.get_batch_size()

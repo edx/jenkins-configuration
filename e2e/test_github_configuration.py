@@ -15,7 +15,7 @@ class TestGithubConfiguration(WebAppTest):
                     ).read()
         except IOError:
             pass
-        self.github_config = yaml.load(yaml_contents)
+        self.github_config = yaml.safe_load(yaml_contents)
         self.config_page = GithubConfigurationSubPage(self.browser)
 
     def test_github_config(self):

@@ -15,7 +15,7 @@ class TestEc2ConfigurationSubPage(WebAppTest):
                     ).read()
         except IOError:
            pass
-        self.ec2_config = yaml.load(yaml_contents)
+        self.ec2_config = yaml.safe_load(yaml_contents)
         self.ec2_cloud_config = self.ec2_config['CLOUDS']
         self.config_page = Ec2ConfigurationSubPage(self.browser)
 

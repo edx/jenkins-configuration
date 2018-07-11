@@ -15,7 +15,7 @@ class TestLogRecorderPage(WebAppTest):
                     ).read()
         except IOError:
             pass
-        self.log_config = yaml.load(yaml_contents)
+        self.log_config = yaml.safe_load(yaml_contents)
         self.log_recorder_page = JenkinsLogRecorderPage(self.browser)
 
     def test_log_recorder_page(self):

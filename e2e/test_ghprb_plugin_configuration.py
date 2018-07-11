@@ -15,7 +15,7 @@ class TestGHPRBConfiguration(WebAppTest):
                     ).read()
         except IOError:
             pass
-        self.ghprb_config = yaml.load(yaml_contents)
+        self.ghprb_config = yaml.safe_load(yaml_contents)
         self.config_page = GHPRBConfigurationSubPage(self.browser)
 
     def test_ghprb_config(self):

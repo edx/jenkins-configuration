@@ -15,7 +15,7 @@ class TestConfiguration(WebAppTest):
                     ).read()
         except IOError:
             pass
-        self.main_config = yaml.load(yaml_contents)['MAIN']
+        self.main_config = yaml.safe_load(yaml_contents)['MAIN']
         self.config_page = JenkinsConfigurationPage(self.browser)
 
     def test_main_config(self):
