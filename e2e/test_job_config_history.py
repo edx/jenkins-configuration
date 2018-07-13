@@ -15,7 +15,7 @@ class TestJobConfigHistory(WebAppTest):
                     ).read()
         except IOError:
             pass
-        self.job_config_history = yaml.load(yaml_contents)
+        self.job_config_history = yaml.safe_load(yaml_contents)
         self.config_page = JobConfigHistorySubPage(self.browser)
 
     def test_job_config_history(self):

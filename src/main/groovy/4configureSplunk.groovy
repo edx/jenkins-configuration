@@ -12,6 +12,7 @@ import com.splunk.splunkjenkins.model.MetaDataConfigItem
     @Grab(group='org.yaml', module='snakeyaml', version='1.17')
 ])
 import org.yaml.snakeyaml.Yaml
+import org.yaml.snakeyaml.constructor.SafeConstructor
 
 Logger logger = Logger.getLogger("")
 Jenkins jenkins = Jenkins.getInstance()
@@ -23,7 +24,7 @@ try {
     jenkins.doSafeExit(null)
     System.exit(1)
 }
-Yaml yaml = new Yaml()
+Yaml yaml = new Yaml(new SafeConstructor())
 Map splunkConfig = yaml.load(configText)
 
 SplunkJenkinsInstallation config = SplunkJenkinsInstallation.get();

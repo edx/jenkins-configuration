@@ -79,6 +79,7 @@ must be run in a particular order. The following order is suggested for scripts:
     - 2<scriptName> : verification scripts, used to check the system before configuration
     - 3<scriptName> : main (Jenkins core) configuration scripts
     - 4<scriptName> : plugin configuration scripts
+    - 5<scriptName> : configuration scripts that rely on something configured in the previous step
     - ...
     - 9<scriptName> : scripts to run at the end of the configuration process (i.e. putting into quiet mode or testing a configuration
 
@@ -94,6 +95,7 @@ example, if you wanted to make use of the Snake Yaml library:
 
     @Grab(group='org.yaml', module='snakeyaml', version='1.17')
     import org.yaml.snakeyaml.Yaml
+    import org.yaml.snakeyaml.constructor.SafeConstructor
 
 .. _Grape: http://docs.groovy-lang.org/latest/html/documentation/grape.html
 

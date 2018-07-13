@@ -15,7 +15,7 @@ class TestMailerConfiguration(WebAppTest):
                     ).read()
         except IOError:
             pass
-        self.mailer_config = yaml.load(yaml_contents)
+        self.mailer_config = yaml.safe_load(yaml_contents)
         self.config_page = MailerConfigurationSubPage(self.browser)
 
     def test_mailer_config(self):

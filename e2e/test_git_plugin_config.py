@@ -15,7 +15,7 @@ class TestGitConfiguration(WebAppTest):
                     ).read()
         except IOError:
             pass
-        self.git_config = yaml.load(yaml_contents)
+        self.git_config = yaml.safe_load(yaml_contents)
         self.config_page = GitConfigurationSubPage(self.browser)
 
     def test_git_config(self):

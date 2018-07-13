@@ -18,7 +18,7 @@ class TestHipChatConfig(WebAppTest):
                     ).read()
         except IOError:
             pass
-        hipchat_config = yaml.load(yaml_contents)
+        hipchat_config = yaml.safe_load(yaml_contents)
         config_page = HipChatConfigSubPage(self.browser)
         config_page.visit()
         assert hipchat_config['API_TOKEN'] == config_page.get_api_token()

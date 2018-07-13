@@ -21,11 +21,12 @@ import org.jenkinsci.plugins.ghprb.extensions.status.*;
     @Grab(group='org.mockito', module='mockito-all', version='1.10.19')
 ])
 import org.yaml.snakeyaml.Yaml
+import org.yaml.snakeyaml.constructor.SafeConstructor
 import org.mockito.Mockito
 
 Logger logger = Logger.getLogger("")
 Jenkins jenkins = Jenkins.getInstance()
-Yaml yaml = new Yaml()
+Yaml yaml = new Yaml(new SafeConstructor())
 
 String configPath = System.getenv("JENKINS_CONFIG_PATH")
 try {

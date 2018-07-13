@@ -5,10 +5,11 @@ import jenkins.model.Jenkins
     @Grab(group='org.yaml', module='snakeyaml', version='1.17')
 ])
 import org.yaml.snakeyaml.Yaml
+import org.yaml.snakeyaml.constructor.SafeConstructor
 
 Logger logger = Logger.getLogger("")
 Jenkins jenkins = Jenkins.getInstance()
-Yaml yaml = new Yaml()
+Yaml yaml = new Yaml(new SafeConstructor())
 
 String configPath = System.getenv("JENKINS_CONFIG_PATH")
 try {
