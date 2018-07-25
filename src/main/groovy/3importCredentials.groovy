@@ -172,51 +172,23 @@ credentialConfig.each { newCredential ->
         case 'ssh':
             username = newCredential.username
             passphrase = newCredential.passphrase
-            isJenkinsMasterSsh = newCredential.isJenkinsMasterSsh
+            sshKey = newCredential.sshKey
 
-            // Make sure username, passphrase and isJenkinsMasterSsh are not empty
-            if (!username || isJenkinsMasterSsh == null) {
+            // Make sure username, sshKey are not empty
+            if (!username || !sshKey ) {
                 logger.severe("Missing data for credential. Please ensure ssh " +
-                              "entries in the credentials.yml file have a username, " +
-                              "passphrase, and isJenkinsMasterSsh")
+                              "entries in the credentials.yml file have a username and " +
+                              "sshKey")
                 jenkins.doSafeExit(null)
                 System.exit(1)
             }
 
-            if (isJenkinsMasterSsh) {
-                sshKey = new BasicSSHUserPrivateKey.UsersPrivateKeySource()
-            } else {
-                sshPath = newCredential.path
-
-                // Make sure there is a path to the ssh file
-                if (!sshPath) {
-                    logger.severe("Missing data for credential. Please ensure ssh " +
-                                  "entries in the credentials.yml file " +
-                                  "(with isJenkinsMasterSsh = False) have a " +
-                                  "path")
-                    jenkins.doSafeExit(null)
-                    System.exit(1)
-                }
-
-                // Create the full path to the secret file
-                fullSshPath = "${configPath}/${sshPath}"
-
-                // Make sure the ssh file exists
-                sshFileExists = Files.exists(Paths.get(fullSshPath), LinkOption.NOFOLLOW_LINKS)
-                if (!sshFileExists) {
-                    logger.severe("No ssh file found at: ${fullSshPath}. Please ensure the file " +
-                                  "exists and try again.")
-                    jenkins.doSafeExit(null)
-                    System.exit(1)
-                }
-
-                sshKey = new BasicSSHUserPrivateKey.FileOnMasterPrivateKeySource(fullSshPath)
-            }
+            privateKeySource = new BasicSSHUserPrivateKey.DirectEntryPrivateKeySource(sshKey)
             ssh = new BasicSSHUserPrivateKey(
                 scope,
                 id,
                 username,
-                sshKey,
+                privateKeySource,
                 passphrase,
                 description
             )
