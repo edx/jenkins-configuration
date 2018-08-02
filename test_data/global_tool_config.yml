@@ -1,0 +1,8 @@
+---
+GROOVY_INSTALLATIONS:
+    - NAME: "DEFAULT_GROOVY"
+      HOME: ""
+      VERSION: "2.4.7"
+    - NAME: "NEW_GROOVY"
+      HOME: ""
+      VERSION: "2.5.1"
