@@ -33,6 +33,7 @@ dependencies {
     compile 'org.jenkins-ci.plugins:plain-credentials:1.1@jar'
     compile 'org.jenkins-ci.plugins:ssh-credentials:1.11@jar'
     compile 'org.jenkins-ci.plugins:gradle:1.24@jar'
+    compile 'org.jenkins-ci.plugins:groovy:2.0@jar'
     compile 'org.jenkins-ci.plugins:jobConfigHistory:2.10@jar'
     compile 'org.jenkins-ci.plugins:job-dsl:1.67'
     compile 'org.jenkins-ci.plugins:job-dsl:1.67@jar'
