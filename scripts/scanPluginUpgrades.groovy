@@ -5,14 +5,13 @@
 // the console. TODO: integrate w/ JIRA to auto-ticket new security
 // plugin updates.
 
-import jenkins.model.Jenkins
-import jenkins.security.UpdateSiteWarningsConfiguration 
+import jenkins.security.UpdateSiteWarningsConfiguration
 
 // Return a list of Security Warnings from the Jenkins update center
 // that are pertinent to the plugins installed in this Jenkins instance
-public Set getSecurityWarnings(Jenkins jenkins) {
-    jenkins.pluginManager.doCheckUpdatesServer()
-    Set warnings = jenkins.getExtensionList(UpdateSiteWarningsConfiguration.class).get(0).getApplicableWarnings()
+public Set getSecurityWarnings() {
+    UpdateSiteWarningsConfiguration updates = new UpdateSiteWarningsConfiguration()
+    Set warnings = updates.getApplicableWarnings()
     return warnings
 }
 
@@ -23,8 +22,7 @@ public static String formatWarning(warning) {
 }
 
 public static void main(String[] args) {
-    Jenkins jenkins = Jenkins.getInstance()
-    def warnings = getSecurityWarnings(jenkins)
+    def warnings = getSecurityWarnings()
     warnings.each { warning ->
         println(formatWarning(warning))
     }
