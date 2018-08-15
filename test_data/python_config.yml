@@ -1,0 +1,8 @@
+---
+PYTHON_INSTALLATIONS:
+    - PYTHON_ALIAS: 'PY_27'
+      PYTHON_PATH: '/usr/bin/python'
+      PYTHON_PROPERTIES: []
+    - PYTHON_ALIAS: 'PY_35'
+      PYTHON_PATH: '/usr/bin/python3.5'
+      PYTHON_PROPERTIES: []

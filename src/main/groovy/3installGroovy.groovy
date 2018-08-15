@@ -1,8 +1,7 @@
 /**
-* install global tools
+* install groovy
 *
-* install various versions of common tools, such as JDKs,
-* Groovy, Python, etc.
+* install various versions of groovy for use as groovy shells in jobs
 **/
 
 import java.util.logging.Logger
@@ -27,9 +26,9 @@ Jenkins jenkins = Jenkins.getInstance()
 
 String configPath = System.getenv("JENKINS_CONFIG_PATH")
 try {
-    configText = new File("${configPath}/global_tool_config.yml").text
+    configText = new File("${configPath}/groovy_config.yml").text
 } catch (FileNotFoundException e) {
-    logger.severe("Cannot find config file path @ ${configPath}/global_tool_config.yml")
+    logger.severe("Cannot find config file path @ ${configPath}/groovy_config.yml")
     jenkins.doSafeExit(null)
     System.exit(1)
 }
@@ -59,5 +58,3 @@ if (desc != null) {
     logger.info("Successfully installed the following versions of groovy")
     logger.info(desc.getInstallations().toString())
 }
-
-// TODO: add more tools when applicable
