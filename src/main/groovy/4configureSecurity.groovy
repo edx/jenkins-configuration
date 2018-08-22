@@ -10,6 +10,7 @@ import jenkins.model.GlobalConfiguration
 import jenkins.model.Jenkins
 import hudson.security.ProjectMatrixAuthorizationStrategy
 import hudson.security.Permission
+import hudson.security.csrf.DefaultCrumbIssuer
 @Grapes([
     @Grab(group='org.yaml', module='snakeyaml', version='1.17')
 ])
@@ -92,5 +93,13 @@ dslScriptSecurity = securityConfig.DSL_SCRIPT_SECURITY_ENABLED
 globalDslConfig = GlobalConfiguration.all().get(GlobalJobDslSecurityConfiguration.class)
 globalDslConfig.useScriptSecurity=dslScriptSecurity
 globalDslConfig.save()
+
+// Configure CSRF protection
+if (securityConfig.CSRF_PROTECTION_ENABLED) {
+    DefaultCrumbIssuer crumbIssuer = new DefaultCrumbIssuer(
+        securityConfig.CSRF_PROXY_COMPATIBILITY
+    )
+    jenkins.setCrumbIssuer(crumbIssuer)
+}
 
 jenkins.save()

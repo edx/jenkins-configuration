@@ -48,3 +48,7 @@ class SecurityConfigurationPage(PageObject):
             if privilege_state == 'true':
                 user_privileges.append(privilege_name)
         return user_privileges
+
+    def is_csrf_protection_enabled(self):
+        enabled = self.q(css='[name="_.csrf"]').attrs('checked')[0]
+        return True if enabled == 'true' else False
