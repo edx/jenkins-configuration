@@ -45,3 +45,5 @@ SECURITY_GROUPS:
         - 'github-user1'
         - 'github-user2'
 DSL_SCRIPT_SECURITY_ENABLED: false
+CSRF_PROTECTION_ENABLED: true
+CSRF_PROXY_COMPATIBILITY: false
