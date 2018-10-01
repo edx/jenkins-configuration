@@ -33,6 +33,11 @@ securityConfig = yaml.load(configText)
 securityGroups = securityConfig.SECURITY_GROUPS
 
 List validPermissions = [
+    'com.cloudbees.plugins.credentials.CredentialsProvider.Create',
+    'com.cloudbees.plugins.credentials.CredentialsProvider.Delete',
+    'com.cloudbees.plugins.credentials.CredentialsProvider.ManageDomains',
+    'com.cloudbees.plugins.credentials.CredentialsProvider.Update',
+    'com.cloudbees.plugins.credentials.CredentialsProvider.View',
     'hudson.model.Computer.Build',
     'hudson.model.Computer.Configure',
     'hudson.model.Computer.Connect',
@@ -52,12 +57,15 @@ List validPermissions = [
     'hudson.model.Item.Discover',
     'hudson.model.Item.Read',
     'hudson.model.Item.Workspace',
+    'hudson.model.Item.Move',
     'hudson.model.Run.Delete',
+    'hudson.model.Run.Replay',
     'hudson.model.Run.Update',
     'hudson.model.View.Configure',
     'hudson.model.View.Create',
     'hudson.model.View.Delete',
-    'hudson.model.View.Read'
+    'hudson.model.View.Read',
+    'hudson.scm.SCM.Tag'
 ]
 
 def strategy = new ProjectMatrixAuthorizationStrategy()
