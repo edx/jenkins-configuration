@@ -37,7 +37,8 @@ clean.ws:
 build:
 	docker build -t $(CONTAINER_NAME) --build-arg=CONFIG_PATH=$(CONFIG_PATH) \
 		--build-arg=JENKINS_VERSION=$(JENKINS_VERSION) \
-		--build-arg=JENKINS_WAR_SOURCE=$(JENKINS_WAR_SOURCE) .
+		--build-arg=JENKINS_WAR_SOURCE=$(JENKINS_WAR_SOURCE) \
+		--target=$(TEST_SHARD) .
 
 run: run.container run.jenkins
 

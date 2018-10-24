@@ -1,4 +1,13 @@
-FROM ubuntu:16.04
+# -- base image stage
+# -- create a base image, containing the bulk of the configuration
+# -- used for setting up a Jenkins server. Copy most of the groovy
+# -- config scripts into the image. Due to the fact that some scripts
+# -- will conflict with eachother, the base image will be used to
+# -- create individual 'shard' containers, using Docker multi-stage
+# -- builds. The scripts that create conflicts should be copied into
+# -- these individual shard images.
+
+FROM ubuntu:16.04 as base
 
 USER root
 RUN apt-get update -y \
@@ -39,11 +48,53 @@ RUN mkdir -p $JENKINS_HOME/init.groovy.d \
     && mkdir $JENKINS_HOME/utils \
     && mkdir $JENKINS_HOME/git \
     && mkdir -p /var/log/jenkins
-COPY src/main/groovy/*.groovy $JENKINS_HOME/init.groovy.d/
 COPY plugins $JENKINS_HOME/plugins/
 COPY utils/ $JENKINS_HOME/utils/
 COPY ${CONFIG_PATH} $JENKINS_HOME/init-configs/
+COPY src/main/groovy/1addJarsToClasspath.groovy \
+    src/main/groovy/2checkInstalledPlugins.groovy \
+    src/main/groovy/3importCredentials.groovy \
+    src/main/groovy/3installGroovy.groovy \
+    src/main/groovy/3installPython.groovy \
+    src/main/groovy/3mainConfiguration.groovy \
+    src/main/groovy/3setGlobalProperties.groovy \
+    src/main/groovy/3shutdownCLI.groovy \
+    src/main/groovy/4configureEc2Plugin.groovy \
+    src/main/groovy/4configureGHPRB.groovy \
+    src/main/groovy/4configureGit.groovy \
+    src/main/groovy/4configureGithub.groovy \
+    src/main/groovy/4configureHipChat.groovy \
+    src/main/groovy/4configureJobConfigHistory.groovy \
+    src/main/groovy/4configureMailerPlugin.groovy \
+    src/main/groovy/4configureMaskPasswords.groovy \
+    src/main/groovy/4configureSecurity.groovy \
+    src/main/groovy/4configureSlack.groovy \
+    src/main/groovy/4configureSplunk.groovy \
+    src/main/groovy/5addSeedJob.groovy \
+    src/main/groovy/5configureEmailExtension.groovy \
+    src/main/groovy/5createLoggers.groovy \
+    $JENKINS_HOME/init.groovy.d/
 
-RUN chown -R ${user}:${group} $JENKINS_HOME /var/log/jenkins
+# -- test shard #1
+# -- copy the unique scripts used to configure a Jenkins container for
+# -- running the tests specifed with the environment variable
+# -- 'TEST_SHARD=shard_1'
+
+FROM base as shard_1
+COPY src/main/groovy/4configureGHOAuth.groovy \
+    $JENKINS_HOME/init.groovy.d/
+RUN chown -R jenkins:jenkins $JENKINS_HOME /var/log/jenkins
+
+CMD ["/usr/sbin/sshd", "-D"]
+
+# -- test shard #2
+# -- copy the unique scripts used to configure a Jenkins container for
+# -- running the tests specifed with the environment variable
+# -- 'TEST_SHARD=shard_2'
+
+FROM base as shard_2
+COPY src/main/groovy/4configureSAML.groovy \
+    $JENKINS_HOME/init.groovy.d/
+RUN chown -R jenkins:jenkins $JENKINS_HOME /var/log/jenkins
 
 CMD ["/usr/sbin/sshd", "-D"]

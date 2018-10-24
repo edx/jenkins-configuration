@@ -1,0 +1,29 @@
+---
+IDP_METADATA: |
+    <xml> this is some idp xml data </xml>
+DISPLAY_NAME_ATTRIBUTE: 'def'
+GROUP_ATTRIBUTE: 'ghi'
+MAX_AUTH_LIFETIME_SECONDS: 10
+USERNAME_ATTRIBUTE: 'jkl'
+EMAIL_ATTRIBUTE: 'mno'
+LOGOUT_URL: 'https://www.example.com/logout'
+# Optional. Set ADVANCED_CONFIGURATION to {} if you do not want to use it
+ADVANCED_CONFIGURATION:
+    FORCE_AUTH: true
+    CONTEXT_CLASS_REF: 'yyy'
+    ENTITY_ID: 'zzz'
+    MAXIMUM_SESSION_LIFETIME: 99
+# Optional. Set ENCRYPTION_DATA to {} if you do not want to use it
+ENCRYPTION_DATA:
+    KEY_STORE_PATH: 'aaa'
+    KEY_STORE_PASSWORD: 'bbb'
+    PRIVATE_KEY_PASSWORD: 'ccc'
+    PRIVATE_KEY_ALIAS: 'ddd'
+    FORCE_SIGN_REDIRECT_BINDING_AUTH_REQUEST: true
+# USERNAME_CASE_CONVENTION must be 'uppercase', 'lowercase' or 'none'
+USERNAME_CASE_CONVENTION: 'uppercase'
+# BINDING must be 'POST' OR 'REDIRECT'
+BINDING: 'POST'
+SAML_CUSTOM_ATTRIBUTES:
+    - ATTRIBUTE_NAME: 'name'
+      ATTRIBUTE_VALUE: 'val'

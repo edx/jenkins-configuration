@@ -25,7 +25,7 @@ String configPath = System.getenv("JENKINS_CONFIG_PATH")
 try {
     configText = new File("${configPath}/github_oauth.yml").text
 } catch (FileNotFoundException e) {
-    logger.severe("Cannot find config file path @ ${configPath}/security.yml")
+    logger.severe("Cannot find config file path @ ${configPath}/github_oauth.yml")
     jenkins.doSafeExit(null)
     System.exit(1)
 }
