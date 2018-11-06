@@ -1,6 +1,9 @@
 language: groovy
-env:
-    - JENKINS_VERSION='jenkins_2.89.4'
+
+matrix:
+  include:
+  - env: TEST_SHARD=shard_1 JENKINS_VERSION='jenkins_2.89.4'
+  - env: TEST_SHARD=shard_2 JENKINS_VERSION='jenkins_2.89.4'
 
 dist: trusty
 sudo: required

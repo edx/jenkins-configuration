@@ -30,6 +30,9 @@ Before running anything the following environment variables must be set:
     - PLUGIN_CONFIG -> path the yml config file containing the desired plugin
         version names and versions to be installed prior to Jenkins initialization
     - CONTAINER_NAME -> name of the docker container that gets created
+    - TEST_SHARD -> used to specify which set of scripts will be used to
+        configure a Jenkins container and which tests should be run against
+        said container.
 
 This can be done by copying local_env.sample.sh, making the modifications you
 need, and running:

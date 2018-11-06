@@ -13,3 +13,8 @@ export JENKINS_WAR_SOURCE='https://s3.amazonaws.com/edx-testeng-tools/jenkins'
 
 export JENKINS_VERSION='jenkins_2.89.4'
 export CONTAINER_NAME='jenkins'
+
+# specify the shard to use when building a docker container. the
+# shard value is used to specify which scripts are copied into the
+# docker container AND which tests should be run against the container
+# export TEST_SHARD=shard_1
