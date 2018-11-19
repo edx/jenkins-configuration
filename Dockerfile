@@ -94,6 +94,7 @@ CMD ["/usr/sbin/sshd", "-D"]
 
 FROM base as shard_2
 COPY src/main/groovy/4configureSAML.groovy \
+    src/main/groovy/3addUsers.groovy \
     $JENKINS_HOME/init.groovy.d/
 RUN chown -R jenkins:jenkins $JENKINS_HOME /var/log/jenkins
 

@@ -1,0 +1,10 @@
+---
+- USERNAME: "user1"
+  PASSWORD: "dummy-data"
+  EMAIL_ADDRESS: "user1@example.com"
+- USERNAME: "user2"
+  PASSWORD: "dummy-data"
+  EMAIL_ADDRESS: "user2@example.com"
+- USERNAME: "user3"
+  PASSWORD: "dummy-data"
+  EMAIL_ADDRESS: "user3@example.com"
