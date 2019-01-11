@@ -8,7 +8,6 @@
 import java.util.logging.Logger
 
 import jenkins.model.Jenkins
-import jenkins.plugins.shiningpanda.tools.PythonInstallationFinder
 import jenkins.plugins.shiningpanda.tools.PythonInstallation
 
 @Grapes([

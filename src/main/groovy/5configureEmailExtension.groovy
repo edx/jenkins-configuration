@@ -8,12 +8,8 @@
 
 import java.util.logging.Logger
 import net.sf.json.JSONObject;
-import net.sf.json.JSONException;
 
 import jenkins.model.*;
-import org.kohsuke.stapler.StaplerRequest;
-import hudson.plugins.emailext.ExtendedEmailPublisherDescriptor;
-
 
 @Grapes([
     @Grab(group='org.yaml', module='snakeyaml', version='1.17')
@@ -89,7 +85,6 @@ if (emailConfig.ADD_PRECEDENCE_BULK == 'true') {
     params["ext_mailer_add_precedence_bulk"] = emailConfig.ADD_PRECEDENCE_BULK
 }
 
-
 // The following values can be quite complex, and are stored in their own separate
 // files
 paths = [
@@ -115,7 +110,7 @@ paths.each { param_name, filePath ->
 def stapler = [
     getParameter: { name -> params[name] },
     hasParameter: { name -> params.keySet().contains(name) },
-    getParameterValues: { name -> params[name] } // should be String[]
+    getParameterValues: { name -> params[name] }
 ] as org.kohsuke.stapler.StaplerRequest
 
 JSONObject json = new JSONObject()
@@ -152,7 +147,9 @@ emailConfig.TRIGGERS.each { trigger ->
         System.exit(1)
     }
 }
-triggerClasses = emailConfig.TRIGGERS.collect {x -> "hudson.plugins.emailext.plugins.trigger.$x".toString()}
+triggerClasses = emailConfig.TRIGGERS.collect { x ->
+    "hudson.plugins.emailext.plugins.trigger.$x".toString()
+}
 json.put('defaultTriggers', triggerClasses)
 
 try {

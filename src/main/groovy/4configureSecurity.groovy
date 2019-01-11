@@ -95,11 +95,10 @@ agentConfig.PROTOCOLS.each { protocol ->
 }
 jenkins.setAgentProtocols(protocols)
 
-
 // Configure Job DSL script approval
 dslScriptSecurity = securityConfig.DSL_SCRIPT_SECURITY_ENABLED
 globalDslConfig = GlobalConfiguration.all().get(GlobalJobDslSecurityConfiguration.class)
-globalDslConfig.useScriptSecurity=dslScriptSecurity
+globalDslConfig.useScriptSecurity = dslScriptSecurity
 globalDslConfig.save()
 
 // Configure CSRF protection

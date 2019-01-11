@@ -45,7 +45,7 @@ def slack = jenkins.getExtensionList(
 JSONObject formData = [
         'slack': ['tokenCredentialId': slackConfig.SLACK_CREDENTIAL_ID]
     ] as JSONObject
-def request = [getParameter: { p -> slackParameters[p] }] as StaplerRequest
+def request = [getParameter: { p -> slackParameters[p] } ] as StaplerRequest
 
 slack.configure(request, formData)
 
