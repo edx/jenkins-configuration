@@ -123,6 +123,9 @@ Acceptance Testing
 
 Build a Docker image with Jenkins and the scripts from this repo installed
 
+* NOTE: The Dockerfile in this repo makes use of `multi-stage builds`, a
+  relatively newer Docker featue. Docker version 17.05 or higher is required.
+
 .. code:: bash
 
     make build
