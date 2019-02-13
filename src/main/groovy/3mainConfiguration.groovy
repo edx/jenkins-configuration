@@ -45,6 +45,7 @@ Map propertiesConfig = yaml.load(configText).GLOBAL_PROPERTIES
 Map locationConfig = yaml.load(configText).LOCATION
 Map shellConfig = yaml.load(configText).SHELL
 Map formatterConfig = yaml.load(configText).FORMATTER
+Map setupWizard = yaml.load(configText).SETUP_WIZARD
 
 logger.info("Configuring basic Jenkins options")
 try {
@@ -125,6 +126,14 @@ if (formatterConfig.FORMATTER_TYPE.toLowerCase() == 'rawhtml') {
     logger.severe("Invalid value in the FORMATTER configuration of ${configPath}/main_config.yml")
     jenkins.doSafeExit(null)
     System.exit(1)
+}
+
+// By default the setup wizard is enabled, disable if desired
+Boolean setupWizardEnabled = (Boolean) setupWizard.SETUP_WIZARD_ENABLED
+if (!setupWizardEnabled) {
+    if (!jenkins.installState.isSetupComplete()) {
+        jenkins.install.InstallState.INITIAL_SETUP_COMPLETED.initializeState()
+    }
 }
 
 jenkins.save()
