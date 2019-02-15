@@ -29,9 +29,6 @@ try {
 }
 Map ec2Config = yaml.load(configText)
 
-// Get the ec2 plugin version
-Float pluginVersion = Float.parseFloat(jenkins.pluginManager.getPlugin('ec2').getVersion())
-
 List<AmazonEC2Cloud> clouds = new ArrayList<AmazonEC2Cloud>();
 for (cloudConfig in ec2Config.CLOUDS) {
     List<SlaveTemplate> templates = new ArrayList<SlaveTemplate>();
@@ -40,25 +37,8 @@ for (cloudConfig in ec2Config.CLOUDS) {
         // Create Spot Config if applicable
         String maxBid = amiConfig.SPOT_CONFIG.SPOT_MAX_BID_PRICE
         SpotConfiguration spotConfig = null
-        // The constructor changes based on the plugin so add support for both
-        if (pluginVersion < 1.32) {
-            String bidType = amiConfig.SPOT_CONFIG.SPOT_INSTANCE_BID_TYPE.toLowerCase()
-            String[] validBidTypes = ['persistent', 'one-time']
-            if (maxBid && bidType) {
-                if (!(bidType in validBidTypes)) {
-                    logger.severe("Invalid value for SPOT_INSTANCE_BID_TYPE. Must be " +
-                                  "persistent, one-time, or null if no spot configuration " +
-                                  "is desired. Got: ${bidType}")
-                    jenkins.doSafeExit(null)
-                    System.exit(1)
-                }
-                //Create SpotConfiguration
-                spotConfig = new SpotConfiguration(maxBid, bidType)
-            }
-        } else {
-            if (maxBid) {
-                spotConfig = new SpotConfiguration(maxBid)
-            }
+        if (maxBid) {
+            spotConfig = new SpotConfiguration(maxBid)
         }
 
         // Create instanceType object
@@ -106,6 +86,14 @@ for (cloudConfig in ec2Config.CLOUDS) {
             tags.add(tag);
         }
 
+        // Create the AMI type
+        amiType = new UnixData(
+            amiConfig.AMI_TYPE.ROOT_COMMAND_PREFIX,
+            amiConfig.AMI_TYPE.SLAVE_COMMAND_PREFIX,
+            amiConfig.AMI_TYPE.SLAVE_COMMAND_SUFFIX,
+            amiConfig.AMI_TYPE.REMOTE_SSH_PORT
+        )
+
         // Create the AMI
         SlaveTemplate template = new SlaveTemplate(
             amiConfig.AMI_ID,
@@ -113,8 +101,8 @@ for (cloudConfig in ec2Config.CLOUDS) {
             spotConfig,
             amiConfig.SECURITY_GROUPS,
             amiConfig.REMOTE_FS_ROOT,
-            amiConfig.SSH_PORT,
             instanceType,
+            amiConfig.EBS_OPTIMIZED,
             amiConfig.LABEL_STRING,
             mode,
             amiConfig.DESCRIPTION,
@@ -123,7 +111,7 @@ for (cloudConfig in ec2Config.CLOUDS) {
             amiConfig.USER_DATA,
             amiConfig.NUM_EXECUTORS,
             amiConfig.REMOTE_ADMIN,
-            amiConfig.ROOT_COMMAND_PREFIX,
+            amiType,
             amiConfig.JVM_OPTIONS,
             amiConfig.STOP_ON_TERMINATE,
             amiConfig.SUBNET_ID,
@@ -132,8 +120,16 @@ for (cloudConfig in ec2Config.CLOUDS) {
             amiConfig.USE_PRIVATE_DNS_NAME,
             amiConfig.INSTANCE_CAP,
             amiConfig.IAM_INSTANCE_PROFILE,
+            amiConfig.DELETE_ROOT_ON_TERMINATION,
             amiConfig.USE_EPHEMERAL_DEVICES,
-            amiConfig.LAUNCH_TIMEOUT
+            amiConfig.USE_DEDICATED_TENANCY,
+            amiConfig.LAUNCH_TIMEOUT,
+            amiConfig.ASSOCIATE_PUBLIC_IP,
+            amiConfig.CUSTOM_DEVICE_MAPPING,
+            amiConfig.USE_EXTERNAL_SSH_PROCESS,
+            amiConfig.CONNECT_WITH_PUBLIC_IP,
+            amiConfig.MONITORING,
+            amiConfig.T2_UNLIMITED
         )
         templates.add(template);
     }
@@ -154,12 +150,13 @@ for (cloudConfig in ec2Config.CLOUDS) {
     AmazonEC2Cloud cloud = new AmazonEC2Cloud(
         cloudConfig.NAME,
         cloudConfig.USE_INSTANCE_PROFILE_FOR_CREDS,
-        cloudConfig.ACCESS_KEY_ID,
-        cloudConfig.SECRET_ACCESS_KEY,
+        cloudConfig.CREDENTIAL_ID,
         cloudConfig.REGION,
         ec2PrivateKey,
         cloudConfig.INSTANCE_CAP,
-        templates
+        templates,
+        cloudConfig.ROLE_ARN,
+        cloudConfig.ROLE_SESSION_NAME
     )
     clouds.add(cloud)
 }
