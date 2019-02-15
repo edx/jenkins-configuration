@@ -29,6 +29,6 @@ class TestConfiguration(WebAppTest):
         Test the people table to see if the correct number of users has been created
         """
         people_page = self.people_page.visit()
-        # check the number of created users. 'System' will already
+        # check the number of created users. 'System' and 'admin' will already
         # be created, so exclude them from the test
-        assert len(self.users) == people_page.get_number_users() - 1
+        assert len(self.users) == people_page.get_number_users() - 2
