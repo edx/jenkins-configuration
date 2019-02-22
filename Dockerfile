@@ -16,7 +16,8 @@ RUN apt-get update -y \
     && apt-get install -y git \
     && apt-get install -y sudo \
     && apt-get install -y python-pip \
-    && apt-get install -y openssh-server
+    && apt-get install -y openssh-server \
+    && apt-get install -y vim
 
 RUN mkdir /var/run/sshd
 ADD ssh/jc_rsa.pub /root/.ssh/jc_rsa.pub

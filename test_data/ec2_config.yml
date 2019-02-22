@@ -1,22 +1,28 @@
 ---
 CLOUDS:
     - NAME: 'aws-cloud'
-      ACCESS_KEY_ID: 'accessKey'
-      SECRET_ACCESS_KEY: 'secretKey'
+      CREDENTIAL_ID: 'ec2CloudConfig'
       USE_INSTANCE_PROFILE_FOR_CREDS: false
       REGION: 'us-east-1'
       EC2_PRIVATE_KEY_PATH: '/var/lib/jenkins/init-configs/ec2/id_rsa'
       INSTANCE_CAP: '250'
+      ROLE_ARN: 'arn:aws:iam::account-id:role/role-name'
+      ROLE_SESSION_NAME: 'jenkins-ec2'
       AMIS:
           - AMI_ID: 'ami1'
+            AMI_TYPE:
+                ROOT_COMMAND_PREFIX: ''
+                SLAVE_COMMAND_PREFIX: ''
+                SLAVE_COMMAND_SUFFIX: ''
+                REMOTE_SSH_PORT: '22'
             AVAILABILITY_ZONE: 'zone1'
             SPOT_CONFIG:
                 SPOT_MAX_BID_PRICE: '100'
                 SPOT_INSTANCE_BID_TYPE: 'persistent'
             SECURITY_GROUPS: 'security1'
             REMOTE_FS_ROOT: '/root/stuff1'
-            SSH_PORT: '22'
             INSTANCE_TYPE: 'm3.large'
+            EBS_OPTIMIZED: false
             LABEL_STRING: 'label1'
             MODE: 'normal'
             DESCRIPTION: 'description1'
@@ -25,7 +31,6 @@ CLOUDS:
             USER_DATA: 'user-data1'
             NUM_EXECUTORS: '10'
             REMOTE_ADMIN: 'root-admin'
-            ROOT_COMMAND_PREFIX: 'root-command'
             JVM_OPTIONS: 'jvm-option-1'
             STOP_ON_TERMINATE: false
             SUBNET_ID: 'subnet-123'
@@ -38,17 +43,30 @@ CLOUDS:
             USE_PRIVATE_DNS_NAME: true
             INSTANCE_CAP: '4'
             IAM_INSTANCE_PROFILE: 'arn:aws:iam::123:dummy_worker1'
+            DELETE_ROOT_ON_TERMINATION: true
             USE_EPHEMERAL_DEVICES: false
+            USE_DEDICATED_TENANCY: false
             LAUNCH_TIMEOUT: '60'
+            ASSOCIATE_PUBLIC_IP: false
+            CUSTOM_DEVICE_MAPPING: ''
+            USE_EXTERNAL_SSH_PROCESS: false
+            CONNECT_WITH_PUBLIC_IP: false
+            MONITORING: false
+            T2_UNLIMITED: false
           - AMI_ID: 'ami2'
+            AMI_TYPE:
+                ROOT_COMMAND_PREFIX: ''
+                SLAVE_COMMAND_PREFIX: ''
+                SLAVE_COMMAND_SUFFIX: ''
+                REMOTE_SSH_PORT: '22'
             AVAILABILITY_ZONE: 'zone2'
             SPOT_CONFIG:
                 SPOT_MAX_BID_PRICE: '200'
                 SPOT_INSTANCE_BID_TYPE: 'one-time'
             SECURITY_GROUPS: 'security2'
             REMOTE_FS_ROOT: '/root/stuff2'
-            SSH_PORT: '22'
             INSTANCE_TYPE: 't1.micro'
+            EBS_OPTIMIZED: true
             LABEL_STRING: 'label2'
             MODE: 'normal'
             DESCRIPTION: 'description2'
@@ -57,7 +75,6 @@ CLOUDS:
             USER_DATA: 'user-data2'
             NUM_EXECUTORS: '10'
             REMOTE_ADMIN: 'root-admin'
-            ROOT_COMMAND_PREFIX: 'root-command'
             JVM_OPTIONS: 'jvm-option-1'
             STOP_ON_TERMINATE: false
             SUBNET_ID: 'subnet-123'
@@ -70,5 +87,13 @@ CLOUDS:
             USE_PRIVATE_DNS_NAME: true
             INSTANCE_CAP: '4'
             IAM_INSTANCE_PROFILE: 'arn:aws:iam::123:dummy_worker2'
+            DELETE_ROOT_ON_TERMINATION: true
             USE_EPHEMERAL_DEVICES: false
+            USE_DEDICATED_TENANCY: false
             LAUNCH_TIMEOUT: '60'
+            ASSOCIATE_PUBLIC_IP: false
+            CUSTOM_DEVICE_MAPPING: ''
+            USE_EXTERNAL_SSH_PROCESS: false
+            CONNECT_WITH_PUBLIC_IP: false
+            MONITORING: false
+            T2_UNLIMITED: false
