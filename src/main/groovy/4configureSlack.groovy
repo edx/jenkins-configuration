@@ -1,10 +1,8 @@
 /* Configure the Slack Notifier plugin */
 
 import java.util.logging.Logger
-import net.sf.json.JSONObject
 
 import jenkins.model.Jenkins
-import org.kohsuke.stapler.StaplerRequest
 
 @Grapes([
     @Grab(group='org.yaml', module='snakeyaml', version='1.17')
@@ -29,25 +27,15 @@ try {
 
 Map slackConfig = yaml.load(configText)
 
-def slackParameters = [
-    slackBaseUrl: slackConfig.SLACK_BASE_URL,
-    slackBotUser: slackConfig.IS_SLACK_BOT,
-    slackRoom: slackConfig.SLACK_ROOM,
-    slackTeamDomain: slackConfig.SLACK_TEAM_DOMAIN,
-]
-
 def slack = jenkins.getExtensionList(
         jenkins.plugins.slack.SlackNotifier.DescriptorImpl.class
     )[0]
 
-// Make use Jenkins credentials to authenticate to Slack, rather
-// than a token, as advised by the Slack plugin documentation
-JSONObject formData = [
-        'slack': ['tokenCredentialId': slackConfig.SLACK_CREDENTIAL_ID]
-    ] as JSONObject
-def request = [getParameter: { p -> slackParameters[p] } ] as StaplerRequest
-
-slack.configure(request, formData)
+slack.baseUrl = slackConfig.SLACK_BASE_URL
+slack.teamDomain = slackConfig.SLACK_TEAM_DOMAIN
+slack.tokenCredentialId = slackConfig.SLACK_CREDENTIAL_ID
+slack.botUser = slackConfig.IS_SLACK_BOT
+slack.room = slackConfig.SLACK_ROOM
 
 slack.save()
 jenkins.save()
