@@ -24,13 +24,13 @@ def pluginsPath = System.getenv('PLUGIN_OUTPUT_DIR') ?: 'plugins'
 
 repositories {
     mavenCentral()
+    maven {
+      url 'http://repo.jenkins-ci.org/incrementals/'
+    }
 }
 
 dependencies {
     jenkinsPlugins(parsePluginList())
-    maven {
-      url 'http://repo.jenkins-ci.org/incrementals/'
-    }
 }
 
 // resolve all of the dependencies for the plugin files sepcified in
