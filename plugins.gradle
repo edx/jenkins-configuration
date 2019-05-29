@@ -6,6 +6,7 @@ buildscript {
         mavenCentral()
         maven {
           url 'http://repo.jenkins-ci.org/releases/'
+          url 'http://repo.jenkins-ci.org/incrementals/'
         }
   }
   dependencies {
