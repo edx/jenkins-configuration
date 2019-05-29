@@ -28,6 +28,9 @@ repositories {
 
 dependencies {
     jenkinsPlugins(parsePluginList())
+    maven {
+      url 'http://repo.jenkins-ci.org/incrementals/'
+    }
 }
 
 // resolve all of the dependencies for the plugin files sepcified in
