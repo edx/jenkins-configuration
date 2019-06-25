@@ -24,7 +24,7 @@ class TestGHPRBConfiguration(WebAppTest):
         the Jenkins configuration console
         """
         self.config_page.visit()
-        # test a component of the main GHPRB cofig
+        # test a component of the main GHPRB config
         assert ' '.join(self.ghprb_config['ADMIN_LIST']) == self.config_page.get_admin_list()
         self.config_page.expand_advanced()
         # test some advanced components of the GHPRB config
