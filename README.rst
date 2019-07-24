@@ -17,6 +17,19 @@ System Requirements
 
 Working on this repository requires that both Docker and Gradle are installed.
 
+Mac:
+.. code:: source
+
+    brew cask install java8
+    brew cask install docker
+    brew install gradle
+
+Linux:
+.. code:: source
+    sudo apt install openjdk-8-jdk
+    wget https://services.gradle.org/distributions/gradle-5.0-bin.zip -P /tmp
+    sudo unzip -d /opt/gradle /tmp/gradle-*.zip
+
 Setup
 ~~~~~
 
@@ -39,6 +52,8 @@ need, and running:
 
 .. code:: source
 
+    cp local_env.sh{.sample,}
+    edit local_env.sh
     source local_env.sh
 
 Install python dependencies for acceptance testing (on a Jenkins instance
