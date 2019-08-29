@@ -52,6 +52,7 @@ class PluginTestCase(TestCase):
             "ssh-credentials": "1.14",
             "ssh-slaves": "1.28.1",
             "subversion": "2.10.3",
+            "timestamper": "1.9",
             "translation": "1.16",
             "windows-slaves": "1.3.1",
             "workflow-aggregator": "2.5",
@@ -94,7 +95,7 @@ class PluginTestCase(TestCase):
             "scm-api": "2.2.6",
             "structs": "1.14",
             "token-macro": "2.6",
-            "workflow-api": "2.25",
+            "workflow-api": "2.30",
             "workflow-basic-steps": "2.6",
             "workflow-cps": "2.46",
             "workflow-cps-global-lib": "2.9",
@@ -102,7 +103,7 @@ class PluginTestCase(TestCase):
             "workflow-job": "2.11",
             "workflow-multibranch": "2.16",
             "workflow-scm-step": "2.5",
-            "workflow-step-api": "2.14",
+            "workflow-step-api": "2.16",
             "workflow-support": "2.17"
         }
         for plugin, version in expected_plugin_versions.iteritems():
