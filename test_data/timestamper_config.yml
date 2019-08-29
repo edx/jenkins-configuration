@@ -1,0 +1,4 @@
+---
+- SYSTEM_CLOCK_FORMAT: "'<b>'HH:mm'</b> '"
+- ELAPSED_TIME_FORMAT: "'<b>'HH'</b> '"
+- ENABLED_ON_PIPELINES: true
