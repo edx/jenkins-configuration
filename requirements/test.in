@@ -1,6 +1,6 @@
 jenkinsapi
 pytest
 requests
-bok-choy
+bok-choy==0.7.1
 PyYAML
-selenium
+selenium==3.4.3
