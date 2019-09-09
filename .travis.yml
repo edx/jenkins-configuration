@@ -1,4 +1,5 @@
 language: groovy
+jdk: openjdk8
 
 matrix:
   include:
