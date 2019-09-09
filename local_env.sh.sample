@@ -18,3 +18,7 @@ export CONTAINER_NAME='jenkins'
 # shard value is used to specify which scripts are copied into the
 # docker container AND which tests should be run against the container
 # export TEST_SHARD=shard_1
+
+# Save artifacts on bok-choy test failures
+export SCREENSHOT_DIR=logs
+export SELENIUM_DRIVER_LOG_DIR=logs

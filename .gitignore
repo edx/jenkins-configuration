@@ -26,4 +26,6 @@ plugins/*
 utils/*
 
 # ignore artifacts from e2e tests
+.tox/
 geckodriver.log
+logs/
