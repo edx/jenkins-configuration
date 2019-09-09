@@ -1,3 +1,11 @@
+# IDEs and text editors
+*~
+*.swp
+.idea/
+.project
+.pycharm_helpers/
+.pydevproject
+
 # ignore gradle artifacts
 .gradle/*
 lib/*
