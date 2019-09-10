@@ -5,7 +5,7 @@
 #    make upgrade
 #
 attrs==19.1.0             # via packaging
-configparser==3.8.1       # via importlib-metadata
+configparser==4.0.1       # via importlib-metadata
 contextlib2==0.5.5        # via importlib-metadata
 filelock==3.0.12          # via tox
 importlib-metadata==0.20  # via pluggy, tox
