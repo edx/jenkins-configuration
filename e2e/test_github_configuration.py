@@ -1,8 +1,9 @@
+from __future__ import absolute_import
 import unittest
 import yaml
 import os
 from bok_choy.web_app_test import WebAppTest
-from pages.github_configuration_subpage import GithubConfigurationSubPage
+from .pages.github_configuration_subpage import GithubConfigurationSubPage
 
 class TestGithubConfiguration(WebAppTest):
     

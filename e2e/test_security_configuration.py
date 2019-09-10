@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import unittest
 import yaml
 import os
@@ -5,7 +6,7 @@ import os
 import pytest
 
 from bok_choy.web_app_test import WebAppTest
-from pages.security_page import SecurityConfigurationPage
+from .pages.security_page import SecurityConfigurationPage
 
 test_shard = os.getenv('TEST_SHARD')
 

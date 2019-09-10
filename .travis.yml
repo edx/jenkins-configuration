@@ -5,6 +5,8 @@ matrix:
   include:
   - env: TEST_SHARD=shard_1 JENKINS_VERSION='jenkins_2.150.2' TOXENV=py27
   - env: TEST_SHARD=shard_2 JENKINS_VERSION='jenkins_2.150.2' TOXENV=py27
+  - env: TEST_SHARD=shard_1 JENKINS_VERSION='jenkins_2.150.2' TOXENV=py36
+  - env: TEST_SHARD=shard_2 JENKINS_VERSION='jenkins_2.150.2' TOXENV=py36
 
 dist: xenial
 sudo: required

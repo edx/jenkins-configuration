@@ -1,8 +1,9 @@
+from __future__ import absolute_import
 import unittest
 import yaml
 import os
 from bok_choy.web_app_test import WebAppTest
-from pages.log_recorder_page import JenkinsLogRecorderPage
+from .pages.log_recorder_page import JenkinsLogRecorderPage
 
 class TestLogRecorderPage(WebAppTest):
 

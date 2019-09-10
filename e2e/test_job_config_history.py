@@ -1,8 +1,9 @@
+from __future__ import absolute_import
 import unittest
 import yaml
 import os
 from bok_choy.web_app_test import WebAppTest
-from pages.job_config_history_subpage import JobConfigHistorySubPage
+from .pages.job_config_history_subpage import JobConfigHistorySubPage
 
 class TestJobConfigHistory(WebAppTest):
 

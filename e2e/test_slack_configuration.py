@@ -1,8 +1,9 @@
+from __future__ import absolute_import
 import unittest
 import yaml
 import os
 from bok_choy.web_app_test import WebAppTest
-from pages.slack_config_subpage import SlackConfigSubPage
+from .pages.slack_config_subpage import SlackConfigSubPage
 
 class TestSlackConfig(WebAppTest):
 

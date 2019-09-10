@@ -1,6 +1,9 @@
+from __future__ import absolute_import, print_function
 from unittest import TestCase
 
+import six
 from jenkinsapi.jenkins import Jenkins
+
 
 class PluginTestCase(TestCase):
 
@@ -10,9 +13,9 @@ class PluginTestCase(TestCase):
 
     def test_sample_plugins_installed(self):
         installed_plugin_versions = {
-                value.shortName: value.version
-                for _, value in self.plugins.iteritems()
-                }
+            value.shortName: value.version
+            for value in self.plugins.values()
+        }
         expected_plugin_versions = {
             # Plugins pinned in test_data/plugins.yml
             "ant": "1.8",
@@ -106,7 +109,7 @@ class PluginTestCase(TestCase):
             "workflow-step-api": "2.16",
             "workflow-support": "2.17"
         }
-        for plugin, version in expected_plugin_versions.iteritems():
-            print "Checking if {} at version {} is installed".format(
-                    plugin, expected_plugin_versions[plugin])
+        for plugin, version in six.iteritems(expected_plugin_versions):
+            print("Checking if {} at version {} is installed".format(
+                    plugin, expected_plugin_versions[plugin]))
             assert installed_plugin_versions[plugin] == version

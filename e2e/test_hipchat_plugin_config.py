@@ -1,8 +1,9 @@
+from __future__ import absolute_import
 import unittest
 import yaml
 import os
 from bok_choy.web_app_test import WebAppTest
-from pages.hipchat_config_subpage import HipChatConfigSubPage
+from .pages.hipchat_config_subpage import HipChatConfigSubPage
 
 class TestHipChatConfig(WebAppTest):
 

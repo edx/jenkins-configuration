@@ -1,8 +1,8 @@
-import unittest
+from __future__ import absolute_import
 import yaml
 import os
 from bok_choy.web_app_test import WebAppTest
-from pages.email_ext_subpage import EmailExtConfigurationSubPage
+from .pages.email_ext_subpage import EmailExtConfigurationSubPage
 
 class TestEmailExtConfiguration(WebAppTest):
     
