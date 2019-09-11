@@ -1,8 +1,9 @@
+from __future__ import absolute_import
 import unittest
 import yaml
 import os
 from bok_choy.web_app_test import WebAppTest
-from pages.timestamper_config_subpage import TimestamperConfigSubPage
+from .pages.timestamper_config_subpage import TimestamperConfigSubPage
 
 
 class TestTimestamperConfig(WebAppTest):

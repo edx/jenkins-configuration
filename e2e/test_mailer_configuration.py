@@ -1,8 +1,9 @@
+from __future__ import absolute_import
 import unittest
 import yaml
 import os
 from bok_choy.web_app_test import WebAppTest
-from pages.mailer_subpage import MailerConfigurationSubPage
+from .pages.mailer_subpage import MailerConfigurationSubPage
 
 class TestMailerConfiguration(WebAppTest):
     

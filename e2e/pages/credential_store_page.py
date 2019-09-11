@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from . import JENKINS_HOST
 from bok_choy.page_object import PageObject
 

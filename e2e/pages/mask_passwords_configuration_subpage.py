@@ -1,6 +1,8 @@
+from __future__ import absolute_import
 from . import JENKINS_HOST
 from bok_choy.page_object import PageObject
-from configuration_page import ConfigurationSubPageMixIn
+from .configuration_page import ConfigurationSubPageMixIn
+from six.moves import zip
 
 class MaskPasswordsSubPage(ConfigurationSubPageMixIn, PageObject):
 

@@ -1,5 +1,7 @@
+from __future__ import absolute_import
 from . import JENKINS_HOST
 from bok_choy.page_object import PageObject
+from six.moves import zip
 
 class GhprbLogConfigurePage(PageObject):
 
@@ -14,4 +16,4 @@ class GhprbLogConfigurePage(PageObject):
     def get_loggers_with_level(self):
         logger_names = self.q(css='[class="setting-input  auto-complete  yui-ac-input"]').attrs('value')
         level = self.q(css='[name="level"] > [selected="true"]').text
-        return zip(logger_names, level)
+        return list(zip(logger_names, level))

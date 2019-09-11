@@ -1,8 +1,9 @@
+from __future__ import absolute_import
 import unittest
 import yaml
 import os
 from bok_choy.web_app_test import WebAppTest
-from pages.dashboard_page import JenkinsDashboardPage
+from .pages.dashboard_page import JenkinsDashboardPage
 
 class TestDashboard(WebAppTest):
     

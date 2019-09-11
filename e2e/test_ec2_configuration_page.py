@@ -1,8 +1,9 @@
+from __future__ import absolute_import
 import unittest
 import yaml
 import os
 from bok_choy.web_app_test import WebAppTest
-from pages.ec2_configuration_subpage import Ec2ConfigurationSubPage
+from .pages.ec2_configuration_subpage import Ec2ConfigurationSubPage
 
 class TestEc2ConfigurationSubPage(WebAppTest):
 
