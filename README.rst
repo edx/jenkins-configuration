@@ -17,6 +17,12 @@ System Requirements
 
 Working on this repository requires that both Docker and Gradle are installed.
 
+install gradle
+https://gradle.org/install/
+
+install docker
+https://docs.docker.com/install/
+
 Setup
 ~~~~~
 
@@ -156,6 +162,10 @@ with a sample instance sufficient for testing out groovy init scripts. If you
 are interested in using this to create a more accurate representation of your
 Jenkins instance, you can pair these steps with our ansible role found here:
 https://github.com/edx/configuration/tree/master/playbooks/roles/jenkins_common
+
+Step 1
+
+*** STOP! DO SETUP FIRST ***
 
 To use this play to create your instance, first follow the steps found above
 under Setup. Once you've done that, create the container:

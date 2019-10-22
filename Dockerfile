@@ -49,6 +49,7 @@ RUN mkdir -p $JENKINS_HOME/init.groovy.d \
     && mkdir $JENKINS_HOME/utils \
     && mkdir $JENKINS_HOME/git \
     && mkdir -p /var/log/jenkins
+    
 COPY plugins $JENKINS_HOME/plugins/
 COPY utils/ $JENKINS_HOME/utils/
 COPY ${CONFIG_PATH} $JENKINS_HOME/init-configs/
