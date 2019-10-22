@@ -1,0 +1,4 @@
+# Users
+JENKINS_USER_LIST: 
+  - USERNAME: admin
+    PASSWORD: admin
