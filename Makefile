@@ -43,7 +43,7 @@ build:
 run: run.container run.jenkins
 
 run.container:
-	docker run --name $(CONTAINER_NAME) -p 8080:8080 -p 2222:22 -d $(CONTAINER_NAME)
+	docker run --name $(CONTAINER_NAME) -p 127.0.0.1:8080:8080 -p 127.0.0.1:2222:22 -d $(CONTAINER_NAME)
 
 run.jenkins:
 	docker exec -d -u jenkins ${CONTAINER_NAME} /usr/bin/java -jar /usr/share/jenkins/jenkins.war --httpPort=8080 --logfile=/var/log/jenkins/jenkins.log
