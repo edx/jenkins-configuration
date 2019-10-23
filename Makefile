@@ -24,10 +24,11 @@ help:
 
 clean: clean.container clean.ws
 
-clean.container:
-# run the following docker commands with '|| true' because they do not have a 'quiet' flag
+stop.container:
 	docker kill $(CONTAINER_NAME) || true
 	docker rm $(CONTAINER_NAME) || true
+
+clean.container: stop.container
 	docker rmi $(CONTAINER_NAME) || true
 
 clean.ws:
@@ -35,15 +36,15 @@ clean.ws:
 	./gradlew -b plugins.gradle clean
 
 build:
-	docker build -t $(CONTAINER_NAME) --build-arg=CONFIG_PATH=$(CONFIG_PATH) \
+	docker build -t $(IMAGE_NAME) --build-arg=CONFIG_PATH=$(CONFIG_PATH) \
 		--build-arg=JENKINS_VERSION=$(JENKINS_VERSION) \
 		--build-arg=JENKINS_WAR_SOURCE=$(JENKINS_WAR_SOURCE) \
 		--target=$(TEST_SHARD) .
 
 run: run.container run.jenkins
 
-run.container:
-	docker run --name $(CONTAINER_NAME) -p 8080:8080 -p 2222:22 -d $(CONTAINER_NAME)
+run.container: stop.container
+	docker run --name $(CONTAINER_NAME) -p 127.0.0.1:8080:8080 -p 127.0.0.1:2222:22 -d $(IMAGE_NAME)
 
 run.jenkins:
 	docker exec -d -u jenkins ${CONTAINER_NAME} /usr/bin/java -jar /usr/share/jenkins/jenkins.war --httpPort=8080 --logfile=/var/log/jenkins/jenkins.log
@@ -63,6 +64,9 @@ quality:
 requirements:
 	./gradlew libs
 	pip install -r requirements/travis.txt
+
+get-password:
+	docker exec ${CONTAINER_NAME} cat /var/lib/jenkins/secrets/initialAdminPassword
 
 # Define PIP_COMPILE_OPTS=-v to get more information during make upgrade.
 PIP_COMPILE = pip-compile --rebuild --upgrade $(PIP_COMPILE_OPTS)
