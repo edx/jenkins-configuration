@@ -65,6 +65,9 @@ requirements:
 	./gradlew libs
 	pip install -r requirements/travis.txt
 
+get-password:
+	docker exec ${CONTAINER_NAME} cat /var/lib/jenkins/secrets/initialAdminPassword
+
 # Define PIP_COMPILE_OPTS=-v to get more information during make upgrade.
 PIP_COMPILE = pip-compile --rebuild --upgrade $(PIP_COMPILE_OPTS)
 

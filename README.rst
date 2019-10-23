@@ -68,6 +68,17 @@ Configuring Jenkins
 
 Jenkins will run Groovy code placed in $JENKINS_HOME/init.groovy.d on each boot.
 
+
+Tailing the logs
+-------------------
+
+    Once the container is running do:
+
+.. code:: bash
+
+    make logs
+
+
 Tips/Tricks
 ~~~~~~~~~~~
 
