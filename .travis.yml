@@ -3,13 +3,13 @@ jdk: openjdk8
 
 matrix:
   include:
-  - env: TEST_SHARD=shard_1 JENKINS_VERSION='jenkins_2.150.2' TOXENV=py27
-  - env: TEST_SHARD=shard_2 JENKINS_VERSION='jenkins_2.150.2' TOXENV=py27
-  - env: TEST_SHARD=shard_1 JENKINS_VERSION='jenkins_2.150.2' TOXENV=py35
+  - env: TEST_SHARD=shard_1 JENKINS_VERSION='jenkins_2.176.4' TOXENV=py27
+  - env: TEST_SHARD=shard_2 JENKINS_VERSION='jenkins_2.176.4' TOXENV=py27
+  - env: TEST_SHARD=shard_1 JENKINS_VERSION='jenkins_2.176.4' TOXENV=py35
     addons:
       apt:
         packages: python3-pip
-  - env: TEST_SHARD=shard_2 JENKINS_VERSION='jenkins_2.150.2' TOXENV=py35
+  - env: TEST_SHARD=shard_2 JENKINS_VERSION='jenkins_2.176.4' TOXENV=py35
     addons:
       apt:
         packages: python3-pip
