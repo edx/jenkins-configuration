@@ -34,7 +34,7 @@
   version: '1.29.2'
   group: 'com.coravy.hudson.plugins.github'
 - name: 'github-oauth'
-  version: '0.32'
+  version: '0.33'
   group: 'org.jenkins-ci.plugins'
 - name: 'gradle'
   version: '1.29'
