@@ -60,7 +60,6 @@ COPY src/main/groovy/1addJarsToClasspath.groovy \
     src/main/groovy/3installPython.groovy \
     src/main/groovy/3mainConfiguration.groovy \
     src/main/groovy/3setGlobalProperties.groovy \
-    src/main/groovy/3shutdownCLI.groovy \
     src/main/groovy/4configureEc2Plugin.groovy \
     src/main/groovy/4configureGHPRB.groovy \
     src/main/groovy/4configureGit.groovy \
