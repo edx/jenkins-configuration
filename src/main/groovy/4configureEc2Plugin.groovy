@@ -38,7 +38,15 @@ for (cloudConfig in ec2Config.CLOUDS) {
         String maxBid = amiConfig.SPOT_CONFIG.SPOT_MAX_BID_PRICE
         SpotConfiguration spotConfig = null
         if (maxBid) {
-            spotConfig = new SpotConfiguration(maxBid)
+            boolean useBidPrice = true;
+            boolean fallbackToOndemand = true;
+            String spotBlockReservationDurationStr = "";
+            spotConfig = new SpotConfiguration(
+                useBidPrice,
+                maxBid,
+                fallbackToOndemand,
+                spotBlockReservationDurationStr
+            )
         }
 
         // Create instanceType object
