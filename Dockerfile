@@ -65,7 +65,6 @@ COPY src/main/groovy/1addJarsToClasspath.groovy \
     src/main/groovy/4configureGHPRB.groovy \
     src/main/groovy/4configureGit.groovy \
     src/main/groovy/4configureGithub.groovy \
-    src/main/groovy/4configureHipChat.groovy \
     src/main/groovy/4configureJobConfigHistory.groovy \
     src/main/groovy/4configureMailerPlugin.groovy \
     src/main/groovy/4configureMaskPasswords.groovy \
