@@ -17,11 +17,38 @@ System Requirements
 
 Working on this repository requires that both Docker and Gradle are installed.
 
-install gradle
+Install gradle
 https://gradle.org/install/
 
-install docker
+Install docker
 https://docs.docker.com/install/
+
+Install firefox-geckodriver (if on Ubuntu)
+.. code:: bash
+
+    sudo apt install firefox-geckodriver
+
+JDK 8
+-----
+
+We're currently using JDK 8 in `production <https://github.com/edx/configuration/blob/master/playbooks/roles/oraclejdk/defaults/main.yml#L5>`_
+but your system might have something newer installed. Follow the instructions
+below to downgrade to JDK 8 on Ubuntu.
+
+.. code:: bash
+
+    sudo apt install openjdk-8-jdk
+    update-java-alternatives --set java-1.8.0-openjdk
+
+To confirm you have JDK 8 run the following and make sure you get simlar output
+with a version that starts with 1.8.
+
+.. code:: bash
+
+    $ java -version
+    openjdk version "1.8.0_222"
+    OpenJDK Runtime Environment (build 1.8.0_222-8u222-b10-1ubuntu1~18.04.1-b10)
+    OpenJDK 64-Bit Server VM (build 25.222-b10, mixed mode) update-java-alternatives --set java-1.8.0-openjdk
 
 Setup
 ~~~~~
@@ -206,4 +233,4 @@ Start the jenkins application:
 Plugin Versions
 ~~~~~~~~~~~~~~~~~~
 
-The groovy scripts in this repository are maintained to match the current configuration of our Jenkins instance here at edx (which is running version 2.150.2 of Jenkins). Plugins are always changing, and sometimes constructors or other methods that these scripts rely on change as well. Therefore, tweaks may be necessary for this to function properly with your jenkins instance.
+The groovy scripts in this repository are maintained to match the current configuration of our Jenkins instance here at edx (which is running version 2.176.4 of Jenkins). Plugins are always changing, and sometimes constructors or other methods that these scripts rely on change as well. Therefore, tweaks may be necessary for this to function properly with your jenkins instance.
