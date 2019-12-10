@@ -36,7 +36,8 @@ clean.ws:
 	./gradlew -b plugins.gradle clean
 
 build:
-	docker build -t $(IMAGE_NAME) --build-arg=CONFIG_PATH=$(CONFIG_PATH) \
+	docker build -t $(IMAGE_NAME) --no-cache\
+                --build-arg=CONFIG_PATH=$(CONFIG_PATH) \
 		--build-arg=JENKINS_VERSION=$(JENKINS_VERSION) \
 		--build-arg=JENKINS_WAR_SOURCE=$(JENKINS_WAR_SOURCE) \
 		--target=$(TEST_SHARD) .

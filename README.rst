@@ -17,11 +17,16 @@ System Requirements
 
 Working on this repository requires that both Docker and Gradle are installed.
 
-install gradle
+Install gradle
 https://gradle.org/install/
 
-install docker
+Install docker
 https://docs.docker.com/install/
+
+Install firefox-geckodriver (if on Ubuntu)
+.. code:: bash
+
+    sudo apt install firefox-geckodriver
 
 JDK 8
 -----
