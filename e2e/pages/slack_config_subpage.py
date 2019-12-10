@@ -10,4 +10,4 @@ class SlackConfigSubPage(ConfigurationSubPageMixIn, PageObject):
         self.name = "jenkins-plugins-slack-SlackNotifier"
 
     def get_room(self):
-        return self.value_of_first_element_named('slackRoom')
+        return self.value_of_first_element_named('_.room')
