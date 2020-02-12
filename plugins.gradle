@@ -18,6 +18,7 @@ apply plugin: 'java'
 apply plugin: 'org.jenkins-ci.jpi'
 
 def pluginsPath = System.getenv('PLUGIN_OUTPUT_DIR') ?: 'plugins'
+def installedPluginFile = System.getenv('PLUGIN_OUTPUT_FILE') ?: 'installed_plugins'
 
 repositories {
     mavenCentral()
@@ -74,20 +75,27 @@ task show {
 }
 
 // Display the final versions of all plugins after dependency resolution
+// Additionally write this information to a file.
 void showDownloadedPlugins() {
     String pluginsPath = System.getenv('PLUGIN_OUTPUT_DIR') ?: 'plugins'
+    String installedPluginFile = System.getenv('PLUGIN_OUTPUT_FILE') ?: 'installed_plugins'
     println("The following plugins were downloaded to ${pluginsPath}")
     File pluginPath = new File("${pluginsPath}")
+    File showFile = new File("${installedPluginFile}")
     pluginPath.listFiles().findAll { it.name =~ '.*jpi$' }.sort { it.name }.each() { plugin ->
         ZipFile jpiContents = new ZipFile(plugin)
         ZipEntry manifestFile = jpiContents.entries().find { it.getName() == "META-INF/MANIFEST.MF" }
         Matcher matcher = jpiContents.getInputStream(manifestFile).text =~ 'Plugin-Version: ([\\.\\d]+)'
         String pluginName = plugin.name.split('\\.')[0]
         String version = matcher[0][1]
-        println("${pluginName}: ${version}")
+        String pluginNameAndVersion = "${pluginName}: ${version}"
+        println(pluginNameAndVersion)
+        showFile.append("${pluginNameAndVersion}\n")
     }
+    println("This data was also written to ${installedPluginFile}")
 }
 
 clean {
     delete "${pluginsPath}"
+    delete "${installedPluginFile}"
 }
