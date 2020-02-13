@@ -63,9 +63,16 @@ task plugins(type: Copy, dependsOn: [clean]){
 
 def parsePluginList() {
     String pluginConfig = System.getenv('PLUGIN_CONFIG') ?: 'test_data/plugins.yml'
+    String pluginConfigKey = System.getenv('PLUGIN_CONFIG_KEY') ?: null
     org.yaml.snakeyaml.Yaml yaml = new org.yaml.snakeyaml.Yaml()
-    List<String> list = yaml.load(new File(pluginConfig).text)
-    return list
+    def pluginList = []
+    if (pluginConfigKey == null) {
+        pluginList = yaml.load(new File(pluginConfig).text)
+    } else {
+        Map<String> map = yaml.load(new File(pluginConfig).text)
+        pluginList = map['build_jenkins_plugins_list']
+    }
+    return pluginList
 }
 
 task show {
