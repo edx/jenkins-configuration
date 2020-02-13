@@ -1,3 +1,20 @@
+"""
+compare_install_plugins.py
+
+This script will compare two files, that are generated from the
+`make plugins show` task in this repo, to determine which plugins will
+need to be upgraded/installed.
+
+example usage:
+
+    python compare_installed_plugins.py currently_installed proposed_install
+    where:
+    currently_installed = output file from running `make plugins show` with the
+        current configuration for your jenkins
+    proposed_install = output file from running `make plugins show` after making
+        a change to your configuration for your jenkins
+"""
+
 import io
 import os
 import re
@@ -45,7 +62,7 @@ def main():
         base_installed_plugin_file = sys.argv[1]
         new_installed_plugin_file = sys.argv[2]
     except IndexError:
-        print('Need to supply two files!')
+        print('This script requires two arguments. Both need to be paths to files')
         sys.exit(1)
 
     base_plugins = extract_plugin_versions(base_installed_plugin_file)
