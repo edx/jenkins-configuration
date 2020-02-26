@@ -26,4 +26,7 @@ public static void main(String[] args) {
     warnings.each { warning ->
         println(formatWarning(warning))
     }
+    if (warnings) {
+        System.exit(1)
+    }
 }
