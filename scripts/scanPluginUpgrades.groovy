@@ -43,7 +43,7 @@ def url = "https://arbisoft123.atlassian.net/rest/api/2/issue/"
       
 
 
-def proc = "curl -v -D- -u ${authString} -X POST --data '${body_req}' -H \"Content-Type: application/json\" ${url}".execute()
+def proc = ["curl", "-D-","-u","${authString}","-X","POST","--data""${body_req}","-H","Content-Type: application/json","${url}"].execute()
 
 
 println(proc.text)
