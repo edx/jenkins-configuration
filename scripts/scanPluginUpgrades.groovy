@@ -27,3 +27,5 @@ public static void main(String[] args) {
         println(formatWarning(warning))
     }
 }
+
+import groovy.json.StreamingJsonBuilder
