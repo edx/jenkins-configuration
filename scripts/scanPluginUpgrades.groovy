@@ -30,11 +30,11 @@ public static void main(String[] args) {
 
 def authString = "nadeem.shahzad@arbisoft.com:3aINhIFy5qzRHC9rrlYX0CF5"
 def body_req = """{
-   "fields": {
-     "project" : { "key" : "DEVOPS" },
-     "issuetype" : { "name" : "Bug" },
-     "summary" : "TEST",
-     "description" : "TEST"}
+   \"fields\": {
+     \"project\" : { \"key\" : \"DEVOPS\" },
+     \"issuetype\" : { \"name\" : \"Bug\" },
+     \"summary\" : \"TEST\",
+     \"description\" : \"TEST\"}
  }"""
 
 
@@ -43,7 +43,7 @@ def url = "https://arbisoft123.atlassian.net/rest/api/2/issue/"
       
 
 
-def proc = ['bash','-c',"curl -v -D- -u ${authString} -X POST --data ${body_req} -H \"Content-Type: application/json\" ${url}"].execute()
+def proc = "curl -v -D- -u ${authString} -X POST --data ${body_req} -H \"Content-Type: application/json\" ${url}".execute()
 
 println(proc.text)
 }
