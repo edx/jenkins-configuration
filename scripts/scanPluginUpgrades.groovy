@@ -29,3 +29,27 @@ public static void main(String[] args) {
 }
 
 import groovy.json.StreamingJsonBuilder
+
+
+def authString = "nadeem.shahzad@arbisoft.com:3aINhIFy5qzRHC9rrlYX0CF5".getBytes().encodeBase64().toString()
+def body_req = '''{
+   "fields": {
+     "project" : { "key" : "DEVOPS" },
+     "issuetype" : { "name" : "Incident" },
+     "summary" : "test",
+     "description" : "test"}
+ }'''
+
+def connection = new URL("https://arbisoft123.atlassian.net/rest/api/2/issue/").openConnection() as HttpURLConnection
+connection.setRequestMethod( "POST" )
+connection.setRequestProperty( "Authorization", "Basic ${authString}" )
+connection.doOutput = true
+connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8")
+/*connection.outputStream.withWriter("UTF-8") { new StreamingJsonBuilder(it, body_req) }*/
+connection.getOutputStream().write(body_req.getBytes("UTF-8"))
+connection.connect()
+def postRC = connection.getResponseCode();
+println(postRC);
+if(postRC.equals(200)) { 
+println(connection.getInputStream().getText());
+}
