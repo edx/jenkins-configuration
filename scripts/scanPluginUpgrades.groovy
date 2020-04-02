@@ -23,7 +23,7 @@ public static String formatWarning(warning) {
 
 public static void main(String[] args) {
     def warnings = getSecurityWarnings()
-   println(warning)
+   println(warnings)
     warnings.each { warning ->
         println(formatWarning(warning))
     }
