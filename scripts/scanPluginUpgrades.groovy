@@ -39,12 +39,12 @@ def body_req = '''{
  }'''
 
 
-def url = "https://arbisoft123.atlassian.net/rest/api/2/issue/"
+def jira_url = "https://arbisoft123.atlassian.net/rest/api/2/issue/"
 
       
 
 
-def proc = [ 'curl', '-u', '${authString}', '-X', 'POST' ,'--data', '${body_req}', '-H', 'Content-Type: application/json', '${url}'].execute()
+def proc = [ "curl", "-u", "${authString}", "-X", "POST" ,"--data", "${body_req}", "-H", "Content-Type: application/json", "${jira_url}"].execute()
 
 
 println(proc.text)
