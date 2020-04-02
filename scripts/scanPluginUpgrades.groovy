@@ -57,5 +57,6 @@ def proc = [ "curl", "-u", "${authString}", "-X", "GET", "-H", "Content-Type: ap
 //def stuff = new JsonSlurper().parseText(proc)
 println(proc)
 
-def stuff = new JsonSlurper().parseText(proc)
+def stuff = new JsonSlurper().parseText(proc).total
+println(stuff)
 }
