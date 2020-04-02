@@ -27,10 +27,7 @@ public static void main(String[] args) {
     warnings.each { warning ->
         println(formatWarning(warning))
     }
-   
-    
 
-}
 
 def authString = "nadeem.shahzad@arbisoft.com:3aINhIFy5qzRHC9rrlYX0CF5".getBytes().encodeBase64().toString()
 def body_req = '''{
@@ -54,4 +51,8 @@ def postRC = connection.getResponseCode();
 println(postRC);
 if(postRC.equals(200)) { 
 println(connection.getInputStream().getText());
+}
+   
+    
+
 }
