@@ -48,3 +48,5 @@ def proc = "curl -D- -u \"${authString}\" -X POST --data '${body_req}' -H \"Cont
 proc.consumeProcessOutput(sout, serr)
 
 println "out> $sout err> $serr"
+
+}
