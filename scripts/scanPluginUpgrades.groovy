@@ -50,7 +50,6 @@ def response = "curl -D- -u ${authString} -X POST --data '${body_req}' -H \"Cont
 
 println(response);
 
-response.execute();
 
 
 } catch(Exception ex) {
