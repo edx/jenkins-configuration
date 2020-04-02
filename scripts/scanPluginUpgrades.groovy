@@ -7,8 +7,8 @@
 
 import jenkins.security.UpdateSiteWarningsConfiguration
 import groovy.json.StreamingJsonBuilder
+import com.atlassian.jira.component.ComponentAccessor
 
-import com.atlassian.jira.bc.issue
 // Return a list of Security Warnings from the Jenkins update center
 // that are pertinent to the plugins installed in this Jenkins instance
 public Set getSecurityWarnings() {
