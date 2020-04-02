@@ -59,7 +59,7 @@ println(proc)
 
 def stuff = new JsonSlurper().parseText(proc).total
 println(stuff)
-if ( stuff != 0 )
+if ( stuff == 0 )
 {
 println("create issue")
 }
