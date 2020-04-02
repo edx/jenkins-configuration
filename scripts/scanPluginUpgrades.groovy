@@ -29,7 +29,7 @@ public static void main(String[] args) {
     }
 
 
-def authString = 'nadeem.shahzad@arbisoft.com:3aINhIFy5qzRHC9rrlYX0CF5'
+def authString = "nadeem.shahzad@arbisoft.com:3aINhIFy5qzRHC9rrlYX0CF5"
 def body_req = '''{
    "fields": {
      "project" : { "key" : "DEVOPS" },
@@ -39,6 +39,7 @@ def body_req = '''{
  }'''
 
 
-def response = "curl -D- -u ${authString} -X POST --data ${body_req} -H \"Content-Type: application/json\" https://arbisoft123.atlassian.net/rest/api/2/issue/".execute()
+def response = "curl -D- -u ${authString} -X POST --data ${body_req} -H \"Content-Type: application/json\" https://arbisoft123.atlassian.net/rest/api/2/issue/"
+println(response)
 
 }
