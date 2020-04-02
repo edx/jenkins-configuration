@@ -29,31 +29,9 @@ public static void main(String[] args) {
     }
 
 
-def authString = "nadeem.shahzad@arbisoft.com:3aINhIFy5qzRHC9rrlYX0CF5".getBytes().encodeBase64().toString()
-def body_req = '''{
-   "fields": {
-     "project" : { "key" : "DEVOPS" },
-     "issuetype" : { "name" : "Incident" },
-     "summary" : "test",
-     "description" : "test"}
- }'''
 
-def connection = new URL("https://arbisoft123.atlassian.net/rest/api/2/issue/").openConnection() as HttpURLConnection
+def response = "curl -D- -u nadeem.shahzad@arbisoft.com:3aINhIFy5qzRHC9rrlYX0CF5 -X POST --data '{"fields":{"project":{"key": "DEVOPS"},"summary": "REST ye merry gentlemen.","description": "Creating of an issue using project keys and issue type names using the REST API","issuetype": {"name": "Bug"}}}' -H "Content-Type: application/json" https://arbisoft123.atlassian.net/rest/api/2/issue/".execute().text
 
-connection.setRequestMethod( "POST" )
-connection.setRequestProperty( "Authorization", "Basic ${authString}" )
-connection.doOutput = true
-connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8")
-/*connection.outputStream.withWriter("UTF-8") { new StreamingJsonBuilder(it, body_req) }*/
-connection.getOutputStream().write(body_req.getBytes("UTF-8"))
-connection.connect()
-def postRC = connection.getResponseCode();
-println(postRC);
-if(postRC.equals(200)) { 
 
-println(connection.getInputStream().getText());
-}
-   
-    
 
 }
