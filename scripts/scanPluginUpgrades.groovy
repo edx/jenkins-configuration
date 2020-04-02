@@ -29,9 +29,16 @@ public static void main(String[] args) {
     }
 
 
+def authString = "nadeem.shahzad@arbisoft.com:3aINhIFy5qzRHC9rrlYX0CF5"
+def body_req = '''{
+   "fields": {
+     "project" : { "key" : "DEVOPS" },
+     "issuetype" : { "name" : "Bug" },
+     "summary" : "TEST",
+     "description" : "TEST"}
+ }'''
 
-def response = "curl -D- -u nadeem.shahzad@arbisoft.com:3aINhIFy5qzRHC9rrlYX0CF5 -X POST --data '{"fields":{"project":{"key": "DEVOPS"},"summary": "REST ye merry gentlemen.","description": "Creating of an issue using project keys and issue type names using the REST API","issuetype": {"name": "Bug"}}}' -H "Content-Type: application/json" https://arbisoft123.atlassian.net/rest/api/2/issue/".execute().text
 
-
+def response = "curl -D- -u ${authString} -X POST --data ${body_req} -H "Content-Type: application/json" https://arbisoft123.atlassian.net/rest/api/2/issue/".execute().text
 
 }
