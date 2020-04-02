@@ -32,6 +32,8 @@ public static void main(String[] args) {
    println(list)
 
 
+
+def JQL = "jql=project=DOS AND text ~ '{security vulnerbility found}' AND status not in (done, resolved, Canceled)"
 def authString = "nadeem.shahzad@arbisoft.com:3aINhIFy5qzRHC9rrlYX0CF5"
 def body_req = """{
    "fields": {
@@ -43,11 +45,13 @@ def body_req = """{
 
 
 def jira_url = "https://arbisoft123.atlassian.net/rest/api/2/issue/"
+def jira_url_search = "https://arbisoft123.atlassian.net/rest/api/2/search/jql=project=DOS AND text ~ '{security vulnerbility found}' AND status not in (done, resolved, Canceled)"
 
       
 
 
-def proc = [ "curl", "-u", "${authString}", "-X", "POST" ,"--data", "${body_req}", "-H", "Content-Type: application/json", "${jira_url}"].execute()
+//def proc = [ "curl", "-u", "${authString}", "-X", "POST" ,"--data", "${body_req}", "-H", "Content-Type: application/json", "${jira_url}"].execute()
+def proc = [ "curl", "-D-", "-u", "${authString}", "-X", "GET" ,"--data", "${body_req}", "-H", "Content-Type: application/json", "${jira_url_search}"].execute()
 
 
 println(proc.text)
