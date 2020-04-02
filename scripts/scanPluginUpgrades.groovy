@@ -49,8 +49,8 @@ connection.getOutputStream().write(body_req.getBytes("UTF-8"))
 connection.connect()
 def postRC = connection.getResponseCode();
 println(postRC);
-println(connection.getInputStream().getText());
 if(postRC.equals(200)) { 
+
 println(connection.getInputStream().getText());
 }
    
