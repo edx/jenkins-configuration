@@ -26,7 +26,7 @@ public static void main(String[] args) {
     def list = []
      warnings.each { warning ->
       //println(formatWarning(warning))
-        list << warning
+        list << formatWarning(warning)
     }
 
    println(list)
