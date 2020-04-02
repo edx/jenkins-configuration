@@ -46,7 +46,7 @@ def body_req = """{
 
 def jira_url = "https://arbisoft123.atlassian.net/rest/api/2/issue/"
 //def jira_url_search = "https://arbisoft123.atlassian.net/rest/api/2/search/?jql=project=DEVOPS AND summary ~ 'security vulnerbility found' AND status not in (done, resolved, Canceled)"
-def jira_url_search = "https://arbisoft123.atlassian.net/browse/DEVOPS-12?jql=project%3DDEVOPS%20AND%20summary%20~%20%27security%20vulnerbility%20found%27%20AND%20status%20not%20in%20(done%2C%20resolved%2C%20Canceled)"
+def jira_url_search = "https://arbisoft123.atlassian.net/rest/api/2/search/?jql=project=DEVOPS AND summary ~ 'security vulnerbility found'"
 
       
 
