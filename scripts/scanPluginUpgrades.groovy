@@ -23,10 +23,13 @@ public static String formatWarning(warning) {
 
 public static void main(String[] args) {
     def warnings = getSecurityWarnings()
-   println(warnings)
-    warnings.each { warning ->
-        println(formatWarning(warning))
+    def list = []
+     warnings.each { warning ->
+      //println(formatWarning(warning))
+        list << warning
     }
+
+   println(list)
 
 
 def authString = "nadeem.shahzad@arbisoft.com:3aINhIFy5qzRHC9rrlYX0CF5"
