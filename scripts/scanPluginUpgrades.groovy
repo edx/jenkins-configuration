@@ -6,7 +6,7 @@
 // plugin updates.
 
 import jenkins.security.UpdateSiteWarningsConfiguration
-
+import groovy.json.StreamingJsonBuilder
 
 // Return a list of Security Warnings from the Jenkins update center
 // that are pertinent to the plugins installed in this Jenkins instance
@@ -41,25 +41,30 @@ def body_req = '''{
 
 def url = "https://arbisoft123.atlassian.net/rest/api/2/issue/"
 
-try {
       
 
 
-def response = "curl -D- -u \"${authString}\" -X POST --data '${body_req}' -H \"Content-Type: application/json\" ${url}".execute()
-
-
-println("successme");
-
-
-
-} catch(Exception ex) {
-         println(ex);
+// def response = "curl -D- -u \"${authString}\" -X POST --data '${body_req}' -H \"Content-Type: application/json\" ${url}".execute()
 
 
 
 
-      }
 		
+def connection = new URL("https://arbisoft123.atlassian.net/rest/api/2/issue/").openConnection() as HttpURLConnection
+connection.setRequestMethod( "POST" )
+connection.setRequestProperty( "Authorization", "Basic ${authString}" )
+connection.doOutput = true
+connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8")
+connection.getOutputStream().write(body_req.getBytes("UTF-8"))
+connection.connect()
+
+//this is used only to see what Jira responses 
+def postRC = connection.getResponseCode();
+println(postRC);
+if(postRC.equals(200)) { 
+println(connection.getInputStream().getText());
+}
+
 
 
 }
