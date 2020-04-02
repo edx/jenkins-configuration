@@ -45,7 +45,7 @@ try {
       
 
 
-def response = "curl -D- -u ${authString} -X POST --data '${body_req}' -H \"Content-Type: application/json\" ${url}".execute()
+def response = "curl -D- -u \"${authString}\" -X POST --data '${body_req}' -H \"Content-Type: application/json\" ${url}".execute()
 
 
 println("successme");
