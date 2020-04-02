@@ -51,7 +51,7 @@ def jira_url_search = "https://arbisoft123.atlassian.net/rest/api/2/search/jql=p
 
 
 //def proc = [ "curl", "-u", "${authString}", "-X", "POST" ,"--data", "${body_req}", "-H", "Content-Type: application/json", "${jira_url}"].execute()
-def proc = [ "curl", "-D-", "-u", "${authString}", "-X", "GET" ,"--data", "${body_req}", "-H", "Content-Type: application/json", "${jira_url_search}"].execute()
+def proc = [ "curl", "-D-", "-u", "${authString}", "-X", "GET", "-H", "Content-Type: application/json", "${jira_url_search}"].execute()
 
 
 println(proc.text)
