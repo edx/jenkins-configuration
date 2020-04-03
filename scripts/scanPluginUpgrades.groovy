@@ -27,7 +27,7 @@ public static void main(String[] args) {
     def summary = "AC:\nVERIFY critical security vulnerabilities are patched on"
     warnings.each { warning ->
       //println(formatWarning(warning))
-        summary +="\n$warning" 
+        summary +="\n$formatWarning(warning)"
     }
 
    println(summary)
