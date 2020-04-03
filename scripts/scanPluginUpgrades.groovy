@@ -45,7 +45,7 @@ https://openedx.atlassian.net/wiki/spaces/EdxOps/pages/1062895636/How+to+update+
     def jqlSearch = "https://arbisoft123.atlassian.net/rest/api/2/search/?jql=project%3DOS%20AND%20summary%20~%20%27Build%20Jenkins%20Security%20Check%27%20AND%20status%20not%20in%20(done%2C%20resolved%2C%20Canceled)"
       
     def searchIssue = [ "curl", "-u", "${authString}", "-X", "GET", "-H", "Content-Type: application/json", "${jqlSearch}"].execute().text
-
+    println(searchIssue)
     def issueCount = new JsonSlurper().parseText(searchIssue).total
     println(issueCount)
     
