@@ -28,9 +28,10 @@ public static void main(String[] args) {
     warnings.each { warning ->
         description += formatWarning(warning)
     }
-    description += """\\nImplementation Details:\\nhttps://openedx.atlassian.net/
-wiki/spaces/EdxOps/pages/1062895636/How+to+update+jenkins+plugins+for+https+build.testeng.edx.org\\n
-https://openedx.atlassian.net/wiki/spaces/EdxOps/pages/1062895636/How+to+update+jenkins+plugins+for+https+build.testeng.edx.org"""
+    description += """\\nImplementation Details:\\nhttps://openedx.atlassian.net/\
+                      wiki/spaces/EdxOps/pages/1062895636/How+to+update+jenkins+plugins+for+https+build.testeng.edx.org\\n\
+                      https://openedx.atlassian.net/wiki/spaces/EdxOps/pages/1062895636/How+to+update+jenkins+plugins+for+https+build.testeng.edx.org
+                   """
     println(description)
     def authString = "nadeem.shahzad@arbisoft.com:3aINhIFy5qzRHC9rrlYX0CF5"
     def req = """{
