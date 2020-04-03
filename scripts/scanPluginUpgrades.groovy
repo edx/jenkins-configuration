@@ -35,8 +35,8 @@ https://openedx.atlassian.net/wiki/spaces/EdxOps/pages/1062895636/How+to+update+
     def authString = "nadeem.shahzad@arbisoft.com:3aINhIFy5qzRHC9rrlYX0CF5"
     def req = """{
         "fields": {
-            "project" : { "key" : "DEVOPS" },
-            "issuetype" : { "name" : "Bug" },
+            "project" : { "key" : "DOS" },
+            "issuetype" : { "name" : "Security" },
             "summary" : "Build Jenkins Security Check",
             "description" : "${description}" }
     }"""
@@ -49,7 +49,7 @@ https://openedx.atlassian.net/wiki/spaces/EdxOps/pages/1062895636/How+to+update+
     def issueCount = new JsonSlurper().parseText(searchIssue).total
     
     if ( issueCount == 0 ) {
-        println("Creating new Issue:")
+        println("Creating Build Jenkins Security Check Ticket")
         def createIssue = [ "curl", "-u", "${authString}", "-X", "POST" ,"--data", "${req}", "-H", "Content-Type: application/json", "${jira_url}"].execute()
         println(createIssue.text)
     }
