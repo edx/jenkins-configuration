@@ -35,7 +35,7 @@ public static void main(String[] args) {
             "project" : { "key" : "DEVOPS" },
             "issuetype" : { "name" : "Bug" },
             "summary" : "Build Jenkins Security Check",
-            "description" : "${description}" }
+            "description" : "description" }
     }"""
 
     def jira_url = "https://arbisoft123.atlassian.net/rest/api/2/issue/"
