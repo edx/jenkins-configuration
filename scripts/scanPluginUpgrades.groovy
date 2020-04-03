@@ -47,6 +47,7 @@ https://openedx.atlassian.net/wiki/spaces/EdxOps/pages/1062895636/How+to+update+
     def searchIssue = [ "curl", "-u", "${authString}", "-X", "GET", "-H", "Content-Type: application/json", "${jqlSearch}"].execute().text
 
     def issueCount = new JsonSlurper().parseText(searchIssue).total
+    println(issueCount)
     
     if ( issueCount == 0 ) {
         println("Creating Build Jenkins Security Check Ticket")
