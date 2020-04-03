@@ -42,7 +42,7 @@ https://openedx.atlassian.net/wiki/spaces/EdxOps/pages/1062895636/How+to+update+
     }"""
 
     def jira_url = "https://arbisoft123.atlassian.net/rest/api/2/issue/"
-    def jqlSearch = "https://arbisoft123.atlassian.net/rest/api/2/search/?jql=project%3DOS%20AND%20summary%20~%20%27Build%20Jenkins%20Security%20Check%27%20AND%20status%20not%20in%20(done%2C%20resolved%2C%20Canceled)"
+    def jqlSearch = "https://arbisoft123.atlassian.net/rest/api/2/search/?jql=project%20%3D%20DOS%20AND%20summary%20~%20%27Build%20Jenkins%20Security%20Check%27%20AND%20status%20not%20in%20(Closed%2C%20Canceled%2C%20Done)"
       
     def searchIssue = [ "curl", "-u", "${authString}", "-X", "GET", "-H", "Content-Type: application/json", "${jqlSearch}"].execute().text
     println(searchIssue)
