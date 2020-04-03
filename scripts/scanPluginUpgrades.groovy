@@ -48,6 +48,7 @@ public static void main(String[] args) {
     if ( issueCount == 0 ) {
         println("Creating new Issue:")
         def createIssue = [ "curl", "-u", "${authString}", "-X", "POST" ,"--data", "${body_req}", "-H", "Content-Type: application/json", "${jira_url}"].execute()
+        println(createIssue.text)
     }
 
 }
