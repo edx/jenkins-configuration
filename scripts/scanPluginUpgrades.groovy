@@ -24,43 +24,29 @@ public static String formatWarning(warning) {
 
 public static void main(String[] args) {
     def warnings = getSecurityWarnings()
-    def summary = "AC:\nVERIFY critical security vulnerabilities are patched on"
+    def description = "AC:\nVERIFY critical security vulnerabilities are patched on following plugins"
     warnings.each { warning ->
-      //println(formatWarning(warning))
-        summary += formatWarning(warning)
+        description += formatWarning(warning)
     }
 
-   println(summary)
+    def authString = "nadeem.shahzad@arbisoft.com:3aINhIFy5qzRHC9rrlYX0CF5"
+    def body_req = """{
+        "fields": {
+            "project" : { "key" : "DEVOPS" },
+            "issuetype" : { "name" : "Bug" },
+            "summary" : "Build Jenkins Security Check",
+            "description" : "${description}" }
+    }"""
 
-
-
-def JQL = "jql=project=DOS AND text ~ '{security vulnerbility found}' AND status not in (done, resolved, Canceled)"
-def authString = "nadeem.shahzad@arbisoft.com:3aINhIFy5qzRHC9rrlYX0CF5"
-def body_req = """{
-   "fields": {
-     "project" : { "key" : "DEVOPS" },
-     "issuetype" : { "name" : "Bug" },
-     "summary" : "security vulnerbility found",
-     "description" : "${list}" }
- }"""
-
-
-def jira_url = "https://arbisoft123.atlassian.net/rest/api/2/issue/"
-//def jira_url_search = "https://arbisoft123.atlassian.net/rest/api/2/search/?jql=project=DEVOPS AND summary ~ 'security vulnerbility found' AND status not in (done, resolved, Canceled)"
-//def jira_url_search = "https://arbisoft123.atlassian.net/rest/api/2/search/?jql=project=DEVOPS&summary ~ 'security vulnerbility found'"
-def jqlSearch = "https://arbisoft123.atlassian.net/rest/api/2/search/?jql=project%3DDEVOPS%20AND%20summary%20~%20%27security%20vulnerbility%20found%27%20AND%20status%20not%20in%20(done%2C%20resolved%2C%20Canceled)&fields=id"
+    def jira_url = "https://arbisoft123.atlassian.net/rest/api/2/issue/"
+    def jqlSearch = "https://arbisoft123.atlassian.net/rest/api/2/search/?jql=project%3DDEVOPS%20AND%20summary%20~%20%27Build%20Jenkins%20Security%20Check%27%20AND%20status%20not%20in%20(done%2C%20resolved%2C%20Canceled)"
       
+    def searchIssue = [ "curl", "-u", "${authString}", "-X", "GET", "-H", "Content-Type: application/json", "${jqlSearch}"].execute().text
+    def issueCount = new JsonSlurper().parseText(proc).total
+    
+    if ( issueCount == 0 ) {
+        println("Creating new Issue:")
+        def createIssue = [ "curl", "-u", "${authString}", "-X", "POST" ,"--data", "${body_req}", "-H", "Content-Type: application/json", "${jira_url}"].execute()
+    }
 
-
-//def proc = [ "curl", "-u", "${authString}", "-X", "POST" ,"--data", "${body_req}", "-H", "Content-Type: application/json", "${jira_url}"].execute()
-def proc = [ "curl", "-u", "${authString}", "-X", "GET", "-H", "Content-Type: application/json", "${jira_url_search}"].execute().text
-//def stuff = new JsonSlurper().parseText(proc)
-println(proc)
-
-def stuff = new JsonSlurper().parseText(proc).total
-println(stuff)
-if ( stuff == 0 )
-{
-println("create issue")
-}
 }
