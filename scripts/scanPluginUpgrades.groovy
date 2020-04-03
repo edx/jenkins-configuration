@@ -42,7 +42,8 @@ public static void main(String[] args) {
     def jqlSearch = "https://arbisoft123.atlassian.net/rest/api/2/search/?jql=project%3DDEVOPS%20AND%20summary%20~%20%27Build%20Jenkins%20Security%20Check%27%20AND%20status%20not%20in%20(done%2C%20resolved%2C%20Canceled)"
       
     def searchIssue = [ "curl", "-u", "${authString}", "-X", "GET", "-H", "Content-Type: application/json", "${jqlSearch}"].execute().text
-    def issueCount = new JsonSlurper().parseText(proc).total
+
+    def issueCount = new JsonSlurper().parseText(searchIssue).total
     
     if ( issueCount == 0 ) {
         println("Creating new Issue:")
