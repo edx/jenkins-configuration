@@ -17,14 +17,14 @@ public Set getSecurityWarnings() {
 }
 
 public static String formatWarning(warning) {
-    String formattedWarning = "\n"+"Vulnerability detected in plugin: ${warning.component}. "
+    String formattedWarning = "\\nVulnerability detected in plugin: ${warning.component}. "
     formattedWarning += "${warning.message}. For more information, see ${warning.url}"
     return formattedWarning
 }
 
 public static void main(String[] args) {
     def warnings = getSecurityWarnings()
-    def description = "AC:"+"\r\n"+"VERIFY critical security vulnerabilities are patched on:"
+    def description = "AC:\\nVERIFY critical security vulnerabilities are patched on:"
     warnings.each { warning ->
         description += formatWarning(warning)
     }
