@@ -17,7 +17,7 @@ public Set getSecurityWarnings() {
 }
 
 public static String formatWarning(warning) {
-    String formattedWarning = "\\nVulnerability detected in plugin: ${warning.component}. "
+    String formattedWarning = "\\n${warning.component}. "
     formattedWarning += "${warning.message}. For more information, see ${warning.url}"
     return formattedWarning
 }
@@ -28,7 +28,9 @@ public static void main(String[] args) {
     warnings.each { warning ->
         description += formatWarning(warning)
     }
-    println(description)
+    description += """\\nImplementation Details:\\nhttps://openedx.atlassian.net/
+                   wiki/spaces/EdxOps/pages/1062895636/How+to+update+jenkins+plugins+for+https+build.testeng.edx.org\\n
+                   https://openedx.atlassian.net/wiki/spaces/EdxOps/pages/1062895636/How+to+update+jenkins+plugins+for+https+build.testeng.edx.org"""
     def authString = "nadeem.shahzad@arbisoft.com:3aINhIFy5qzRHC9rrlYX0CF5"
     def req = """{
         "fields": {
