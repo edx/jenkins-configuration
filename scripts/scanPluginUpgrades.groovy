@@ -17,25 +17,25 @@ public Set getSecurityWarnings() {
 }
 
 public static String formatWarning(warning) {
-    String formattedWarning = "\nVulnerability detected in plugin: ${warning.component}. "
+    String formattedWarning = "\n"+"Vulnerability detected in plugin: ${warning.component}. "
     formattedWarning += "${warning.message}. For more information, see ${warning.url}"
     return formattedWarning
 }
 
 public static void main(String[] args) {
     def warnings = getSecurityWarnings()
-    def description = "AC:\nVERIFY critical security vulnerabilities are patched on following plugins"
+    def description = "AC:"+"\r\n"+"VERIFY critical security vulnerabilities are patched on:"
     warnings.each { warning ->
         description += formatWarning(warning)
     }
     println(description)
     def authString = "nadeem.shahzad@arbisoft.com:3aINhIFy5qzRHC9rrlYX0CF5"
-    def body_req = """{
+    def req = """{
         "fields": {
             "project" : { "key" : "DEVOPS" },
             "issuetype" : { "name" : "Bug" },
             "summary" : "Build Jenkins Security Check",
-            "description" : \"$description\" }
+            "description" : "verify" }
     }"""
 
     def jira_url = "https://arbisoft123.atlassian.net/rest/api/2/issue/"
@@ -47,7 +47,7 @@ public static void main(String[] args) {
     
     if ( issueCount == 0 ) {
         println("Creating new Issue:")
-        def createIssue = [ "curl", "-u", "${authString}", "-X", "POST" ,"--data", "${body_req}", "-H", "Content-Type: application/json", "${jira_url}"].execute()
+        def createIssue = [ "curl", "-u", "${authString}", "-X", "POST" ,"--data", "${req}", "-H", "Content-Type: application/json", "${jira_url}"].execute()
         println(createIssue.text)
     }
 
