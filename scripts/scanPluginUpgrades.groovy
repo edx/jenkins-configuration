@@ -36,22 +36,21 @@ https://openedx.atlassian.net/wiki/spaces/EdxOps/pages/1062895636/How+to+update+
     def req = """{
         "fields": {
             "project" : { "key" : "DOS" },
-            "issuetype" : { "name" : "Alert" },
+            "issuetype" : { "name" : "Bug" },
             "summary" : "Build Jenkins Security Check",
             "description" : "${description}" }
     }"""
 
-    def jira_url = "https://arbisoft123.atlassian.net/rest/api/2/issue/"
-    def jqlSearch = "https://arbisoft123.atlassian.net/rest/api/2/search/?jql=project%20%3D%20DOS%20AND%20summary%20~%20%27Build%20Jenkins%20Security%20Check%27%20AND%20status%20not%20in%20(Closed%2C%20Canceled%2C%20Done)"
+    //def jira_base_url = "https://openedx.atlassian.net/rest/api/2/"
+    def jira_base_url = "https://arbisoft123.atlassian.net/rest/api/2/"
+    def jqlSearch = "${jira_base_url}/search/?jql=project%20%3D%20DOS%20AND%20summary%20~%20%27Build%20Jenkins%20Security%20Check%27%20AND%20status%20not%20in%20(Closed%2C%20Canceled%2C%20Done)"
       
     def searchIssue = [ "curl", "-u", "${authString}", "-X", "GET", "-H", "Content-Type: application/json", "${jqlSearch}"].execute().text
-    println(searchIssue)
     def issueCount = new JsonSlurper().parseText(searchIssue).total
-    println(issueCount)
     
     if ( issueCount == 0 ) {
         println("Creating Build Jenkins Security Check Ticket")
-        def createIssue = [ "curl", "-u", "${authString}", "-X", "POST" ,"--data", "${req}", "-H", "Content-Type: application/json", "${jira_url}"].execute()
+        def createIssue = [ "curl", "-u", "${authString}", "-X", "POST" ,"--data", "${req}", "-H", "Content-Type: application/json", "${jira_base_url}/issue"].execute()
         println(createIssue.text)
     }
 
