@@ -36,7 +36,7 @@ https://openedx.atlassian.net/wiki/spaces/EdxOps/pages/1062895636/How+to+update+
     def req = """{
         "fields": {
             "project" : { "key" : "DOS" },
-            "issuetype" : { "name" : "Security" },
+            "issuetype" : { "name" : "Alert" },
             "summary" : "Build Jenkins Security Check",
             "description" : "${description}" }
     }"""
