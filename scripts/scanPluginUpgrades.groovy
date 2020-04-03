@@ -17,7 +17,7 @@ public Set getSecurityWarnings() {
 }
 
 public static String formatWarning(warning) {
-    String formattedWarning = "Vulnerability detected in plugin: ${warning.component}. "
+    String formattedWarning = "\nVulnerability detected in plugin: ${warning.component}. "
     formattedWarning += "${warning.message}. For more information, see ${warning.url}"
     return formattedWarning
 }
