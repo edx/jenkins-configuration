@@ -34,6 +34,9 @@ https://openedx.atlassian.net/wiki/spaces/EdxOps/pages/1062895636/How+to+update+
     println(description)
     def authString = "nadeem.shahzad@arbisoft.com:3aINhIFy5qzRHC9rrlYX0CF5"
 
+def env = System.getenv()
+
+println ("${env}")
 
 def user = binding.getVariables().get("JIRA_USER")
 def myVar = build.getBuildVariables().get('JIRA_USER')
