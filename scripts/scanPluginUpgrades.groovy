@@ -8,6 +8,15 @@
 import jenkins.security.UpdateSiteWarningsConfiguration
 
 import groovy.json.JsonSlurper
+
+
+
+
+
+
+
+
+
 // Return a list of Security Warnings from the Jenkins update center
 // that are pertinent to the plugins installed in this Jenkins instance
 public Set getSecurityWarnings() {
@@ -31,19 +40,21 @@ public static void main(String[] args) {
     description += """\\n*Implementation Details:*\\nhttps://openedx.atlassian.net/\
 wiki/spaces/EdxOps/pages/1062895636/How+to+update+jenkins+plugins+for+https+build.testeng.edx.org\\n\
 https://openedx.atlassian.net/wiki/spaces/EdxOps/pages/1062895636/How+to+update+jenkins+plugins+for+https+build.testeng.edx.org"""
-    println(description)
     def authString = "nadeem.shahzad@arbisoft.com:3aINhIFy5qzRHC9rrlYX0CF5"
 
+def jenkinsCredentials = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
+        com.cloudbees.plugins.credentials.Credentials.class,
+        Jenkins.instance,
+        null,
+        null
+);
+for (creds in jenkinsCredentials) {
+    println(jenkinsCredentials.id)
+    }
 
-def user = binding.getVariables()
-def myVar = build.getBuildVariables()
-println("${user}")
-println("${myVar}")
 
 
-def u =  System.getenv('JIRA_USER')
-println("${u}")
-    //def authString = env['JIRA_USER']:env['JIRA_PASSWORD']
+
 //println("${authString}")
 
     def req = """{
