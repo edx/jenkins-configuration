@@ -33,9 +33,7 @@ wiki/spaces/EdxOps/pages/1062895636/How+to+update+jenkins+plugins+for+https+buil
 https://openedx.atlassian.net/wiki/spaces/EdxOps/pages/1062895636/How+to+update+jenkins+plugins+for+https+build.testeng.edx.org"""
     println(description)
     def authString = "nadeem.shahzad@arbisoft.com:3aINhIFy5qzRHC9rrlYX0CF5"
-    def env = System.getenv()
-    def username = env['JIRA_USER']
-    println("${username}")
+    println("${JIRA_USER}")
     //def authString = env['JIRA_USER']:env['JIRA_PASSWORD']
 println("${authString}")
 
