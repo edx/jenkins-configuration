@@ -36,14 +36,14 @@ https://openedx.atlassian.net/wiki/spaces/EdxOps/pages/1062895636/How+to+update+
     def req = """{
         "fields": {
             "project" : { "key" : "DOS" },
-            "issuetype" : { "name" : "Bug" },
+            "issuetype" : { "name" : "Alert" },
             "summary" : "Build Jenkins Security Check",
             "description" : "${description}" }
     }"""
 
-    //def jira_base_url = "https://openedx.atlassian.net/rest/api/2/"
+    def jira_base_url = "https://openedx.atlassian.net/rest/api/2/"
     def jira_base_url = "https://arbisoft123.atlassian.net/rest/api/2/"
-    def jqlSearch = "${jira_base_url}/search/?jql=project%20%3D%20DOS%20AND%20summary%20~%20%27Build%20Jenkins%20Security%20Check%27%20AND%20status%20not%20in%20(Closed%2C%20Canceled%2C%20Done)"
+    def jqlSearch = "${jira_base_url}/search/?jql=project+%3D+DOS+AND+summary+%7E+%27Build+Jenkins+Security+Check%27+AND+status+not+in+%28Closed%2C+Canceled%2C+Done%29"
       
     def searchIssue = [ "curl", "-u", "${authString}", "-X", "GET", "-H", "Content-Type: application/json", "${jqlSearch}"].execute().text
     def issueCount = new JsonSlurper().parseText(searchIssue).total
