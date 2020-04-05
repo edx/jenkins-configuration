@@ -41,7 +41,6 @@ https://openedx.atlassian.net/wiki/spaces/EdxOps/pages/1062895636/How+to+update+
             "description" : "${description}" }
     }"""
 
-    def jira_base_url = "https://openedx.atlassian.net/rest/api/2/"
     def jira_base_url = "https://arbisoft123.atlassian.net/rest/api/2/"
     def jqlSearch = "${jira_base_url}/search/?jql=project+%3D+DOS+AND+summary+%7E+%27Build+Jenkins+Security+Check%27+AND+status+not+in+%28Closed%2C+Canceled%2C+Done%29"
       
