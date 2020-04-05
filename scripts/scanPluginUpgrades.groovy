@@ -17,7 +17,7 @@ public Set getSecurityWarnings() {
 }
 
 public static String formatWarning(warning) {
-    String formattedWarning = "\\n${warning.component}. "
+    String formattedWarning = "\\n* ${warning.component}. "
     formattedWarning += "${warning.message}. For more information, see ${warning.url}"
     return formattedWarning
 }
