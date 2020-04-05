@@ -34,8 +34,8 @@ https://openedx.atlassian.net/wiki/spaces/EdxOps/pages/1062895636/How+to+update+
     println(description)
   //  def authString = "nadeem.shahzad@arbisoft.com:3aINhIFy5qzRHC9rrlYX0CF5"
     println env['JIRA_USER']
-    def authString = env['JIRA_USER']:env['JIRA_PASSWORD']
-
+    //def authString = env['JIRA_USER']:env['JIRA_PASSWORD']
+authString="test"
 println("${authString}")
 
     def req = """{
