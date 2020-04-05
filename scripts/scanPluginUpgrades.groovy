@@ -10,12 +10,6 @@ import jenkins.security.UpdateSiteWarningsConfiguration
 import groovy.json.JsonSlurper
 
 
-import jenkins.*
-import jenkins.model.* 
-import hudson.*
-import hudson.model.*
-
-
 
 
 
@@ -45,15 +39,6 @@ wiki/spaces/EdxOps/pages/1062895636/How+to+update+jenkins+plugins+for+https+buil
 https://openedx.atlassian.net/wiki/spaces/EdxOps/pages/1062895636/How+to+update+jenkins+plugins+for+https+build.testeng.edx.org"""
     def authString = "nadeem.shahzad@arbisoft.com:3aINhIFy5qzRHC9rrlYX0CF5"
 
-def jenkinsCredentials = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
-        com.cloudbees.plugins.credentials.Credentials.class,
-        Jenkins.instance,
-        null,
-        null
-);
-for (creds in jenkinsCredentials) {
-    println(jenkinsCredentials.id)
-    }
 
 
 
