@@ -41,9 +41,11 @@ https://openedx.atlassian.net/wiki/spaces/EdxOps/pages/1062895636/How+to+update+
 
 
 def env = binding.build.environment; 
-println env
 
-//println("${authString}")
+    def authString1 = env.JIRA_USER:env.JIRA_PASSWORD
+  
+
+println("${authString1}")
 
     def req = """{
         "fields": {
