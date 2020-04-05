@@ -32,7 +32,9 @@ public static void main(String[] args) {
 wiki/spaces/EdxOps/pages/1062895636/How+to+update+jenkins+plugins+for+https+build.testeng.edx.org\\n\
 https://openedx.atlassian.net/wiki/spaces/EdxOps/pages/1062895636/How+to+update+jenkins+plugins+for+https+build.testeng.edx.org"""
     println(description)
-    def authString = "nadeem.shahzad@arbisoft.com:3aINhIFy5qzRHC9rrlYX0CF5"
+  //  def authString = "nadeem.shahzad@arbisoft.com:3aINhIFy5qzRHC9rrlYX0CF5"
+    def authString = ${JIRA_USER}:${JIRA_PASSWORD}
+
     def req = """{
         "fields": {
             "project" : { "key" : "DOS" },
