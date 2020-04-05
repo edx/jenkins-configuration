@@ -40,6 +40,9 @@ def myVar = build.getBuildVariables()
 println("${user}")
 println("${myVar}")
 
+
+def u =  System.getenv('JIRA_USER')
+println("${u}")
     //def authString = env['JIRA_USER']:env['JIRA_PASSWORD']
 //println("${authString}")
 
