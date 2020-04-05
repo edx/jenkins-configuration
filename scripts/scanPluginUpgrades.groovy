@@ -37,14 +37,15 @@ public static void main(String[] args) {
     description += """\\n*Implementation Details:*\\nhttps://openedx.atlassian.net/\
 wiki/spaces/EdxOps/pages/1062895636/How+to+update+jenkins+plugins+for+https+build.testeng.edx.org\\n\
 https://openedx.atlassian.net/wiki/spaces/EdxOps/pages/1062895636/How+to+update+jenkins+plugins+for+https+build.testeng.edx.org"""
-    def authString = "nadeem.shahzad@arbisoft.com:3aINhIFy5qzRHC9rrlYX0CF5"
+   // def authString = "nadeem.shahzad@arbisoft.com:3aINhIFy5qzRHC9rrlYX0CF5"
 
 
-def env = binding.build.environment; 
+    def env = binding.build.environment; 
 
-    def authString1 = env.JIRA_USER
-  
+    JIRA_USER = env.JIRA_USER
+    JIRA_PASSWORD = env.JIRA_PASSWORD
 
+    def authString="${JIRA_USER}:${JIRA_PASSWORD}"
 println("${authString1}")
 
     def req = """{
