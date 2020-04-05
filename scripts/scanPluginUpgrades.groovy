@@ -10,7 +10,10 @@ import jenkins.security.UpdateSiteWarningsConfiguration
 import groovy.json.JsonSlurper
 
 
-
+import jenkins.*
+import jenkins.model.* 
+import hudson.*
+import hudson.model.*
 
 
 
