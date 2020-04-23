@@ -89,3 +89,6 @@ e2e:
 
 show:
 	./gradlew -b plugins.gradle show
+
+show_installed_plugins_in_docker:
+	docker exec -w /var/lib/jenkins/git/jenkins-configuration -e PLUGIN_OUTPUT_DIR=/var/lib/jenkins/plugins ${CONTAINER_NAME} ./gradlew -b plugins.gradle show

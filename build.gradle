@@ -29,7 +29,7 @@ dependencies {
     compile 'org.jenkins-ci.plugins:email-ext:2.62@jar'
     compile 'org.jenkins-ci.plugins:matrix-auth:1.5@jar'
     compile 'org.jenkins-ci.plugins:github-oauth:0.31@jar'
-    compile 'org.jenkins-ci.plugins:aws-credentials:1.24@jar'
+    compile 'org.jenkins-ci.plugins:aws-credentials:1.28@jar'
     compile 'org.jenkins-ci.plugins:credentials:2.1.18@jar'
     compile 'org.jenkins-ci.plugins:plain-credentials:1.4@jar'
     compile 'org.jenkins-ci.plugins:ssh-credentials:1.14@jar'
