@@ -38,18 +38,13 @@ before_install:
     - tar -xzf geckodriver-v0.24.0-linux64.tar.gz -C geckodriver
     - export PATH=$PATH:$PWD/geckodriver
     # install requirements and build the container
+    - cp local_env.sh.sample local_env.sh && source local_env.sh
     - make plugins
     - sudo make requirements
-    - cp local_env.sh.sample local_env.sh && source local_env.sh
-    - make build
-    - make run
-    - export BOKCHOY_HEADLESS=true
+    - make quality
 
 addons:
     firefox: '69.0'
 
 script:
     - export CI_SYSTEM='travis'
-    - make quality
-    - make healthcheck
-    - make e2e
