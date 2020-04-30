@@ -20,6 +20,12 @@ configurations {
 dependencies {
     libs 'org.apache.ivy:ivy:2.4.0@jar'
     compile 'org.codehaus.groovy:groovy-all:2.1.3'
+    compile 'javax.servlet:servlet-api:2.4'
+    compile "org.jenkins-ci.main:jenkins-war:${jenkinsVersion}"
+    testCompile 'org.codehaus.groovy:groovy-all:2.1.3'
+    testCompile 'javax.servlet:servlet-api:2.4'
+    testCompile "org.jenkins-ci.main:jenkins-war:${jenkinsVersion}"
+    runtime fileTree(dir: 'plugins', include: '*.jpi')
 }
 
 codenarc {
