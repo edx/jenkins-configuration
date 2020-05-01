@@ -50,7 +50,7 @@ class SecurityConfigurationPage(PageObject):
         return a list of the permissions enabled for a particular user
         """
         user_privileges = []
-        user_css = '[id="hudson-security-ProjectMatrixAuthorization"] > tbody > [name="[{}]"]'.format(user)
+        user_css = '[id="hudson-security-ProjectMatrixAuthorizationStrategy"] > tbody > [name="[{}]"]'.format(user)
         for p in self.q(css='{} > td > input'.format(user_css)).attrs('name'):
             privilege_name = re.search(r'\[(?P<name>.*)\]', p).group('name')
             privilege_state = self.q(

@@ -2,8 +2,8 @@
 SERVER_API_URL: 'https://api.github.com'
 ACCESS_TOKEN: 'accessTokenString'
 ADMIN_LIST:
-    - 'admin1'
-    - 'admin2'
+    - 'coryleeio'
+    - 'derf'
 REQUEST_TESTING_PHRASE: 'retest this PR please'
 WHITE_LIST_PHRASE: 'add this github user'
 BLACK_LIST_LABELS:

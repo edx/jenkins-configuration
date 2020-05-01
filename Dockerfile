@@ -54,7 +54,6 @@ COPY plugins $JENKINS_HOME/plugins/
 COPY utils/ $JENKINS_HOME/utils/
 COPY ${CONFIG_PATH} $JENKINS_HOME/init-configs/
 COPY src/main/groovy/1addJarsToClasspath.groovy \
-    src/main/groovy/2checkInstalledPlugins.groovy \
     src/main/groovy/3importCredentials.groovy \
     src/main/groovy/3installGroovy.groovy \
     src/main/groovy/3installPython.groovy \
