@@ -48,6 +48,13 @@ before_install:
 addons:
     firefox: '69.0'
 
+# Skip the "install" step, as it will cause travis to automatically call 'gradle assemble'.
+# We don't want to do this, as it will try to compile the groovy code in `src`, which will
+# cause errors because we are not pinning dependencies in the gradle file. Compilation/assembly
+# is unnecessary, as the code will be run by Jenkins and we are not building artifacts here.
+# see: https://github.com/travis-ci/travis-ci/issues/8667#issuecomment-366589908
+install: skip
+
 script:
     - export CI_SYSTEM='travis'
     - make quality
