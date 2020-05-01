@@ -71,3 +71,9 @@ class ConfigurationSubPageMixIn(object):
         whose name attribute matches the name specified.
         """
         return self.q(css='[name="{}"]'.format(el_name)).first.attrs('value')[0]
+
+class ConfigurationCloudSubPageMixIn(ConfigurationSubPageMixIn):
+    url = "http://{}:8080/configureClouds".format(JENKINS_HOST)
+
+    def __init__(self, *args, **kwargs):
+        super(ConfigurationCloudSubPageMixIn, self).__init__(*args, **kwargs)

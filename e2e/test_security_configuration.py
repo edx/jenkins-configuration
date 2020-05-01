@@ -39,7 +39,6 @@ class TestSecurityConfiguration(WebAppTest):
                 assert all([p in group['PERMISSIONS'] for p in permissions])
         assert self.main_config['CLI']['CLI_ENABLED'] == self.security_page.is_cli_remoting_enabled()
         assert self.security_config['DSL_SCRIPT_SECURITY_ENABLED'] == self.security_page.is_dsl_script_security_enabled()
-        assert self.security_config['CSRF_PROTECTION_ENABLED'] == self.security_page.is_csrf_protection_enabled()
 
     @pytest.mark.skipif(test_shard != 'shard_1', reason='incorrect shard value')
     def test_gh_oauth_enabled(self):

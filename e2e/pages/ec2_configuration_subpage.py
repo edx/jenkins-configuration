@@ -1,9 +1,9 @@
 from __future__ import absolute_import
 from . import JENKINS_HOST
 from bok_choy.page_object import PageObject
-from .configuration_page import ConfigurationSubPageMixIn
+from .configuration_page import ConfigurationCloudSubPageMixIn
 
-class Ec2ConfigurationSubPage(ConfigurationSubPageMixIn, PageObject):
+class Ec2ConfigurationSubPage(ConfigurationCloudSubPageMixIn, PageObject):
 
     def __init__(self, *args, **kwargs):
         super(Ec2ConfigurationSubPage, self).__init__(*args, **kwargs)
