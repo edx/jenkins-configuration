@@ -16,7 +16,7 @@
       <useJobPriority>false</useJobPriority>
       <priority>-1</priority>
     </jenkins.advancedqueue.AdvancedQueueSorterJobProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.31">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
