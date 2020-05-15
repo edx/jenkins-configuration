@@ -24,6 +24,7 @@ local_env.sh
 # ignore the files downloaded to build out Jenkins
 plugins/*
 utils/*
+installed_plugins
 
 # ignore artifacts from e2e tests
 .tox/
