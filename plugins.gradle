@@ -70,7 +70,7 @@ def parsePluginList() {
         pluginList = yaml.load(new File(pluginConfig).text)
     } else {
         Map<String> map = yaml.load(new File(pluginConfig).text)
-        pluginList = map['build_jenkins_plugins_list']
+        pluginList = map[pluginConfigKey]
     }
     return pluginList
 }
