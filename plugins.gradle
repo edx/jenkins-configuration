@@ -75,6 +75,7 @@ def parsePluginList() {
     return pluginList
 }
 
+
 task show {
     doLast {
         showDownloadedPlugins()
