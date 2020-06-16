@@ -85,7 +85,7 @@
   version: '1.1.0'
   group: 'org.jenkins-ci.plugins'
 - name: 'script-security'
-  version: '1.66'
+  version: '1.73'
   group: 'org.jenkins-ci.plugins'
 - name: 'shiningpanda'
   version: '0.23'
