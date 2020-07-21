@@ -1,16 +1,18 @@
 language: groovy
 jdk: openjdk8
 
-matrix:
-  include:
-  - env: TEST_SHARD=shard_1 JENKINS_VERSION='jenkins_2.222.3' TOXENV=py35
-    addons:
-      apt:
-        packages: python3-pip
-  - env: TEST_SHARD=shard_2 JENKINS_VERSION='jenkins_2.222.3' TOXENV=py35
-    addons:
-      apt:
-        packages: python3-pip
+env:
+  global:
+    - JENKINS_VERSION='jenkins_2.222.3'
+  jobs:
+    - TEST_SHARD=shard_1 TOXENV=py35
+    - TEST_SHARD=shard_2 TOXENV=py35
+    - TEST_SHARD=shard_1 TOXENV=py38
+    - TEST_SHARD=shard_2 TOXENV=py38
+      
+addons:
+  apt:
+    packages: python3-pip
 
 dist: xenial
 sudo: required
@@ -44,6 +46,11 @@ before_install:
     - make build
     - make run
     - export BOKCHOY_HEADLESS=true
+    # Install python3.8 interpreter
+    - sudo add-apt-repository ppa:deadsnakes/ppa -y;
+    - sudo apt-get update -y;
+    - sudo apt-get install python3.8 python3.8-distutils python3.8-dev -y;
+
 
 addons:
     firefox: '69.0'
