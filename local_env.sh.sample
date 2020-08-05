@@ -4,6 +4,7 @@
 # jenkins-configuration/test_data
 # Run `source local_env.sh` to set up your environment
 
+
 export CONFIG_PATH='test_data'
 export PLUGIN_CONFIG='test_data/plugins.yml'
 
