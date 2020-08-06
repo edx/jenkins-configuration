@@ -11,7 +11,7 @@ export PLUGIN_CONFIG='test_data/plugins.yml'
 # change this variable
 export JENKINS_WAR_SOURCE='https://s3.amazonaws.com/edx-testeng-tools/jenkins'
 
-export JENKINS_VERSION='jenkins_2.222.3'
+export JENKINS_VERSION='jenkins_2.235.2'
 export CONTAINER_NAME='jenkins'
 export IMAGE_NAME='localjenkins'
 
