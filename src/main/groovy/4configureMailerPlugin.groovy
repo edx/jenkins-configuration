@@ -37,13 +37,19 @@ JSONObject json = new JSONObject()
 json.put('smtpHost', mailerConfig.SMTP_SERVER)
 json.put('replyToAddress', mailerConfig.REPLY_TO_ADDRESS)
 json.put('defaultSuffix', mailerConfig.DEFAULT_SUFFIX)
-JSONObject auth = new JSONObject()
-auth.put('smtpAuthUserName', mailerConfig.SMTP_AUTH_USERNAME)
-auth.put('smtpAuthPasswordSecret', mailerConfig.SMTP_AUTH_PASSWORD)
-json.put('useSMTPAuth', auth)
+
+// JSONObject auth = new JSONObject()
+// auth.put('smtpAuthUserName', mailerConfig.SMTP_AUTH_USERNAME)
+// auth.put('smtpAuthPasswordSecret', mailerConfig.SMTP_AUTH_PASSWORD)
+// json.put('useSMTPAuth', auth)
+
+json.put('authentication', true)
+json.put('username', mailerConfig.SMTP_AUTH_USERNAME)
+auth.put('password', mailerConfig.SMTP_AUTH_PASSWORD)
+
 json.put('smtpPort', mailerConfig.SMTP_PORT)
 json.put('useSsl', mailerConfig.USE_SSL)
-//json.pet('useTls', true)
+json.put('useTls', true)
 json.put('charset', mailerConfig.CHAR_SET)
 StaplerRequest stapler = null
 try {
@@ -63,6 +69,8 @@ catch (NullPointerException e) {
     logger.severe("YO DAWG.zzzzz there was a null point=============")
     logger.severe(e.toString())
     logger.severe(mailerConfig.toString())
+    logger.severe(json.toString())
+    //logger.severe(auth.toString())
     jenkins.doSafeExit(null)
     System.exit(1)
 }
