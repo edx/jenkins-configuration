@@ -58,4 +58,11 @@ try {
     jenkins.doSafeExit(null)
     System.exit(1)
 }
+catch (NullPointerException e) {
+    logger.severe("YO DAWG.zzzzz there was a null point=============")
+    logger.severe(e.toString())
+    logger.severe(mailerConfig.toString())
+    jenkins.doSafeExit(null)
+    System.exit(1)
+}
 logger.info('Successfully configured the mailer plugin')
