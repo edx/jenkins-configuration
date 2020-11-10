@@ -51,7 +51,7 @@ json.put('smtpPort', mailerConfig.SMTP_PORT)
 json.put('useSsl', mailerConfig.USE_SSL)
 json.put('useTls', true)
 json.put('charset', mailerConfig.CHAR_SET)
-StaplerRequest stapler = null
+StaplerRequest stapler = new StaplerRequest()
 try {
     descriptor.configure(stapler, json)
 } catch (JSONException e) {
