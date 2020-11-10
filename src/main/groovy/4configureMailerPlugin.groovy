@@ -43,6 +43,7 @@ auth.put('smtpAuthPasswordSecret', mailerConfig.SMTP_AUTH_PASSWORD)
 json.put('useSMTPAuth', auth)
 json.put('smtpPort', mailerConfig.SMTP_PORT)
 json.put('useSsl', mailerConfig.USE_SSL)
+json.pet('useTls', true)
 json.put('charset', mailerConfig.CHAR_SET)
 StaplerRequest stapler = null
 try {
