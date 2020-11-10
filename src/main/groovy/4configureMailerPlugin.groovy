@@ -45,7 +45,7 @@ json.put('defaultSuffix', mailerConfig.DEFAULT_SUFFIX)
 
 json.put('authentication', true)
 json.put('username', mailerConfig.SMTP_AUTH_USERNAME)
-auth.put('password', mailerConfig.SMTP_AUTH_PASSWORD)
+json.put('password', mailerConfig.SMTP_AUTH_PASSWORD)
 
 json.put('smtpPort', mailerConfig.SMTP_PORT)
 json.put('useSsl', mailerConfig.USE_SSL)
