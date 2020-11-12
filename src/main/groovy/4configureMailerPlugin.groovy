@@ -14,6 +14,7 @@ import org.kohsuke.stapler.*;
 
 @Grapes([
     @Grab(group='org.yaml', module='snakeyaml', version='1.17')
+    @Grab(group='org.mockito', module='mockito-all', version='1.10.19')
 ])
 import org.yaml.snakeyaml.Yaml
 import org.yaml.snakeyaml.constructor.SafeConstructor
