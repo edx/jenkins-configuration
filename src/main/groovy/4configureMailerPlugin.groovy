@@ -50,7 +50,7 @@ json.put('charset', mailerConfig.CHAR_SET)
 json.put('sendTestMailTo', mailerConfig.REPLY_TO_ADDRESS) // dunno what tthis should be
 
 // these are extra??
-json.put('replyToAddress', mailerConfig.REPLY_TO_ADDRESS)
+//json.put('replyToAddress', mailerConfig.REPLY_TO_ADDRESS)
 json.put('address', mailerConfig.REPLY_TO_ADDRESS)
 json.put('defaultSuffix', mailerConfig.DEFAULT_SUFFIX)
 
