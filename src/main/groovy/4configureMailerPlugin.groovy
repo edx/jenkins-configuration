@@ -51,6 +51,7 @@ json.put('sendTestMailTo', mailerConfig.REPLY_TO_ADDRESS) // dunno what tthis sh
 
 // these are extra??
 json.put('replyToAddress', mailerConfig.REPLY_TO_ADDRESS)
+json.put('address', mailerConfig.REPLY_TO_ADDRESS)
 json.put('defaultSuffix', mailerConfig.DEFAULT_SUFFIX)
 
 // JSONObject auth = new JSONObject()
