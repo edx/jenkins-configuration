@@ -5,16 +5,19 @@
 import java.util.logging.Logger
 import net.sf.json.JSONObject
 import net.sf.json.JSONException
+import javax.servlet.http.HttpServletRequestWrapper
 
 import jenkins.model.*
 import hudson.tasks.Mailer
-import org.kohsuke.stapler.StaplerRequest;
+//import org.kohsuke.stapler.StaplerRequest;
+import org.kohsuke.stapler.*;
 
 @Grapes([
     @Grab(group='org.yaml', module='snakeyaml', version='1.17')
 ])
 import org.yaml.snakeyaml.Yaml
 import org.yaml.snakeyaml.constructor.SafeConstructor
+import org.mockito.Mockito
 
 Logger logger = Logger.getLogger("")
 Jenkins jenkins = Jenkins.getInstance()
@@ -51,7 +54,16 @@ json.put('smtpPort', mailerConfig.SMTP_PORT)
 json.put('useSsl', mailerConfig.USE_SSL)
 json.put('useTls', true)
 json.put('charset', mailerConfig.CHAR_SET)
-StaplerRequest stapler = new StaplerRequest()
+
+//StaplerRequest stapler = null
+StaplerRequest stapler =  new RequestImpl(
+    new Stapler(),
+    Mockito.mock(HttpServletRequestWrapper.class),
+    new ArrayList<AncestorImpl>(),
+    new TokenList("")
+)
+
+
 try {
     descriptor.configure(stapler, json)
 } catch (JSONException e) {
