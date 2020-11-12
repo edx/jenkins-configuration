@@ -39,6 +39,17 @@ def descriptor = jenkins.getDescriptorByType(
                  )
 JSONObject json = new JSONObject()
 json.put('smtpHost', mailerConfig.SMTP_SERVER)
+json.put('adminAddress', mailerConfig.REPLY_TO_ADDRESS) // this is deprecated as of 1.4 but adding it in for testing
+json.put('authentication', true)
+json.put('username', mailerConfig.SMTP_AUTH_USERNAME)
+json.put('password', mailerConfig.SMTP_AUTH_PASSWORD)
+json.put('useSsl', mailerConfig.USE_SSL)
+json.put('useTls', true)
+json.put('smtpPort', mailerConfig.SMTP_PORT)
+json.put('charset', mailerConfig.CHAR_SET)
+json.put('sendTestMailTo', mailerConfig.REPLY_TO_ADDRESS) // dunno what tthis should be
+
+// these are extra??
 json.put('replyToAddress', mailerConfig.REPLY_TO_ADDRESS)
 json.put('defaultSuffix', mailerConfig.DEFAULT_SUFFIX)
 
@@ -47,16 +58,16 @@ json.put('defaultSuffix', mailerConfig.DEFAULT_SUFFIX)
 // auth.put('smtpAuthPasswordSecret', mailerConfig.SMTP_AUTH_PASSWORD)
 // json.put('useSMTPAuth', auth)
 
-json.put('authentication', true)
-json.put('username', mailerConfig.SMTP_AUTH_USERNAME)
-json.put('password', mailerConfig.SMTP_AUTH_PASSWORD)
 
-json.put('smtpPort', mailerConfig.SMTP_PORT)
-json.put('useSsl', mailerConfig.USE_SSL)
-json.put('useTls', true)
-json.put('charset', mailerConfig.CHAR_SET)
 
+
+
+
+
+// The old way:
 //StaplerRequest stapler = null
+
+// This does not fix the issue sadly
 StaplerRequest stapler =  new RequestImpl(
     new Stapler(),
     Mockito.mock(HttpServletRequestWrapper.class),
