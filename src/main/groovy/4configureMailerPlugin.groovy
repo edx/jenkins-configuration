@@ -66,15 +66,15 @@ json.put('defaultSuffix', mailerConfig.DEFAULT_SUFFIX)
 
 
 // The old way:
-//StaplerRequest stapler = null
+StaplerRequest stapler = null
 
 // This does not fix the issue sadly
-StaplerRequest stapler =  new RequestImpl(
-    new Stapler(),
-    Mockito.mock(HttpServletRequestWrapper.class),
-    new ArrayList<AncestorImpl>(),
-    new TokenList("")
-)
+// StaplerRequest stapler =  new RequestImpl(
+//     new Stapler(),
+//     Mockito.mock(HttpServletRequestWrapper.class),
+//     new ArrayList<AncestorImpl>(),
+//     new TokenList("")
+// )
 
 
 try {
