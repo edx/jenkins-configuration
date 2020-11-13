@@ -43,16 +43,16 @@ JSONObject json = new JSONObject()
 // json.put('authentication', true)
 // json.put('username', mailerConfig.SMTP_AUTH_USERNAME)
 // json.put('password', mailerConfig.SMTP_AUTH_PASSWORD)
-json.put('useSsl', mailerConfig.USE_SSL)
-json.put('useTls', true)
-json.put('smtpPort', mailerConfig.SMTP_PORT)
-json.put('charset', mailerConfig.CHAR_SET)
+// json.put('useSsl', mailerConfig.USE_SSL)
+// json.put('useTls', true)
+// json.put('smtpPort', mailerConfig.SMTP_PORT)
+// json.put('charset', mailerConfig.CHAR_SET)
 // json.put('sendTestMailTo', mailerConfig.REPLY_TO_ADDRESS) // dunno what tthis should be
 
 // these are extra??
 //json.put('replyToAddress', mailerConfig.REPLY_TO_ADDRESS)
 // json.put('address', mailerConfig.REPLY_TO_ADDRESS)
-json.put('defaultSuffix', mailerConfig.DEFAULT_SUFFIX)
+// json.put('defaultSuffix', mailerConfig.DEFAULT_SUFFIX)
 
 // JSONObject auth = new JSONObject()
 // auth.put('smtpAuthUserName', mailerConfig.SMTP_AUTH_USERNAME)
