@@ -38,7 +38,7 @@ def descriptor = jenkins.getDescriptorByType(
                     hudson.tasks.Mailer.DescriptorImpl.class
                  )
 JSONObject json = new JSONObject()
-// json.put('smtpHost', mailerConfig.SMTP_SERVER)
+json.put('smtpHost', mailerConfig.SMTP_SERVER)
 // json.put('adminAddress', mailerConfig.REPLY_TO_ADDRESS) // this is deprecated as of 1.4 but adding it in for testing
 // json.put('authentication', true)
 // json.put('username', mailerConfig.SMTP_AUTH_USERNAME)
