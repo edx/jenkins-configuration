@@ -14,6 +14,8 @@ import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.Stapler;
 import org.kohsuke.stapler.export.Exported;
+import javax.servlet.http.HttpServletRequestWrapper
+
 
 @Grapes([
     @Grab(group='org.yaml', module='snakeyaml', version='1.17')
@@ -53,8 +55,12 @@ json.put('charset', mailerConfig.CHAR_SET)
 System.out.println(json.toString());
 println "+++++++++++++++"
 println json.toString()
-StaplerRequest stapler = new StaplerRequest()
-stapler.setAttribute("errorMessage", "error")
+StaplerRequest stapler =  new RequestImpl(
+    new Stapler(),
+    Mockito.mock(HttpServletRequestWrapper.class),
+    new ArrayList<AncestorImpl>(),
+    new TokenList("")
+)
 println stapler
 //StaplerRequest stapler = null
 try {
