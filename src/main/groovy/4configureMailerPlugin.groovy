@@ -34,15 +34,16 @@ def descriptor = jenkins.getDescriptorByType(
                     hudson.tasks.Mailer.DescriptorImpl.class
                  )
 JSONObject json = new JSONObject()
-json.put('smtpServer', mailerConfig.SMTP_SERVER)
+json.put('smtpHost', mailerConfig.SMTP_SERVER)
 json.put('replyToAddress', mailerConfig.REPLY_TO_ADDRESS)
 json.put('defaultSuffix', mailerConfig.DEFAULT_SUFFIX)
 JSONObject auth = new JSONObject()
-auth.put('smtpAuthUserName', mailerConfig.SMTP_AUTH_USERNAME)
-auth.put('smtpAuthPasswordSecret', mailerConfig.SMTP_AUTH_PASSWORD)
-json.put('useSMTPAuth', auth)
+auth.put('username', mailerConfig.SMTP_AUTH_USERNAME)
+auth.put('password', mailerConfig.SMTP_AUTH_PASSWORD)
+json.put('authentication', auth)
 json.put('smtpPort', mailerConfig.SMTP_PORT)
 json.put('useSsl', mailerConfig.USE_SSL)
+json.put('useTls', 'False')
 json.put('charset', mailerConfig.CHAR_SET)
 System.out.println(json.toString());
 println "+++++++++++++++"
