@@ -54,6 +54,7 @@ System.out.println(json.toString());
 println "+++++++++++++++"
 println json.toString()
 StaplerRequest stapler = Stapler.getCurrentRequest();
+println stapler
 //StaplerRequest stapler = null
 try {
     descriptor.configure(stapler, json)
