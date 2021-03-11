@@ -9,6 +9,11 @@ import net.sf.json.JSONException
 import jenkins.model.*
 import hudson.tasks.Mailer
 import org.kohsuke.stapler.StaplerRequest;
+import org.kohsuke.stapler.AncestorInPath;
+import org.kohsuke.stapler.DataBoundConstructor;
+import org.kohsuke.stapler.QueryParameter;
+import org.kohsuke.stapler.Stapler;
+import org.kohsuke.stapler.export.Exported;
 
 @Grapes([
     @Grab(group='org.yaml', module='snakeyaml', version='1.17')
@@ -48,7 +53,8 @@ json.put('charset', mailerConfig.CHAR_SET)
 System.out.println(json.toString());
 println "+++++++++++++++"
 println json.toString()
-StaplerRequest stapler = null
+StaplerRequest stapler = Stapler.getCurrentRequest();
+//StaplerRequest stapler = null
 try {
     descriptor.configure(stapler, json)
 } catch (JSONException e) {
