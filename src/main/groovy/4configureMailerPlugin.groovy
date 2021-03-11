@@ -54,6 +54,7 @@ System.out.println(json.toString());
 println "+++++++++++++++"
 println json.toString()
 StaplerRequest stapler = Stapler.getCurrentRequest();
+stapler.setAttribute("errorMessage", "error");
 println stapler
 //StaplerRequest stapler = null
 try {
