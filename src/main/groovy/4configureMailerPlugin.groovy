@@ -44,6 +44,9 @@ json.put('useSMTPAuth', auth)
 json.put('smtpPort', mailerConfig.SMTP_PORT)
 json.put('useSsl', mailerConfig.USE_SSL)
 json.put('charset', mailerConfig.CHAR_SET)
+echo json
+echo "+++++++++++++++"
+println json.toString()
 StaplerRequest stapler = null
 try {
     descriptor.configure(stapler, json)
