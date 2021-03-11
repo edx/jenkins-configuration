@@ -44,8 +44,8 @@ json.put('useSMTPAuth', auth)
 json.put('smtpPort', mailerConfig.SMTP_PORT)
 json.put('useSsl', mailerConfig.USE_SSL)
 json.put('charset', mailerConfig.CHAR_SET)
-echo json
-echo "+++++++++++++++"
+System.out.println(json.toString());
+println "+++++++++++++++"
 println json.toString()
 StaplerRequest stapler = null
 try {
