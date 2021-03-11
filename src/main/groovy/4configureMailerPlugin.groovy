@@ -53,8 +53,7 @@ json.put('charset', mailerConfig.CHAR_SET)
 System.out.println(json.toString());
 println "+++++++++++++++"
 println json.toString()
-StaplerRequest stapler = Stapler.getCurrentRequest();
-stapler.test_veriable = 'errorMessage'
+StaplerRequest stapler = stapler.setAttribute("errorMessage", "error");
 println stapler
 //StaplerRequest stapler = null
 try {
