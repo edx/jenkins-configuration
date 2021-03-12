@@ -55,12 +55,27 @@ json.put('charset', mailerConfig.CHAR_SET)
 System.out.println(json.toString());
 println "+++++++++++++++"
 println json.toString()
-StaplerRequest stapler =  new RequestImpl(
-    new Stapler(),
-    Mockito.mock(HttpServletRequestWrapper.class),
-    new ArrayList<AncestorImpl>(),
-    new TokenList("")
-)
+// create a mocked stapler request
+// the following values will be inherited from the mailer plugin (assuming the plugin
+// is installed and configured) and therefore do not need to be added to the stapler
+// request
+//      "ext_mailer_smtp_server"
+//      "ext_mailer_default_suffix"
+//      "ext_mailer_use_smtp_auth"
+//      "ext_mailer_smtp_username"
+//      "ext_mailer_smtp_password"
+//      "ext_mailer_smtp_use_ssl"
+//      "ext_mailer_smtp_port"
+//      "ext_mailer_charset"
+params = [
+    "ext_mailer_smtp_host": mailerConfig.SMTP_SERVER,
+]
+
+def stapler = [
+    getParameter: { name -> params[name] },
+    hasParameter: { name -> params.keySet().contains(name) },
+    getParameterValues: { name -> params[name] }
+] as org.kohsuke.stapler.StaplerRequest
 println stapler
 //StaplerRequest stapler = null
 try {
