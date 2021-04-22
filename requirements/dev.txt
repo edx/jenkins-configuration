@@ -38,7 +38,7 @@ selenium==3.141.0         # via -r requirements/test.txt, bok-choy
 singledispatch==3.6.1     # via -r requirements/travis.txt, importlib-resources
 six==1.15.0               # via -r requirements/pip-tools.txt, -r requirements/test.txt, -r requirements/travis.txt, bok-choy, jenkinsapi, more-itertools, pathlib2, pip-tools, pytest, singledispatch, tox, virtualenv
 toml==0.10.2              # via -r requirements/travis.txt, tox
-tox-battery==0.6.1        # via -r requirements/travis.txt
+tox-battery==0.5.1        # via -r requirements/travis.txt
 tox==3.23.0               # via -r requirements/travis.txt, tox-battery
 typing==3.7.4.3           # via -r requirements/travis.txt, importlib-resources
 urllib3==1.26.4           # via -r requirements/test.txt, requests, selenium
