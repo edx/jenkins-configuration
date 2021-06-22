@@ -5,11 +5,11 @@ buildscript {
   repositories {
         mavenCentral()
         maven {
-          url 'http://repo.jenkins-ci.org/releases/'
+          url "https://plugins.gradle.org/m2/"
         }
   }
   dependencies {
-        classpath 'org.jenkins-ci.tools:gradle-jpi-plugin:0.28.0'
+        classpath "gradle.plugin.org.jenkins-ci.tools:gradle-jpi-plugin:0.28.0"
         classpath 'org.yaml:snakeyaml:1.17'
   }
 }
