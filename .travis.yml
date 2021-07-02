@@ -5,8 +5,6 @@ env:
   global:
     - JENKINS_VERSION='jenkins_2.263.4'
   jobs:
-    - TEST_SHARD=shard_1 TOXENV=py35
-    - TEST_SHARD=shard_2 TOXENV=py35
     - TEST_SHARD=shard_1 TOXENV=py38
     - TEST_SHARD=shard_2 TOXENV=py38
       
@@ -39,17 +37,19 @@ before_install:
     - mkdir geckodriver
     - tar -xzf geckodriver-v0.24.0-linux64.tar.gz -C geckodriver
     - export PATH=$PATH:$PWD/geckodriver
-    # install requirements and build the container
-    - make plugins
-    - sudo make requirements
-    - cp local_env.sh.sample local_env.sh && source local_env.sh
-    - make build
-    - make run
-    - export BOKCHOY_HEADLESS=true
     # Install python3.8 interpreter
     - sudo add-apt-repository ppa:deadsnakes/ppa -y;
     - sudo apt-get update -y;
     - sudo apt-get install python3.8 python3.8-distutils python3.8-dev -y;
+    - virtualenv -p python3.8 venv;
+    - source venv/bin/activate;
+    # install requirements and build the container
+    - make plugins
+    - make requirements
+    - cp local_env.sh.sample local_env.sh && source local_env.sh
+    - make build
+    - make run
+    - export BOKCHOY_HEADLESS=true
 
 
 addons:
