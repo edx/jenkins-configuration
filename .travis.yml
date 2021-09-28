@@ -3,7 +3,7 @@ jdk: openjdk8
 
 env:
   global:
-    - JENKINS_VERSION='jenkins_2.263.4'
+    - JENKINS_VERSION='jenkins_2.289.3'
   jobs:
     - TEST_SHARD=shard_1 TOXENV=py38
     - TEST_SHARD=shard_2 TOXENV=py38
