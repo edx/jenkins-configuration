@@ -1,0 +1,54 @@
+name: CI / Tests
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-20.04
+    env:
+      JENKINS_VERSION: 'jenkins_2.263.4'
+      BOKCHOY_HEADLESS: true
+      CI_SYSTEM: 'travis'
+      CONFIG_PATH: 'test_data'
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ['shard_1', 'shard_2']
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Install Firefox 69
+        run: |
+          sudo apt-get purge firefox
+          wget "https://ftp.mozilla.org/pub/firefox/releases/69.0/linux-x86_64/en-US/firefox-69.0.tar.bz2"
+          tar -xjf firefox-69.0.tar.bz2
+          sudo mv firefox /opt/firefox
+          sudo ln -s /opt/firefox/firefox /usr/bin/firefox
+
+      - uses: browser-actions/setup-geckodriver@latest
+      - name: Run Build
+        run: |
+          make plugins
+          make requirements
+          cp local_env.sh.sample local_env.sh && source local_env.sh
+          make build
+          make run
+
+      - name: Run Tests
+        env:
+          TEST_SHARD: ${{ matrix.shard }}
+        run: |
+          make quality
+          make healthcheck
+          make e2e
