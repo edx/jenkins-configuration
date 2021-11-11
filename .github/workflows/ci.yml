@@ -36,7 +36,7 @@ jobs:
           sudo mv firefox /opt/firefox
           sudo ln -s /opt/firefox/firefox /usr/bin/firefox
 
-      - uses: browser-actions/setup-geckodriver@v0.24.0
+      - uses: browser-actions/setup-geckodriver@0.24.0
       - run: geckodriver --version
       - name: Run Build
         run: |
