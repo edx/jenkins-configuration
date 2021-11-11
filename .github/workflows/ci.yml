@@ -17,7 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shard: ['shard_1', 'shard_2']
+        TEST_SHARD: ['shard_1', 'shard_2']
 
     steps:
       - name: Checkout
