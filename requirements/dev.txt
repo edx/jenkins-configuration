@@ -6,7 +6,7 @@
 #
 appdirs==1.4.4
     # via
-    #   -r requirements/travis.txt
+    #   -r requirements/ci.txt
     #   virtualenv
 attrs==21.2.0
     # via
@@ -28,11 +28,11 @@ click==8.0.1
     #   pip-tools
 distlib==0.3.2
     # via
-    #   -r requirements/travis.txt
+    #   -r requirements/ci.txt
     #   virtualenv
 filelock==3.0.12
     # via
-    #   -r requirements/travis.txt
+    #   -r requirements/ci.txt
     #   tox
     #   virtualenv
 idna==2.10
@@ -52,7 +52,7 @@ lazy==1.4
 packaging==20.9
     # via
     #   -r requirements/test.txt
-    #   -r requirements/travis.txt
+    #   -r requirements/ci.txt
     #   pytest
     #   tox
 pep517==0.10.0
@@ -64,19 +64,19 @@ pip-tools==6.2.0
 pluggy==0.13.1
     # via
     #   -r requirements/test.txt
-    #   -r requirements/travis.txt
+    #   -r requirements/ci.txt
     #   pytest
     #   tox
 py==1.10.0
     # via
     #   -r requirements/test.txt
-    #   -r requirements/travis.txt
+    #   -r requirements/ci.txt
     #   pytest
     #   tox
 pyparsing==2.4.7
     # via
     #   -r requirements/test.txt
-    #   -r requirements/travis.txt
+    #   -r requirements/ci.txt
     #   packaging
 pytest==6.2.4
     # via -r requirements/test.txt
@@ -97,7 +97,7 @@ selenium==3.141.0
 six==1.16.0
     # via
     #   -r requirements/test.txt
-    #   -r requirements/travis.txt
+    #   -r requirements/ci.txt
     #   bok-choy
     #   jenkinsapi
     #   tox
@@ -106,16 +106,16 @@ toml==0.10.2
     # via
     #   -r requirements/pip-tools.txt
     #   -r requirements/test.txt
-    #   -r requirements/travis.txt
+    #   -r requirements/ci.txt
     #   pep517
     #   pytest
     #   tox
 tox==3.23.1
     # via
-    #   -r requirements/travis.txt
+    #   -r requirements/ci.txt
     #   tox-battery
 tox-battery==0.6.1
-    # via -r requirements/travis.txt
+    # via -r requirements/ci.txt
 urllib3==1.26.5
     # via
     #   -r requirements/test.txt
@@ -123,7 +123,7 @@ urllib3==1.26.5
     #   selenium
 virtualenv==20.4.7
     # via
-    #   -r requirements/travis.txt
+    #   -r requirements/ci.txt
     #   tox
 wheel==0.36.2
     # via
