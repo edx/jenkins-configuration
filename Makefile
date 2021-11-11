@@ -64,7 +64,7 @@ quality:
 
 requirements:
 	./gradlew libs
-	pip install -r requirements/travis.txt
+	pip install -r requirements/ci.txt
 
 get-password:
 	docker exec ${CONTAINER_NAME} cat /var/lib/jenkins/secrets/initialAdminPassword
@@ -78,7 +78,7 @@ upgrade: ## update the requirements/*.txt files with the latest packages satisfy
 	# Make sure to compile files after any other files they include!
 	$(PIP_COMPILE) -o requirements/pip-tools.txt requirements/pip-tools.in
 	$(PIP_COMPILE) -o requirements/test.txt requirements/test.in
-	$(PIP_COMPILE) -o requirements/travis.txt requirements/travis.in
+	$(PIP_COMPILE) -o requirements/ci.txt requirements/ci.in
 	$(PIP_COMPILE) -o requirements/dev.txt requirements/dev.in
 
 plugins:

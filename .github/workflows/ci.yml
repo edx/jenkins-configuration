@@ -12,7 +12,7 @@ jobs:
     env:
       JENKINS_VERSION: 'jenkins_2.263.4'
       BOKCHOY_HEADLESS: true
-      CI_SYSTEM: 'travis'
+      CI_SYSTEM: 'GitHub_CI'
       CONFIG_PATH: 'test_data'
     strategy:
       fail-fast: false
