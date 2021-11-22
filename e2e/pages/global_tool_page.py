@@ -20,7 +20,7 @@ class GlobalToolConfigurationPage(PageObject):
         """ Press the button to expand the installations for a given tool"""
         tool_name = self.tool_names[tool]
         nameref_id = self.q(css='[name="{}"]'.format(tool_name)).attrs('id')[0]
-        css_query='[nameref="{}"] > td > div.advancedLink > span.yui-button'.format(nameref_id)
+        css_query='[nameref="{}"] > div.rowSet-container > div.tr > div > div.advancedLink > span.yui-button'.format(nameref_id)
         self.scroll_to_element(css_query)
         self.q(css=css_query).click()
 
