@@ -1,7 +1,6 @@
 unclassified:
   email-ext:
     adminRequiredForTemplateTesting: false
-    advProperties: "C"
     allowUnregisteredEnabled: false
     charset: "UTF-8"
     debugMode: false
@@ -19,19 +18,18 @@ unclassified:
     maxAttachmentSize: 10484711424
     maxAttachmentSizeMb: 9999
     precedenceBulk: false
-    smtpPassword: "{AQAAABAAAAAQawlaGAUDajr87MIEbbFPn35G1abqt2uLQlKcqx0fmJA=}"
-    smtpPort: "9999"
-    smtpServer: "localhost"
-    smtpUsername: "userId"
-    useSsl: true
     watchingEnabled: false
+    mailAccount:
+      advProperties: "C"
+      smtpUsername: "userId"
+      smtpPassword: "{AQAAABAAAAAQawlaGAUDajr87MIEbbFPn35G1abqt2uLQlKcqx0fmJA=}"
+      useSsl: true
   mailer:
     charset: "UTF-8"
     defaultSuffix: "com"
     replyToAddress: "user@localhost"
     smtpPort: "9999"
     useSsl: true
-    smtpPort: "9999"
     smtpHost: "localhost"
   location:
     adminAddress: "admin@localhost"
