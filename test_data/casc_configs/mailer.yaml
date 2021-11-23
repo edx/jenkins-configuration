@@ -1,8 +1,37 @@
 unclassified:
+  email-ext:
+    adminRequiredForTemplateTesting: false
+    advProperties: "C"
+    allowUnregisteredEnabled: false
+    charset: "UTF-8"
+    debugMode: false
+    defaultBody: |
+      what a nice email $BUILD_NUMBER
+    defaultContentType: "text/html"
+    defaultPostsendScript: "println('hello world')"
+    defaultPresendScript: "println('hey')"
+    defaultRecipients: "NOBODY"
+    defaultReplyTo: "user@localhost"
+    defaultSubject: "HEY"
+    defaultSuffix: "com"
+    emergencyReroute: ""
+    excludedCommitters: "HIM"
+    maxAttachmentSize: 10484711424
+    maxAttachmentSizeMb: 9999
+    precedenceBulk: false
+    smtpPassword: "{AQAAABAAAAAQawlaGAUDajr87MIEbbFPn35G1abqt2uLQlKcqx0fmJA=}"
+    smtpPort: "9999"
+    smtpServer: "localhost"
+    smtpUsername: "userId"
+    useSsl: true
+    watchingEnabled: false
   mailer:
-    adminAddress: "admin@localhost"
     charset: "UTF-8"
     defaultSuffix: "com"
     replyToAddress: "user@localhost"
     smtpPort: "9999"
     useSsl: true
+    smtpPort: "9999"
+    smtpHost: "localhost"
+  location:
+    adminAddress: "admin@localhost"
