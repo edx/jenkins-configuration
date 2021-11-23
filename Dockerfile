@@ -7,7 +7,7 @@
 # -- builds. The scripts that create conflicts should be copied into
 # -- these individual shard images.
 
-FROM ubuntu:16.04 as base
+FROM ubuntu:20.04 as base
 
 USER root
 RUN apt-get update -y \
@@ -15,7 +15,7 @@ RUN apt-get update -y \
     && apt-get install -y curl \
     && apt-get install -y git \
     && apt-get install -y sudo \
-    && apt-get install -y python-pip \
+    && apt-get install -y python3-pip \
     && apt-get install -y openssh-server \
     && apt-get install -y vim
 
