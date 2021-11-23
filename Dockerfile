@@ -37,7 +37,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ARG CONFIG_PATH
 ENV JENKINS_CONFIG_PATH $JENKINS_HOME/init-configs
 
-ENV CASC_JENKINS_CONFIG $JENKINS_HOME/casc_configs
+ENV CASC_JENKINS_CONFIG $JENKINS_HOME/init-configs/casc_configs
 
 ARG user=jenkins
 ARG group=jenkins
@@ -78,8 +78,8 @@ COPY src/main/groovy/1addJarsToClasspath.groovy \
     src/main/groovy/5createLoggers.groovy \
     $JENKINS_HOME/init.groovy.d/
 
-COPY src/main/casc_configs/mailer.yaml \
-    $JENKINS_HOME/casc_configs/
+#COPY src/main/casc_configs/mailer.yaml \
+#    $JENKINS_HOME/casc_configs/
 
 # -- test shard #1
 # -- copy the unique scripts used to configure a Jenkins container for
