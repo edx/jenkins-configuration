@@ -37,6 +37,8 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ARG CONFIG_PATH
 ENV JENKINS_CONFIG_PATH $JENKINS_HOME/init-configs
 
+ENV CASC_JENKINS_CONFIG $JENKINS_HOME/casc_configs
+
 ARG user=jenkins
 ARG group=jenkins
 ARG uid=1000
@@ -45,6 +47,7 @@ RUN groupadd -g ${gid} ${group} \
     && useradd -d "$JENKINS_HOME" -u ${uid} -g ${gid} -m -s /bin/bash ${user}
 
 RUN mkdir -p $JENKINS_HOME/init.groovy.d \
+    && mkdir $JENKINS_HOME/casc_configs \
     && mkdir $JENKINS_HOME/plugins \
     && mkdir $JENKINS_HOME/utils \
     && mkdir $JENKINS_HOME/git \
@@ -64,7 +67,7 @@ COPY src/main/groovy/1addJarsToClasspath.groovy \
     src/main/groovy/4configureGit.groovy \
     src/main/groovy/4configureGithub.groovy \
     src/main/groovy/4configureJobConfigHistory.groovy \
-    src/main/groovy/4configureMailerPlugin.groovy \
+#    src/main/groovy/4configureMailerPlugin.groovy \
     src/main/groovy/4configureMaskPasswords.groovy \
     src/main/groovy/4configureSecurity.groovy \
     src/main/groovy/4configureSlack.groovy \
@@ -74,6 +77,9 @@ COPY src/main/groovy/1addJarsToClasspath.groovy \
     src/main/groovy/5configureEmailExtension.groovy \
     src/main/groovy/5createLoggers.groovy \
     $JENKINS_HOME/init.groovy.d/
+
+COPY src/main/casc_configs/mailer.yaml \
+    $JENKINS_HOME/casc_configs/
 
 # -- test shard #1
 # -- copy the unique scripts used to configure a Jenkins container for

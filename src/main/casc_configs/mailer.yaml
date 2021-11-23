@@ -1,0 +1,8 @@
+unclassified:
+  mailer:
+    adminAddress: "admin@localhost"
+    charset: "UTF-8"
+    defaultSuffix: "com"
+    replyToAddress: "user@localhost"
+    smtpPort: "9999"
+    useSsl: true
