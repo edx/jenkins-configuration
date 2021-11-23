@@ -74,7 +74,7 @@ COPY src/main/groovy/1addJarsToClasspath.groovy \
     src/main/groovy/4configureSplunk.groovy \
     src/main/groovy/4configureTimestamper.groovy \
     src/main/groovy/5addSeedJob.groovy \
-    src/main/groovy/5configureEmailExtension.groovy \
+#    src/main/groovy/5configureEmailExtension.groovy \
     src/main/groovy/5createLoggers.groovy \
     $JENKINS_HOME/init.groovy.d/
 
