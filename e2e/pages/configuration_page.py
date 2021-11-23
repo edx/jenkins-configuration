@@ -54,7 +54,7 @@ class ConfigurationSubPageMixIn(object):
     def expand_advanced(self):
         """ Press the "Advanced" button for the plugin section."""
         nameref_id = self.q(css='[name="{}"]'.format(self.name)).attrs('id')[0]
-        css_query = '[nameref="{}"] > td > div.advancedLink > span.yui-button button'.format(nameref_id)
+        css_query = '[nameref="{}"] > div.rowSet-container > div.tr > div.advancedLink > span.yui-button button'.format(nameref_id)
         element = self.browser.find_element_by_css_selector(css_query)
         ActionChains(self.browser).move_to_element(element).click(element)
 
