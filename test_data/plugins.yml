@@ -52,7 +52,7 @@
   version: '1.46.2'
 - name: 'configuration-as-code'
   version: '1.54'
-  group: 'org.jenkins-ci.plugins'
+  group: 'io.jenkins'
 - name: 'credentials'
   version: '2.6.1'
   group: 'org.jenkins-ci.plugins'
