@@ -8,11 +8,11 @@ attrs==21.2.0
     # via pytest
 bok-choy==1.1.1
     # via -r requirements/test.in
-certifi==2021.5.30
+certifi==2021.10.8
     # via requests
-chardet==4.0.0
+charset-normalizer==2.0.9
     # via requests
-idna==2.10
+idna==3.3
     # via requests
 iniconfig==1.1.1
     # via pytest
@@ -20,21 +20,21 @@ jenkinsapi==0.3.11
     # via -r requirements/test.in
 lazy==1.4
     # via bok-choy
-packaging==20.9
+packaging==21.3
     # via pytest
-pluggy==0.13.1
+pluggy==1.0.0
     # via pytest
-py==1.10.0
+py==1.11.0
     # via pytest
-pyparsing==2.4.7
+pyparsing==3.0.6
     # via packaging
-pytest==6.2.4
+pytest==6.2.5
     # via -r requirements/test.in
-pytz==2021.1
+pytz==2021.3
     # via jenkinsapi
-pyyaml==5.4.1
+pyyaml==6.0
     # via -r requirements/test.in
-requests==2.25.1
+requests==2.26.0
     # via
     #   -r requirements/test.in
     #   jenkinsapi
@@ -48,7 +48,7 @@ six==1.16.0
     #   jenkinsapi
 toml==0.10.2
     # via pytest
-urllib3==1.26.5
+urllib3==1.26.7
     # via
     #   requests
     #   selenium

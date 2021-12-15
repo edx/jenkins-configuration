@@ -4,21 +4,23 @@
 #
 #    make upgrade
 #
-appdirs==1.4.4
+backports.entry-points-selectable==1.1.1
     # via virtualenv
-distlib==0.3.2
+distlib==0.3.4
     # via virtualenv
-filelock==3.0.12
+filelock==3.4.0
     # via
     #   tox
     #   virtualenv
-packaging==20.9
+packaging==21.3
     # via tox
-pluggy==0.13.1
+platformdirs==2.4.0
+    # via virtualenv
+pluggy==1.0.0
     # via tox
-py==1.10.0
+py==1.11.0
     # via tox
-pyparsing==2.4.7
+pyparsing==3.0.6
     # via packaging
 six==1.16.0
     # via
@@ -26,11 +28,11 @@ six==1.16.0
     #   virtualenv
 toml==0.10.2
     # via tox
-tox==3.23.1
+tox==3.24.4
     # via
     #   -r requirements/ci.in
     #   tox-battery
 tox-battery==0.6.1
     # via -r requirements/ci.in
-virtualenv==20.4.7
+virtualenv==20.10.0
     # via tox
