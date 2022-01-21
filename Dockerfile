@@ -56,7 +56,6 @@ COPY ${CONFIG_PATH} $JENKINS_HOME/init-configs/
 COPY src/main/groovy/1addJarsToClasspath.groovy \
     src/main/groovy/3importCredentials.groovy \
     src/main/groovy/3installGroovy.groovy \
-    src/main/groovy/3installPython.groovy \
     src/main/groovy/3mainConfiguration.groovy \
     src/main/groovy/3setGlobalProperties.groovy \
     src/main/groovy/4configureEc2Plugin.groovy \
