@@ -10,7 +10,7 @@ jobs:
   tests:
     runs-on: ubuntu-20.04
     env:
-      JENKINS_VERSION: 'jenkins_2.303.3'
+      JENKINS_VERSION: 'jenkins_2.319.3'
       BOKCHOY_HEADLESS: true
       CI_SYSTEM: 'GitHub_CI'
       CONFIG_PATH: 'test_data'
