@@ -11,7 +11,7 @@ FROM ubuntu:20.04 as base
 
 USER root
 RUN apt-get update -y \
-    && apt-get install -y openjdk-8-jdk \
+    && apt-get install -y openjdk-11-jdk \
     && apt-get install -y curl \
     && apt-get install -y git \
     && apt-get install -y sudo \
@@ -32,7 +32,7 @@ RUN mkdir /usr/share/jenkins \
          -L -o /usr/share/jenkins/jenkins.war
 EXPOSE 8080
 ENV JENKINS_HOME /var/lib/jenkins
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64
 
 ARG CONFIG_PATH
 ENV JENKINS_CONFIG_PATH $JENKINS_HOME/init-configs
