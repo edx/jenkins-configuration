@@ -10,7 +10,7 @@ jobs:
   tests:
     runs-on: ubuntu-20.04
     env:
-      JENKINS_VERSION: 'jenkins_2.303.3'
+      JENKINS_VERSION: 'jenkins_2.319.3'
       BOKCHOY_HEADLESS: true
       CI_SYSTEM: 'GitHub_CI'
       CONFIG_PATH: 'test_data'
@@ -31,8 +31,8 @@ jobs:
       - name: Install Firefox 69
         run: |
           sudo apt-get purge firefox
-          wget "https://ftp.mozilla.org/pub/firefox/releases/69.0/linux-x86_64/en-US/firefox-69.0.tar.bz2"
-          tar -xjf firefox-69.0.tar.bz2
+          wget "https://ftp.mozilla.org/pub/firefox/releases/82.0/linux-x86_64/en-US/firefox-82.0.tar.bz2"
+          tar -xjf firefox-82.0.tar.bz2
           sudo mv firefox /opt/firefox
           sudo ln -s /opt/firefox/firefox /usr/bin/firefox
 
