@@ -28,7 +28,7 @@ jobs:
         with:
           python-version: 3.8
 
-      - name: Install Firefox 69
+      - name: Install Firefox 82
         run: |
           sudo apt-get purge firefox
           wget "https://ftp.mozilla.org/pub/firefox/releases/82.0/linux-x86_64/en-US/firefox-82.0.tar.bz2"
