@@ -27,14 +27,13 @@ public static void main(String[] args) {
     warnings.each { warning ->
         description += formatWarning(warning)
     }
-    description += """\\n*Implementation Details:*\\nhttps://openedx.atlassian.net/\
-wiki/spaces/EdxOps/pages/1062895636/How+to+update+jenkins+plugins+for+https+build.testeng.edx.org"""
+    description += """\\n*Implementation Details:*\\nhttps://2u-internal.atlassian.net/wiki/spaces/SRE/pages/19270504/Jenkins+build.testeng.edx.org"""
     def env = binding.build.environment;
     JIRA_USER = env.JIRA_USER
     JIRA_API_TOKEN = env.JIRA_API_TOKEN
     def authString="${JIRA_USER}:${JIRA_API_TOKEN}"
 
-    def jira_base_url = "https://openedx.atlassian.net/rest/api/2/"
+    def jira_base_url = "https://2u-internal.atlassian.net/rest/api/2/"
     def req = """{
         "fields": {
             "project" : { "key" : "DOS" },
