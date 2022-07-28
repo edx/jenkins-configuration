@@ -11,6 +11,8 @@
 # This packages is a backport which can only be installed on Python 2.7
 futures ; python_version == "2.7"
 
+-c common_constraints.txt
+
 # A dependency of pytest.  Pytest doesn't constrain it and 6.0.0 onward
 # only works with python 3
 more-itertools<6.0.0
