@@ -84,6 +84,5 @@ def main():
     for p, update_string in updates.items():
         print('{}: {}'.format(p, update_string))
 
-
 if __name__ == "__main__":
     main()
