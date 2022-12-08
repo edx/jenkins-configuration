@@ -7,8 +7,8 @@
 attrs==21.2.0
     # via pytest
 bok-choy==1.1.1
-    # via -r requirements/test.in
-certifi==2021.10.8
+    # via -r test.in
+certifi==2022.12.7
     # via requests
 charset-normalizer==2.0.9
     # via requests
@@ -17,7 +17,7 @@ idna==3.3
 iniconfig==1.1.1
     # via pytest
 jenkinsapi==0.3.11
-    # via -r requirements/test.in
+    # via -r test.in
 lazy==1.4
     # via bok-choy
 packaging==21.3
@@ -29,18 +29,18 @@ py==1.11.0
 pyparsing==3.0.6
     # via packaging
 pytest==6.2.5
-    # via -r requirements/test.in
+    # via -r test.in
 pytz==2021.3
     # via jenkinsapi
 pyyaml==6.0
-    # via -r requirements/test.in
+    # via -r test.in
 requests==2.26.0
     # via
-    #   -r requirements/test.in
+    #   -r test.in
     #   jenkinsapi
 selenium==3.141.0
     # via
-    #   -r requirements/test.in
+    #   -r test.in
     #   bok-choy
 six==1.16.0
     # via
