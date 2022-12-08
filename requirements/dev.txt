@@ -6,134 +6,134 @@
 #
 attrs==21.2.0
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   pytest
-backports.entry-points-selectable==1.1.1
+backports-entry-points-selectable==1.1.1
     # via
-    #   -r requirements/ci.txt
+    #   -r ci.txt
     #   virtualenv
 bok-choy==1.1.1
-    # via -r requirements/test.txt
-certifi==2021.10.8
+    # via -r test.txt
+certifi==2022.12.7
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   requests
 charset-normalizer==2.0.9
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   requests
 click==8.0.3
     # via
-    #   -r requirements/pip-tools.txt
+    #   -r pip-tools.txt
     #   pip-tools
 distlib==0.3.4
     # via
-    #   -r requirements/ci.txt
+    #   -r ci.txt
     #   virtualenv
 filelock==3.4.0
     # via
-    #   -r requirements/ci.txt
+    #   -r ci.txt
     #   tox
     #   virtualenv
 idna==3.3
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   requests
 iniconfig==1.1.1
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   pytest
 jenkinsapi==0.3.11
-    # via -r requirements/test.txt
+    # via -r test.txt
 lazy==1.4
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   bok-choy
 packaging==21.3
     # via
-    #   -r requirements/ci.txt
-    #   -r requirements/test.txt
+    #   -r ci.txt
+    #   -r test.txt
     #   pytest
     #   tox
 pep517==0.12.0
     # via
-    #   -r requirements/pip-tools.txt
+    #   -r pip-tools.txt
     #   pip-tools
 pip-tools==6.4.0
-    # via -r requirements/pip-tools.txt
+    # via -r pip-tools.txt
 platformdirs==2.4.0
     # via
-    #   -r requirements/ci.txt
+    #   -r ci.txt
     #   virtualenv
 pluggy==1.0.0
     # via
-    #   -r requirements/ci.txt
-    #   -r requirements/test.txt
+    #   -r ci.txt
+    #   -r test.txt
     #   pytest
     #   tox
 py==1.11.0
     # via
-    #   -r requirements/ci.txt
-    #   -r requirements/test.txt
+    #   -r ci.txt
+    #   -r test.txt
     #   pytest
     #   tox
 pyparsing==3.0.6
     # via
-    #   -r requirements/ci.txt
-    #   -r requirements/test.txt
+    #   -r ci.txt
+    #   -r test.txt
     #   packaging
 pytest==6.2.5
-    # via -r requirements/test.txt
+    # via -r test.txt
 pytz==2021.3
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   jenkinsapi
 pyyaml==6.0
-    # via -r requirements/test.txt
+    # via -r test.txt
 requests==2.26.0
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   jenkinsapi
 selenium==3.141.0
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   bok-choy
 six==1.16.0
     # via
-    #   -r requirements/ci.txt
-    #   -r requirements/test.txt
+    #   -r ci.txt
+    #   -r test.txt
     #   bok-choy
     #   jenkinsapi
     #   tox
     #   virtualenv
 toml==0.10.2
     # via
-    #   -r requirements/ci.txt
-    #   -r requirements/test.txt
+    #   -r ci.txt
+    #   -r test.txt
     #   pytest
     #   tox
 tomli==2.0.0
     # via
-    #   -r requirements/pip-tools.txt
+    #   -r pip-tools.txt
     #   pep517
 tox==3.24.4
     # via
-    #   -r requirements/ci.txt
+    #   -r ci.txt
     #   tox-battery
 tox-battery==0.6.1
-    # via -r requirements/ci.txt
+    # via -r ci.txt
 urllib3==1.26.7
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   requests
     #   selenium
 virtualenv==20.10.0
     # via
-    #   -r requirements/ci.txt
+    #   -r ci.txt
     #   tox
 wheel==0.37.0
     # via
-    #   -r requirements/pip-tools.txt
+    #   -r pip-tools.txt
     #   pip-tools
 
 # The following packages are considered to be unsafe in a requirements file:
