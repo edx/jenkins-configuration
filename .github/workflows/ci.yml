@@ -8,7 +8,7 @@ on:
 
 jobs:
   tests:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     env:
       JENKINS_VERSION: 'jenkins_2.319.3'
       BOKCHOY_HEADLESS: true
