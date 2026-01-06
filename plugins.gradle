@@ -7,6 +7,9 @@ buildscript {
         maven {
           url "https://plugins.gradle.org/m2/"
         }
+        maven {
+          url "https://repo.jenkins-ci.org/public/"
+        }
   }
   dependencies {
         classpath "gradle.plugin.org.jenkins-ci.tools:gradle-jpi-plugin:0.28.0"
